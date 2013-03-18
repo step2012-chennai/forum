@@ -1,4 +1,5 @@
-forum
-=====
+Forum Application
+=================
 
-Just Ask anything except money!
+A forum similar to stack overflow.
+

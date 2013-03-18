@@ -1,6 +1,11 @@
-*.class
+build/
+lib/
+logs/
+out/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+*.DS_Store
+.idea
+*.iml
+*.log
+*.ipr
+*.iws
