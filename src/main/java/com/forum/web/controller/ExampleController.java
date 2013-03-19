@@ -33,6 +33,14 @@ public class ExampleController {
         return mv;
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView test() {
+
+        ModelAndView mv = new ModelAndView("test");
+        mv.addObject("thing", null);
+        return mv;
+    }
+
     @RequestMapping(value = "/process", method = RequestMethod.POST)
     public String process(@PathVariable("entityId") String entityId,
                           @ModelAttribute("conversation") ExampleConversation conversation) {
