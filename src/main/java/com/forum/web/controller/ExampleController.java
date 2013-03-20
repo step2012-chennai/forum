@@ -2,6 +2,7 @@ package com.forum.web.controller;
 
 import com.forum.services.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,25 @@ public class ExampleController {
         mv.addObject("thing", null);
         return mv;
     }
+
+    @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
+    public ModelAndView activityWall() {
+
+        ModelAndView mv = new ModelAndView("activityWall");
+        mv.addObject("thing", null);
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView test() {
+
+        ModelAndView mv = new ModelAndView("test");
+        mv.addObject("thing", null);
+        return mv;
+    }
+
+
 
     @RequestMapping(value = "/process", method = RequestMethod.POST)
     public String process(@PathVariable("entityId") String entityId,
