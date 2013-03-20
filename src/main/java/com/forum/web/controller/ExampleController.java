@@ -33,6 +33,7 @@ public class ExampleController {
         return mv;
     }
 
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView test() {
 
