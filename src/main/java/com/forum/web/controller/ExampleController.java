@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ExampleController {
 
     private ExampleService exampleService;
+
     @Autowired
     public ExampleController(ExampleService exampleService) {
         this.exampleService = exampleService;
@@ -49,13 +50,28 @@ public class ExampleController {
             mv = new ModelAndView("login");
         }
 
+        return mv;
+    }
+
+    @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
+    public ModelAndView postQuestion() {
+        ModelAndView mv = new ModelAndView("postQuestion");
+        mv.addObject("thing", null);
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
+    public ModelAndView activityWall() {
+        ModelAndView mv = new ModelAndView("activityWall");
         mv.addObject("thing", null);
         return mv;
     }
 
+
     @RequestMapping(value = "/process", method = RequestMethod.POST)
     public String process(@PathVariable("entityId") String entityId,
-                          @ModelAttribute("conversation") ExampleConversation conversation) {
+                @ModelAttribute("conversation") ExampleConversation conversation) {
         return "viewName";
     }
 

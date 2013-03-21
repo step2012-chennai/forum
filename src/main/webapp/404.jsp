@@ -8,7 +8,7 @@
 </head>
 <body class="one-col error not-found">
 <div id="container">
-    404
+   404
 </div>
 </body>
 </html>
