@@ -10,10 +10,10 @@
 
 	<center>
 		<table class="QA">
-			<tbody>
+			<body>
     			<td>
 				    <center><label for="Ask_Question"><font size="5" color="white">Ask Question</label>
-				    <center><button type="button" onclick="alert('post question link!')">Post Question</button>
+				    <a href="postQuestion"><center><button type="button" >Post Question</button></a>
 				</td>
 		
 				<td>
@@ -25,7 +25,7 @@
 				    <center><label for="Tags"><font size="5" color="white">Tag Cloud</font></label></H1>
 				    <center><button type="button" onclick="alert('tag link!')">Tags</button>
 				</td>
-			</tbody>
+			</body>
 		</table>			
     </center>
 

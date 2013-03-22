@@ -16,7 +16,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="StudentDAOImpl" class="com.springtry.StudentDAOImpl">
+    <bean id="post" class="com.forum.PostQuestion">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
