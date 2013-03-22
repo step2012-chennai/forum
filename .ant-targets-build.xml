@@ -1,0 +1,7 @@
+build
+clean
+fetch-libs
+package-src
+precommit
+run-jetty
+run-tests

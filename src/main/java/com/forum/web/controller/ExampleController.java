@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ExampleController {
@@ -35,12 +34,34 @@ public class ExampleController {
         return mv;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("login");
+        mv.addObject("thing", null);
+        return mv;
+    }
+
+    @RequestMapping(value="/validate", method=RequestMethod.POST)
+    public ModelAndView getInput(@RequestParam("j_username") String username,@RequestParam("j_password") String password) {
+        LoginValidation validation = new LoginValidation(username, password);
+        ModelAndView mv;
+
+        if(validation.match()){
+            mv = new ModelAndView("activityWall");
+        } else {
+            mv = new ModelAndView("login");
+        }
+
+        return mv;
+    }
+
     @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
     public ModelAndView postQuestion() {
         ModelAndView mv = new ModelAndView("postQuestion");
         mv.addObject("thing", null);
         return mv;
     }
+
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
     public ModelAndView activityWall() {
         ModelAndView mv = new ModelAndView("activityWall");
@@ -63,10 +84,9 @@ public class ExampleController {
         return mv;
     }
 
-
     @RequestMapping(value = "/process", method = RequestMethod.POST)
     public String process(@PathVariable("entityId") String entityId,
-                          @ModelAttribute("conversation") ExampleConversation conversation) {
+                @ModelAttribute("conversation") ExampleConversation conversation) {
         return "viewName";
     }
 

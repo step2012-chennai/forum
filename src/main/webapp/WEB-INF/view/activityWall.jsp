@@ -38,27 +38,21 @@
 		        <td>
 		        <a href="http://localhost:8080/app/test">
 
-		        <%@page import="java.sql.*, java.lang.*"%>
-                <% Connection connection = null;
-                   Statement sql;
-                   try {
-                       connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/forum", "forum_user", "password");
-                   } catch (SQLException e) {
-                       e.printStackTrace();
-                   }
-                   try {
-                       sql = connection.createStatement();
-                       ResultSet set = sql.executeQuery("select * from Questions");
-                       while (set.next()) {
-                           out.println(set.getString("question"));
-                           out.println("<br><br>");
-                       }
-
-                   } catch (SQLException e) {
-                       e.printStackTrace();
-                   }
+		        <%@page import="java.sql.*,com.forum.repository.FetchQuestion,java.util.*"%>
+                <%
+                        Iterator itr;
+                        FetchQuestion questions=new FetchQuestion();
+                        List list= (List) questions.fetch();
+                        for (Object o : list) {
+                        out.println(o + "<BR/><BR/>");
+                        }
               %></a>
+              <center>
+                    <button value="prev">prev</button>
+                    <button value="next"/>next</button>
+              </center>
 		    </tbody>
+
 	    </table>
 	</div>
 </body>
