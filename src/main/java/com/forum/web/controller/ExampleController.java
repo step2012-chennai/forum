@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ExampleController {
-
     private ExampleService exampleService;
 
     @Autowired
@@ -25,15 +24,7 @@ public class ExampleController {
 
     @RequestMapping(value = "/setup", method = RequestMethod.GET)
     public ModelAndView setup(@PathVariable("entityId") String entityId) {
-
         return new ModelAndView("viewName");
-    }
-
-    @RequestMapping(value = "/display", method = RequestMethod.GET)
-    public ModelAndView display() {
-        ModelAndView mv = new ModelAndView("home");
-        mv.addObject("thing", null);
-        return mv;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -42,25 +33,22 @@ public class ExampleController {
         return mv;
     }
 
-    @RequestMapping(value="/validate", method=RequestMethod.POST)
-    public ModelAndView getInput(@RequestParam("j_username") String username,@RequestParam("j_password") String password) {
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public ModelAndView getInput(@RequestParam("j_username") String username, @RequestParam("j_password") String password) {
         ModelAndView mv;
 
-        if(exampleService.match(username, password)){
+        if (exampleService.match(username, password)) {
             mv = new ModelAndView(new RedirectView("activityWall"));
         } else {
             mv = new ModelAndView(new RedirectView("login"));
-            mv.addObject("error","Password/Username is incorrect");
+            mv.addObject("error", "Password/Username is incorrect");
         }
 
         return mv;
     }
 
     @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
-    public ModelAndView postQuestion() {
-        ModelAndView mv = new ModelAndView("postQuestion");
-        mv.addObject("thing", null);
-        return mv;
+    public void postQuestion() {
     }
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
@@ -68,21 +56,21 @@ public class ExampleController {
         ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
         ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
         showQuestions.show();
-//        ModelAndView mv = new ModelAndView("activityWall");
-//        mv.addObject("thing", null);
-//        return mv;
     }
 
     @RequestMapping(value = "/postedQuestion", method = RequestMethod.POST)
-    public void postedQuestion(@RequestParam("textareas")String textarea) {
-//        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
-//        PostQuestion post = (PostQuestion) context.getBean("post");
-//        post.create(textarea);
+    public ModelAndView postedQuestion(@RequestParam("textareas") String textarea) {
+        ModelAndView mv;
+        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
+        PostQuestion post = (PostQuestion) context.getBean("post");
+        post.create(textarea);
+        mv = new ModelAndView(new RedirectView("activityWall"));
+        return mv;
     }
 
     @RequestMapping(value = "/process", method = RequestMethod.POST)
     public String process(@PathVariable("entityId") String entityId,
-                @ModelAttribute("conversation") ExampleConversation conversation) {
+                          @ModelAttribute("conversation") ExampleConversation conversation) {
         return "viewName";
     }
 
