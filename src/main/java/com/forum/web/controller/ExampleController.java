@@ -32,10 +32,23 @@ public class ExampleController {
         return mv;
     }
 
+    @RequestMapping(value = "/display", method = RequestMethod.GET)
+    public ModelAndView display() {
+
+        ModelAndView mv = new ModelAndView("home");
+        mv.addObject("thing", null);
+        return mv;
+    }
+
+    @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
+    public void postQuestions() {
+    }
+
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public ModelAndView getInput(@RequestParam("j_username") String username, @RequestParam("j_password") String password) {
         ModelAndView mv;
 
+        System.out.println(exampleService==null);
         if (exampleService.match(username, password)) {
             mv = new ModelAndView(new RedirectView("activityWall"));
         } else {
@@ -69,5 +82,4 @@ public class ExampleController {
                           @ModelAttribute("conversation") ExampleConversation conversation) {
         return "viewName";
     }
-
 }

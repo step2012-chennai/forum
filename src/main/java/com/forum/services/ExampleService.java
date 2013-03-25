@@ -1,37 +1,36 @@
 package com.forum.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.sql.DataSource;
 
 @Service
 public class ExampleService {
+    private JdbcTemplate jdbcTemplate;
+    private DataSource dataSource;
 
     public ExampleService() {
     }
 
-    public void doOperation(){
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public void doOperation() {
     }
 
     public boolean match(String username, String password) {
-        Connection connection = com.forum.web.controller.DBConnection.getConnection();
-        Statement sql;
-
-        try {
-            sql = connection.createStatement();
-            ResultSet set = sql.executeQuery("select * from Login");
-            while (set.next()) {
-                if(set.getString("username").equals(username) && set.getString("password").equals(password)){
-                    return true;
-                }
+        SqlRowSet set = jdbcTemplate.queryForRowSet("select * from Login");
+        while (set.next()) {
+            if (set.getString("username").equals(username) && set.getString("password").equals(password)) {
+                return true;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return false;
     }
