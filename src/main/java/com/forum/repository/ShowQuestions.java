@@ -1,8 +1,10 @@
 package com.forum.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 public class ShowQuestions {
     private JdbcTemplate jdbcTemplate;
@@ -16,7 +18,7 @@ public class ShowQuestions {
         this.dataSource = dataSource;
     }
 
-    public void show() {
-        jdbcTemplate.execute("select question from Questions;");
+    public SqlRowSet show() {
+        return jdbcTemplate.queryForRowSet("select question from questions ORDER BY q_id DESC");
     }
 }

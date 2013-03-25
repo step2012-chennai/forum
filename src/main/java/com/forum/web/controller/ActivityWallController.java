@@ -1,8 +1,8 @@
 package com.forum.web.controller;
 
+import com.forum.repository.PostQuestion;
 import com.forum.repository.ShowQuestions;
 import com.forum.services.ExampleService;
-import com.forum.repository.PostQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,7 +38,7 @@ public class ActivityWallController {
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
     public void activityWall() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
         ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
         showQuestions.show();
     }

@@ -6,24 +6,20 @@
 </head>
 
 <body background-color:#ffffff>
-     <span><font size="2" color="#888888">Hello, user_name</font></span><br><br>
 
 	<center>
 		<table class="QA">
 			<body>
     			<td>
-				    <center><label for="Ask_Question"><font size="5" color="white">Ask Question</label>
-				    <a href="postQuestion"><center><button type="button" >Post Question</button></a>
+				    <a href="postQuestion"><center><label for="Ask_Question"><font size="5" color="white">Ask Question</label></a>
 				</td>
 		
 				<td>
-    				<center><label for="Answer"><font size="5" color="white">Answer</font></label></H1>
-				    <center><button type="button" onclick="alert('open list of questions link!')">Browse Open Questions</button>
+    				<center><label for="Answer" onclick="alert('open list of questions link!')"><font size="5" color="white">Answer</font></label></H1>
 				</td>
 
 				<td>
-				    <center><label for="Tags"><font size="5" color="white">Tag Cloud</font></label></H1>
-				    <center><button type="button" onclick="alert('tag link!')">Tags</button>
+				    <center><label for="Tags" onclick="alert('tag link!')"><font size="5" color="white">Tag Cloud</font></label></H1>
 				</td>
 			</body>
 		</table>			
@@ -42,6 +38,17 @@
                     <button value="prev">prev</button>
                     <button value="next"/>next</button>
               </center>
+		        <a href="http://localhost:8080/app/test">
+                <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
+                <%  ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
+                  ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
+                SqlRowSet list=showQuestions.show();
+                 while(list.next()) {
+                    out.println(list.getString("question")
+                     + "<BR/><BR/>");
+                    }
+                %>
+		       </a>
 		    </tbody>
 
 	    </table>
