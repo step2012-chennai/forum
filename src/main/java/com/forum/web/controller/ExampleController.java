@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class ExampleController {
@@ -53,9 +54,6 @@ public class ExampleController {
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
     public void activityWall() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
-        ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
-        showQuestions.show();
     }
 
     @RequestMapping(value = "/postedQuestion", method = RequestMethod.POST)

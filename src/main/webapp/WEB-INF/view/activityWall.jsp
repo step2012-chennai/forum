@@ -33,11 +33,16 @@
 		    <tbody>
 		        <td>
 		        <a href="http://localhost:8080/app/test">
+                <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
+                <%  ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
+                  ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
+                SqlRowSet list=showQuestions.show();
+                 while(list.next()) {
+                    out.println(list.getString("question")
+                     + "<BR/><BR/>");
+                    }
+                %>
 		       </a>
-              <center>
-                    <button value="prev">prev</button>
-                    <button value="next"/>next</button>
-              </center>
 		    </tbody>
 
 	    </table>
