@@ -1,14 +1,11 @@
 package com.forum.repository;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.sql.DataSource;
-
+/**
+ * Created with IntelliJ IDEA.
+ * User: anil
+ * Date: 3/22/13
+ * Time: 1:28 PM
+ * To change this template use File | Settings | File Templates.
+ */
 public class PostQuestion {
-    private JdbcTemplate jdbcTemplate;
-    private DataSource dataSource;
-
-    public void create() {
-        jdbcTemplate.setDataSource(dataSource);
-        jdbcTemplate.execute("insert into student values(2,'bipilesh')");
-    }
 }
