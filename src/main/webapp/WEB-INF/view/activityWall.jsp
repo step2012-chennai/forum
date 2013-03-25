@@ -36,18 +36,8 @@
 	    <table style="padding-left:200px" class="RecentQuestions" >
 		    <tbody>
 		        <td>
-		        <a href="http://localhost:8080/app/test">
 
-		        <%@page import="java.sql.*,com.forum.repository.FetchQuestion,java.util.*"%>
-                <%
-                        Iterator itr;
-                        FetchQuestion questions=new FetchQuestion();
-                        List list= (List) questions.fetch();
-                        for (Object o : list) {
-                        out.println(o
-                         + "<BR/><BR/>");
-                        }
-              %></a>
+
               <center>
                     <button value="prev">prev</button>
                     <button value="next"/>next</button>

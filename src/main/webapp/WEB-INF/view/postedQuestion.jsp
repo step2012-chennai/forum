@@ -1,4 +1,1 @@
-<%@ page import="java.util.*,java.sql.*" %>
-<%
-      out.print(request.getParameter("textareas"));
-%>
+don't delete this file it is doing very important task in the project.

@@ -3,9 +3,6 @@ package com.forum.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ShowQuestions {
     private JdbcTemplate jdbcTemplate;

@@ -79,7 +79,7 @@
         <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true"/>
     </target>
 
-    <target name="build" depends="clean, make-war" description="Create WAR file."/>
+    <target name="build" depends="clean, make-war, database" description="Create WAR file."/>
 
     <target name="precommit" depends="clean, run-tests" description="Run this before committing changes."/>
 
@@ -180,6 +180,12 @@
 
     <target name="get-build-number" unless="build.number">
         <input message="Build number?" addproperty="build.number"/>
+    </target>
+
+    <target name="database">
+        <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
+            <transaction src="database/tableCreation.sql"/>
+        </sql>
     </target>
 
 </project>
