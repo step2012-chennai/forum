@@ -1,11 +1,7 @@
 package com.forum.web.controller;
 
-import com.forum.repository.ShowQuestions;
 import com.forum.services.ExampleService;
-import com.forum.repository.PostQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,27 +40,6 @@ public class ExampleController {
             mv.addObject("error", "Password/Username is incorrect");
         }
 
-        return mv;
-    }
-
-    @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
-    public void postQuestion() {
-    }
-
-    @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
-    public void activityWall() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
-        ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
-        showQuestions.show();
-    }
-
-    @RequestMapping(value = "/postedQuestion", method = RequestMethod.POST)
-    public ModelAndView postedQuestion(@RequestParam("textareas") String textarea) {
-        ModelAndView mv;
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
-        PostQuestion post = (PostQuestion) context.getBean("post");
-        post.create(textarea);
-        mv = new ModelAndView(new RedirectView("activityWall"));
         return mv;
     }
 
