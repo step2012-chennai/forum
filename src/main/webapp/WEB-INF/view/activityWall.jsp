@@ -6,24 +6,20 @@
 </head>
 
 <body background-color:#ffffff>
-     <span><font size="2" color="#888888">Hello, user_name</font></span><br><br>
 
 	<center>
 		<table class="QA">
 			<body>
     			<td>
-				    <center><label for="Ask_Question"><font size="5" color="white">Ask Question</label>
-				    <a href="postQuestion"><center><button type="button" >Post Question</button></a>
+				    <a href="postQuestion"><center><label for="Ask_Question"><font size="5" color="white">Ask Question</label></a>
 				</td>
 		
 				<td>
-    				<center><label for="Answer"><font size="5" color="white">Answer</font></label></H1>
-				    <center><button type="button" onclick="alert('open list of questions link!')">Browse Open Questions</button>
+    				<center><label for="Answer" onclick="alert('open list of questions link!')"><font size="5" color="white">Answer</font></label></H1>
 				</td>
 
 				<td>
-				    <center><label for="Tags"><font size="5" color="white">Tag Cloud</font></label></H1>
-				    <center><button type="button" onclick="alert('tag link!')">Tags</button>
+				    <center><label for="Tags" onclick="alert('tag link!')"><font size="5" color="white">Tag Cloud</font></label></H1>
 				</td>
 			</body>
 		</table>			
@@ -37,17 +33,7 @@
 		    <tbody>
 		        <td>
 		        <a href="http://localhost:8080/app/test">
-
-		        <%@page import="java.sql.*,com.forum.repository.FetchQuestion,java.util.*"%>
-                <%
-                        Iterator itr;
-                        FetchQuestion questions=new FetchQuestion();
-                        List list= (List) questions.fetch();
-                        for (Object o : list) {
-                        out.println(o
-                         + "<BR/><BR/>");
-                        }
-              %></a>
+		       </a>
               <center>
                     <button value="prev">prev</button>
                     <button value="next"/>next</button>
