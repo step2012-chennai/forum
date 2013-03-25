@@ -3,10 +3,6 @@ package com.forum.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.io.Console;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PostQuestion {
     private JdbcTemplate jdbcTemplate;
@@ -21,9 +17,6 @@ public class PostQuestion {
     }
 
     public void create(String question) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        System.out.println(dateFormat.format(date));
         jdbcTemplate.execute("insert into Questions(question) values('" + question + "')");
     }
 }

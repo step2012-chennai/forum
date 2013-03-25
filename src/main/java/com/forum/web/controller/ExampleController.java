@@ -1,8 +1,7 @@
 package com.forum.web.controller;
 
-import com.forum.repository.ShowQuestions;
-import com.forum.services.ExampleService;
 import com.forum.repository.PostQuestion;
+import com.forum.services.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 public class ExampleController {
