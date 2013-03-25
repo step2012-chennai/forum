@@ -5,22 +5,21 @@
 <html>
 <head>
 <title>Login Form Validation Demo</title>
-
 </head>
     <center><body bgcolor="white">
         <form name="forgotpassord" action="validate" method="post">
-           <br><br><br><br><br><br><br><br><br><br><br><br><br> <table
+           <br><br><br><br><br><br><br><br><br><br> <table
            style="border:1px solid #b4b28c;border-radius:20px; moz-border-radius: 20px; -webkit-box-shadow: 10px 10px 15px #afaf97;-moz-box-shadow: 10px 10px 15px #afaf97; box-shadow: 10px 10px 15px #afaf97; background:#C0C0C0;">
                 <tbody>
+                    <tr> <div style="color:#FF0000" >${param['error']} </div>
+                        <td  style="height:100px;margin:auto;">
+                            <label>Username:</label> <input type='text' name='j_username' />
+                        </td>
+                    </tr>
                     <tr>
-                    <td  style="height:100px;margin:auto;">
-                        <label>&nbsp &nbsp &nbsp &nbsp User:</label> <input type='text' name='j_username' />
-                    </td>
-                     </tr>
-                     <tr>
-                    <td>
-                         <label>Password:</label> <input type='password' name='j_password' />
-                    </td>
+                        <td>
+                         <label>Password:&nbsp</label> <input type='password' name='j_password' />
+                        </td>
                     </tr>
                     <td>
                         <br><br>&nbsp&nbsp &nbsp&nbsp  &nbsp&nbsp &nbsp&nbsp  &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp&nbsp  &nbsp&nbsp  &nbsp&nbsp &nbsp&nbsp
