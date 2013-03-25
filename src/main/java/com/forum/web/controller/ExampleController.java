@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,10 +39,22 @@ public class ExampleController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("login");
-        mv.addObject("thing", null);
         return mv;
     }
 
+    @RequestMapping(value="/validate", method=RequestMethod.POST)
+    public ModelAndView getInput(@RequestParam("j_username") String username,@RequestParam("j_password") String password) {
+        ModelAndView mv;
+
+        if(exampleService.match(username, password)){
+            mv = new ModelAndView(new RedirectView("activityWall"));
+        } else {
+            mv = new ModelAndView(new RedirectView("login"));
+            mv.addObject("error","Password/Username is incorrect");
+        }
+
+        return mv;
+    }
 
     @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
     public ModelAndView postQuestion() {
