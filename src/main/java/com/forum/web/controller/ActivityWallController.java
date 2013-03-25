@@ -1,8 +1,7 @@
 package com.forum.web.controller;
 
-import com.forum.repository.PostQuestion;
 import com.forum.repository.ShowQuestions;
-import com.forum.services.ExampleService;
+import com.forum.services.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,22 +10,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class ActivityWallController {
-    private ExampleService exampleService;
+    private Login login;
 
     @Autowired
-    public ActivityWallController(ExampleService exampleService) {
-        this.exampleService = exampleService;
+    public ActivityWallController(Login login) {
+        this.login = login;
     }
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public ModelAndView getInput(@RequestParam("j_username") String username, @RequestParam("j_password") String password) {
         ModelAndView mv;
 
-        if (exampleService.match(username, password)) {
+        if (login.match(username, password)) {
             mv = new ModelAndView(new RedirectView("activityWall"));
         } else {
             mv = new ModelAndView(new RedirectView("login"));

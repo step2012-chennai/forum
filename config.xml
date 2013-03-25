@@ -22,7 +22,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="login" class="com.forum.repository.PostQuestion">
+    <bean id="login" class="com.forum.services.Login">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>

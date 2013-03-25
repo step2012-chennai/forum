@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
 
 @Service
-public class ExampleService {
+public class Login {
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
 
-    public ExampleService() {
+    public Login() {
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
