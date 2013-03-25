@@ -44,7 +44,8 @@
                         FetchQuestion questions=new FetchQuestion();
                         List list= (List) questions.fetch();
                         for (Object o : list) {
-                        out.println(o + "<BR/><BR/>");
+                        out.println(o
+                         + "<BR/><BR/>");
                         }
               %></a>
               <center>

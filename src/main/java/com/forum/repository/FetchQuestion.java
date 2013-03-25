@@ -15,8 +15,8 @@ public class FetchQuestion {
         try {
             connection.connect();
             statement = connection.createStatement();
-            set = statement.executeQuery("select * from Questions ORDER BY q_id DESC limit=10");
-            for(int i=0;set.next() && i<10;i++) {
+            set = statement.executeQuery("select * from Questions ORDER BY q_id DESC");
+            for(int i=0;set.next() && i<5;i++) {
                 collection.add(set.getString("question"));
             }
         } catch (SQLException e) {

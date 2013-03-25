@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -16,7 +17,11 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="post" class="com.forum.PostQuestion">
+    <bean id="post" class="com.forum.repository.PostQuestion">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="showQuestions" class="com.forum.repository.ShowQuestions">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>

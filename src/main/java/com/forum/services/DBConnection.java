@@ -39,7 +39,7 @@ public class DBConnection {
     }
 
     public void disConnect() throws SQLException {
-        if(connection==null) throw new SQLException("DataBase connection missing!");
+        if(connection == null) throw new SQLException("DataBase connection missing!");
         connection.close();
     }
 }

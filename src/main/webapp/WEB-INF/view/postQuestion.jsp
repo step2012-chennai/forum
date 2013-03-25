@@ -15,18 +15,17 @@
     	 	spellchecker_languages : "+English=en",
     	});
     </script>
-    <form method="get" action = "postedQuestion">
+    <form method="post" action = "postedQuestion">
     	<div>
     		<div>
     			<textarea id="elm1" name="textareas" rows="8" cols="20" style="width: 30%">
     			</textarea>
     		</div>
-    		<input type="submit" value="Post Question" onclick="display()"/>
+    		<a href = "activityWall"><input type="submit" value="Post Question" /></a>
     		<input type="reset" value="Reset"/>
 
     	</div>
     </form>
-
 
 </body>
 </html>
