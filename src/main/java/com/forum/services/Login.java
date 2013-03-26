@@ -11,6 +11,11 @@ public class Login {
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
 
+    public Login(JdbcTemplate jdbcTemplate, DataSource dataSource) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.dataSource = dataSource;
+    }
+
     public Login() {
     }
 

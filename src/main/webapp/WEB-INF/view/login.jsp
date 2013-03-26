@@ -7,7 +7,7 @@
 <title>Login Form Validation Demo</title>
 </head>
     <center><body bgcolor="white">
-        <form name="forgotpassord" action="validate" method="post">
+        <form name="forgotpassword" action="validate" method="post">
            <br><br><br><br><br><br><br><br><br><br> <table
            style="border:1px solid #b4b28c;border-radius:20px; moz-border-radius: 20px; -webkit-box-shadow: 10px 10px 15px #afaf97;-moz-box-shadow: 10px 10px 15px #afaf97; box-shadow: 10px 10px 15px #afaf97; background:#C0C0C0;">
                 <tbody>

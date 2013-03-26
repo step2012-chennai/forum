@@ -1,4 +1,4 @@
-import com.forum.services.LoginService;
+import com.forum.services.Login;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -11,21 +11,22 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LoginServiceTest {
-    LoginService service;
+    Login service;
     ApplicationContext context;
     JdbcTemplate template;
 
     @Before
     public void setup() {
-        service = new LoginService();
+        service = new Login();
         context = new ClassPathXmlApplicationContext("file:./config.xml");
-        service = (LoginService) context.getBean("login");
+        service = (Login) context.getBean("login");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        template.execute("insert into Login values('user','password');");
+
     }
 
     @Test
     public void shouldMatchTheUserNameAndPassWord() {
+       template.execute("insert into Login values('user','password');");
         assertTrue(service.match("user", "password"));
     }
 
