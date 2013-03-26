@@ -20,11 +20,6 @@ public class PostQuestion {
     }
 
     public void insert(String question) {
-        QuestionValidation val = new QuestionValidation(question);
-        int state = val.validate();
-        if (state==1) {
-            throw new InvalidQuestionException("Your question should not empty");
-        }
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);

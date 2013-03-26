@@ -37,11 +37,4 @@ public class PostQuestionTest {
         sqlRowSet.next();
         assertThat(sqlRowSet.getString("question"), IsEqual.equalTo("What is your name?"));
     }
-
-    @Test(expected = RuntimeException.class)
-    public void shouldNotAddNullQuestionToDatabase() {
-        postQuestion = (PostQuestion) context.getBean("post");
-        postQuestion.insert(null);
-    }
-
 }

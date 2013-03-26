@@ -40,7 +40,7 @@
               </center>
 		        <a href="http://localhost:8080/app/test">
                 <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
-                <%  ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
+                <%  ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
                   ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
                 SqlRowSet list=showQuestions.show();
                  while(list.next()) {

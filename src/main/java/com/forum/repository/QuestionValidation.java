@@ -1,20 +1,34 @@
 package com.forum.repository;
 
-/**
- * Created with IntelliJ IDEA.
- * User: anil
- * Date: 3/25/13
- * Time: 3:42 PM
- * To change this template use File | Settings | File Templates.
- */
+import org.apache.commons.lang.StringEscapeUtils;
+
 public class QuestionValidation {
+    public static final int MINIMUM_CHARACTERS = 20;
     private String question;
 
     public QuestionValidation(String question) {
         this.question = question;
     }
-    public int validate(){
-       if(question==null || question=="") return 1;
-        return 0;
+
+    public boolean isQuestionValid() {
+        if (question == null) return false;
+        if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
+        question = getPlainText(question);
+        int spaces = 0, actualSpaces = 0;
+
+        for (int i = 0; i < question.length(); i++) {
+            if (question.charAt(i) == ' ') {
+                actualSpaces++;
+                continue;
+            }
+            int ch = question.charAt(i);
+            if (ch == 160) spaces++;
+        }
+        return ((question.length() - actualSpaces) != spaces);
+    }
+
+    private String getPlainText(String question) {
+        question = question.replaceAll("\\<.*?>", "");
+        return StringEscapeUtils.unescapeHtml(question);
     }
 }

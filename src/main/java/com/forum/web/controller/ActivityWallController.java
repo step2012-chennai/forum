@@ -19,7 +19,7 @@ public class ActivityWallController {
         this.login = login;
     }
 
-    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    @RequestMapping(value = "/isQuestionValid", method = RequestMethod.POST)
     public ModelAndView getInput(@RequestParam("j_username") String username, @RequestParam("j_password") String password) {
         ModelAndView mv;
 
@@ -35,7 +35,7 @@ public class ActivityWallController {
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
     public void activityWall() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
         ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
         showQuestions.show();
     }

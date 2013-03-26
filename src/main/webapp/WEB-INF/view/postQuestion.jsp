@@ -23,8 +23,8 @@
 
     <font size=5>Post your question :</font>
     <form method="post" action = "postedQuestion">
-
     	<div>
+        <center><div style="color:#FF0000" >${param['error']} </div>
     		<div> <center>
     			<textarea id="elm1" name="textareas" rows="7" cols="20" style="width: 50%">
     			</textarea>   </center>
