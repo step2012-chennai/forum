@@ -1,5 +1,5 @@
-import com.forum.services.Login;
-import com.forum.web.controller.ActivityWallController;
+import com.forum.services.LoginService;
+import com.forum.web.controller.ExampleController;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
@@ -18,14 +18,14 @@ import static org.junit.Assert.assertTrue;
 public class ExampleControllerIntegration {
     JdbcTemplate template;
     ApplicationContext context;
-    Login login;
+    LoginService login;
 
     @Before
     public void setUp() throws Exception {
         context = new ClassPathXmlApplicationContext("file:./config.xml");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
         template.execute("insert into Login values('user','password');");
-        login = (Login) context.getBean("login");
+        login = (LoginService) context.getBean("login");
     }
 
     @After
@@ -35,20 +35,23 @@ public class ExampleControllerIntegration {
 
     @Test
     public void shouldRedirectToActivityWallPageWhenPasswordIsCorrect(){
-        ActivityWallController activityWallController = new ActivityWallController(login);
-        assertThat(((RedirectView) activityWallController.getInput("user","password").getView()).getUrl(), IsEqual.equalTo("activityWall"));
+        LoginService loginService = new LoginService();
+        ExampleController exampleController = new ExampleController(loginService);
+        assertThat(((RedirectView)exampleController.getInput("user","password").getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 
     @Test
     public void shouldRedirectToLoginPageWhenPasswordIsIncorrect(){
-        ActivityWallController activityWallController = new ActivityWallController(login);
-        assertThat(((RedirectView) activityWallController.getInput("userfgd","password").getView()).getUrl(), IsEqual.equalTo("login"));
+        LoginService loginService = new LoginService();
+        ExampleController exampleController = new ExampleController(loginService);
+        assertThat(((RedirectView)exampleController.getInput("userfgd","password").getView()).getUrl(), IsEqual.equalTo("login"));
     }
 
     @Test
     public void shouldAddErrorMessageToTheModel(){
-        ActivityWallController activityWallController = new ActivityWallController(login);
-        ModelAndView modelAndView = activityWallController.getInput("fdsuykh", "rsdfdg");
+        LoginService loginService = new LoginService();
+        ExampleController exampleController = new ExampleController(loginService);
+        ModelAndView modelAndView = exampleController.getInput("fdsuykh", "rsdfdg");
         assertTrue(modelAndView.getModelMap().containsKey("error"));
         assertTrue(modelAndView.getModelMap().get("error").equals("Password/Username is incorrect"));
     }

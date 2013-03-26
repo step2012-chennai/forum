@@ -1,4 +1,4 @@
-import com.forum.services.Login;
+import com.forum.services.LoginService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -10,15 +10,16 @@ import javax.sql.DataSource;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class LoginTest {
-    Login service;
+public class LoginServiceTest {
+    LoginService service;
     ApplicationContext context;
     JdbcTemplate template;
+
     @Before
     public void setup() {
-        service = new Login();
+        service = new LoginService();
         context = new ClassPathXmlApplicationContext("file:./config.xml");
-        service = (Login) context.getBean("login");
+        service = (LoginService) context.getBean("login");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
         template.execute("insert into Login values('user','password');");
     }
@@ -37,4 +38,5 @@ public class LoginTest {
     public void shouldNotMatchSameUsernameAndDifferentPassword() {
         assertFalse(service.match("user", "passwordfsf"));
     }
+
 }
