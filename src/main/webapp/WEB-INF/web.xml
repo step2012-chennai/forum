@@ -50,7 +50,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
-    </servl     et-mapping>
+    </servlet-mapping>
     <error-page>
 
         <error-code>404</error-code>
