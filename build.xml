@@ -81,7 +81,7 @@
         <delete dir="${build.dir}"/>
     </target>
 
-    <target name="make-jars" depends="fetch-libs">
+    <target name="make-jars" depends="fetch-libs,copy-files-to-class-path">
         <make-jar srcdir="${src.dir}" jarfile="${ant.project.name}.jar" classpath="common-classpath"/>
         <make-jar srcdir="${unit.test.dir}" jarfile="${ant.project.name}-unit-tests.jar" classpath="common-classpath"/>
         <make-jar srcdir="${integration.test.dir}" jarfile="${ant.project.name}-int-tests.jar"
@@ -127,7 +127,7 @@
               file="${dist.dir}/classes/app-version.properties"/>
     </target>
 
-    <target name="make-war" depends="make-jars,setup-app-properties,copy-files-to-class-path">
+    <target name="make-war" depends="make-jars,setup-app-properties">
         <mkdir dir="${dist.dir}"/>
         <mkdir dir="${dist.dir}/webapp"/>
         <war destfile="${dist.dir}/${ant.project.name}.war" webxml="${src.dir}/webapp/WEB-INF/web.xml">
@@ -148,7 +148,7 @@
 
     <target name="copy-files-to-class-path">
         <copy todir="${dist.dir}/classes">
-            <fileset dir="${src.dir}/webapp/WEB-INF" includes="applicationContext*.xml"/>
+            <fileset dir="${src.dir}/resources" includes="applicationContext*.xml"/>
              <fileset dir="${src.dir}/deployment/env/dev" includes="app-external.properties"/>
         </copy>
 
