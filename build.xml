@@ -57,7 +57,7 @@
                 </batchtest>
                 <batchtest unless="testcase" todir="${test.report.dir}">
                     <fileset dir="@{testdir}/java">
-                        <include name="**/*Tests.java"/>
+                        <include name="**/*Test.java"/>
                     </fileset>
                 </batchtest>
             </junit>
@@ -185,6 +185,7 @@
     <target name="database">
         <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
             <transaction src="database/tableCreation.sql"/>
+        <classpath refid="common-classpath"/>
         </sql>
     </target>
 
