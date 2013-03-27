@@ -117,15 +117,15 @@
     </javac2>
     
     <copy todir="${forum.testoutput.dir}">
-      <fileset dir="${module.forum.basedir}/src/unit-tests/java">
+      <fileset dir="/tests/unit-tests/java">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.forum.basedir}/src/integration-tests/java">
+      <fileset dir="/tests/integration-tests/java">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.forum.basedir}/src/system-tests/java">
+      <fileset dir="/tests/system-tests/java">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>

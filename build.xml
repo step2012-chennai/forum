@@ -2,9 +2,9 @@
 <project name="app" default="build" basedir=".">
 
     <property name="src.dir" location="src/main"/>
-    <property name="unit.test.dir" location="src/unit-tests"/>
-    <property name="integration.test.dir" location="src/integration-tests"/>
-    <property name="system.test.dir" location="src/system-tests"/>
+    <property name="unit.test.dir" location="tests/unit-tests"/>
+    <property name="integration.test.dir" location="tests/integration-tests"/>
+    <property name="system.test.dir" location="tests/system-tests"/>
 
     <property name="build.dir" location="build"/>
     <property name="compile.dir" location="${build.dir}/compile"/>
@@ -12,7 +12,6 @@
     <property name="dist.dir" location="${build.dir}/dist"/>
 
     <property name="test.report.dir" location="${report.dir}/test"/>
-
     <path id="common-classpath">
         <pathelement location="${unit.test.dir}/resources"/>
         <pathelement location="${src.dir}/resources"/>
@@ -42,7 +41,7 @@
         </sequential>
     </macrodef>
 
-    <macrodef name="unit-test">
+    <macrodef name="run-test">
         <attribute name="testdir"/>
         <attribute name="classpath"/>
         <sequential>
@@ -50,14 +49,9 @@
             <junit fork="yes" forkmode="once" failureproperty="unit.tests.failed" printsummary="yes">
                 <classpath refid="@{classpath}" />
                 <formatter type="xml"/>
-                <batchtest if="testcase" todir="${test.report.dir}">
-                    <fileset dir="@{testdir}/java">
-                        <include name="**/*.java"/>
-                    </fileset>
-                </batchtest>
                 <batchtest unless="testcase" todir="${test.report.dir}">
                     <fileset dir="@{testdir}/java">
-                        <include name="**/*Tests.java"/>
+                        <include name="**/*Test.java"/>
                     </fileset>
                 </batchtest>
             </junit>
@@ -87,7 +81,7 @@
         <delete dir="${build.dir}"/>
     </target>
 
-    <target name="make-jars" depends="fetch-libs">
+    <target name="make-jars" depends="fetch-libs,copy-files-to-class-path">
         <make-jar srcdir="${src.dir}" jarfile="${ant.project.name}.jar" classpath="common-classpath"/>
         <make-jar srcdir="${unit.test.dir}" jarfile="${ant.project.name}-unit-tests.jar" classpath="common-classpath"/>
         <make-jar srcdir="${integration.test.dir}" jarfile="${ant.project.name}-int-tests.jar"
@@ -100,15 +94,15 @@
             description="Run all unit, integration and system tests."/>
 
     <target name="run-unit-tests" depends="make-jars">
-        <unit-test testdir="${unit.test.dir}" classpath="common-classpath"/>
+        <run-test testdir="${unit.test.dir}" classpath="common-classpath"/>
     </target>
 
     <target name="run-integration-tests" depends="make-jars">
-        <unit-test testdir="${integration.test.dir}" classpath="common-classpath"/>
+        <run-test testdir="${integration.test.dir}" classpath="common-classpath"/>
     </target>
 
     <target name="run-system-tests" depends="make-jars">
-        <unit-test testdir="${system.test.dir}" classpath="system-classpath"/>
+        <run-test testdir="${system.test.dir}" classpath="system-classpath"/>
     </target>
 
     <target name="report-tests" if="unit.tests.failed">
@@ -138,16 +132,10 @@
         <mkdir dir="${dist.dir}/webapp"/>
         <war destfile="${dist.dir}/${ant.project.name}.war" webxml="${src.dir}/webapp/WEB-INF/web.xml">
             <classes dir="${dist.dir}/classes"/>
-            <classes dir="${src.dir}/resources"/>
-            <webinf dir="${src.dir}/deployment">
-                <include name="applicationContext-*.xml"/>
-            </webinf>
             <fileset dir="${src.dir}/webapp">
-                <exclude name="**/applicationContext-properties.xml"/>
-                <exclude name="**/web.xml"/>
                 <exclude name="static/"/>
-                <exclude name="src/"/>
             </fileset>
+
             <zipfileset prefix="${build.number}" dir="${dist.dir}/webapp"/>
             <zipfileset prefix="${build.number}" dir="${src.dir}/webapp">
                 <exclude name="static/js/page/**/*.js"/>
@@ -156,6 +144,14 @@
             <lib dir="${compile.dir}" excludes="*-tests.jar"/>
             <lib dir="lib/runtime/jar"/>
         </war>
+    </target>
+
+    <target name="copy-files-to-class-path">
+        <copy todir="${dist.dir}/classes">
+            <fileset dir="${src.dir}/resources" includes="applicationContext*.xml"/>
+             <fileset dir="${src.dir}/deployment/env/dev" includes="app-external.properties"/>
+        </copy>
+
     </target>
 
     <target name="make-zip" depends="make-war">
@@ -185,6 +181,7 @@
     <target name="database">
         <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
             <transaction src="database/tableCreation.sql"/>
+        <classpath refid="common-classpath"/>
         </sql>
     </target>
 

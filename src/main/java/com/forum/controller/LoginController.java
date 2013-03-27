@@ -1,4 +1,4 @@
-package com.forum.web.controller;
+package com.forum.controller;
 
 import com.forum.services.Login;
 import org.springframework.context.ApplicationContext;

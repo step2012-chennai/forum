@@ -1,4 +1,7 @@
+package com.forum.services;
+
 import com.forum.services.Login;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -21,23 +24,27 @@ public class LoginServiceTest {
         context = new ClassPathXmlApplicationContext("file:./config.xml");
         service = (Login) context.getBean("login");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        template.execute("insert into Login values('step','step@123');");
+    }
 
+    @After
+    public void tearDown() throws Exception {
+        template.execute("delete from Login where username='step';");
     }
 
     @Test
     public void shouldMatchTheUserNameAndPassWord() {
-       template.execute("insert into Login values('user','password');");
-        assertTrue(service.match("user", "password"));
+        assertTrue(service.match("step", "step@123"));
     }
 
     @Test
     public void shouldNotMatchTheUserNameAndPassWord() {
-        assertFalse(service.match("usersdfd", "password"));
+        assertFalse(service.match("stepsdfd", "step@123"));
     }
 
     @Test
     public void shouldNotMatchSameUsernameAndDifferentPassword() {
-        assertFalse(service.match("user", "passwordfsf"));
+        assertFalse(service.match("step", "step@123fsf"));
     }
 
 }
