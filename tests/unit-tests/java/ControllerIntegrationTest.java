@@ -1,5 +1,5 @@
-import com.forum.services.Login;
 import com.forum.controller.LoginController;
+import com.forum.services.Login;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
