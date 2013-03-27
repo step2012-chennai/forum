@@ -2,9 +2,9 @@
 <project name="app" default="build" basedir=".">
 
     <property name="src.dir" location="src/main"/>
-    <property name="unit.test.dir" location="src/unit-tests"/>
-    <property name="integration.test.dir" location="src/integration-tests"/>
-    <property name="system.test.dir" location="src/system-tests"/>
+    <property name="unit.test.dir" location="tests/unit-tests"/>
+    <property name="integration.test.dir" location="tests/integration-tests"/>
+    <property name="system.test.dir" location="tests/system-tests"/>
 
     <property name="build.dir" location="build"/>
     <property name="compile.dir" location="${build.dir}/compile"/>
@@ -57,7 +57,7 @@
                 </batchtest>
                 <batchtest unless="testcase" todir="${test.report.dir}">
                     <fileset dir="@{testdir}/java">
-                        <include name="**/*Tests.java"/>
+                        <include name="**/*Test.java"/>
                     </fileset>
                 </batchtest>
             </junit>
@@ -185,6 +185,7 @@
     <target name="database">
         <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
             <transaction src="database/tableCreation.sql"/>
+        <classpath refid="common-classpath"/>
         </sql>
     </target>
 
