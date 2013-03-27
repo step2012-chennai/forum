@@ -1,5 +1,5 @@
 import com.forum.services.Login;
-import com.forum.web.controller.LoginController;
+import com.forum.controller.LoginController;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
@@ -24,25 +24,25 @@ public class ControllerIntegrationTest {
     public void setUp() throws Exception {
         context = new ClassPathXmlApplicationContext("file:./config.xml");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        template.execute("insert into Login values('user','password');");
+        template.execute("insert into Login values('step','step@123');");
         login = (Login) context.getBean("login");
     }
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from Login;");
+        template.execute("delete from Login where username='step';");
     }
 
     @Test
     public void shouldRedirectToActivityWallPageWhenPasswordIsCorrect() {
         LoginController loginController = new LoginController();
-        assertThat(((RedirectView) loginController.getInput("user", "password").getView()).getUrl(), IsEqual.equalTo("activityWall"));
+        assertThat(((RedirectView) loginController.getInput("step", "step@123").getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 
     @Test
     public void shouldRedirectToLoginPageWhenPasswordIsIncorrect() {
         LoginController loginController = new LoginController();
-        assertThat(((RedirectView) loginController.getInput("userfgd", "password").getView()).getUrl(), IsEqual.equalTo("login"));
+        assertThat(((RedirectView) loginController.getInput("stepfgd", "step@123").getView()).getUrl(), IsEqual.equalTo("login"));
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.forum.web.controller;
+package com.forum.controller;
 
 public class ExampleConversation {
 }

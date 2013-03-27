@@ -1,4 +1,4 @@
-package com.forum.web.controller;
+package com.forum.controller;
 
 import com.forum.repository.PostQuestion;
 import com.forum.repository.QuestionValidation;
