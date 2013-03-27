@@ -1,3 +1,5 @@
+package com.forum.services;
+
 import com.forum.services.Login;
 import org.junit.After;
 import org.junit.Before;
