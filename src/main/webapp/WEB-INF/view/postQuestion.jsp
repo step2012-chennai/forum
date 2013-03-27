@@ -11,6 +11,7 @@
     		theme : "advanced",
     		plugins : "spellchecker",
     		theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,|,bullist,numlist,spellchecker",
+    		theme_advanced_blockformats : "p,pre,h1,h2,h3,h4,h5,h6,code",
     	 	theme_advanced_toolbar_location : "top",
     	 	spellchecker_languages : "+English=en",
     	});
