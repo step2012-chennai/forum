@@ -41,7 +41,7 @@
         </sequential>
     </macrodef>
 
-    <macrodef name="unit-test">
+    <macrodef name="run-test">
         <attribute name="testdir"/>
         <attribute name="classpath"/>
         <sequential>
@@ -49,11 +49,6 @@
             <junit fork="yes" forkmode="once" failureproperty="unit.tests.failed" printsummary="yes">
                 <classpath refid="@{classpath}" />
                 <formatter type="xml"/>
-                <batchtest if="testcase" todir="${test.report.dir}">
-                    <fileset dir="@{testdir}/java">
-                        <include name="**/*.java"/>
-                    </fileset>
-                </batchtest>
                 <batchtest unless="testcase" todir="${test.report.dir}">
                     <fileset dir="@{testdir}/java">
                         <include name="**/*Test.java"/>
@@ -99,15 +94,15 @@
             description="Run all unit, integration and system tests."/>
 
     <target name="run-unit-tests" depends="make-jars">
-        <unit-test testdir="${unit.test.dir}" classpath="common-classpath"/>
+        <run-test testdir="${unit.test.dir}" classpath="common-classpath"/>
     </target>
 
     <target name="run-integration-tests" depends="make-jars">
-        <unit-test testdir="${integration.test.dir}" classpath="common-classpath"/>
+        <run-test testdir="${integration.test.dir}" classpath="common-classpath"/>
     </target>
 
     <target name="run-system-tests" depends="make-jars">
-        <unit-test testdir="${system.test.dir}" classpath="system-classpath"/>
+        <run-test testdir="${system.test.dir}" classpath="system-classpath"/>
     </target>
 
     <target name="report-tests" if="unit.tests.failed">
@@ -132,20 +127,15 @@
               file="${dist.dir}/classes/app-version.properties"/>
     </target>
 
-    <target name="make-war" depends="make-jars,setup-app-properties">
+    <target name="make-war" depends="make-jars,setup-app-properties,copy-files-to-class-path">
         <mkdir dir="${dist.dir}"/>
         <mkdir dir="${dist.dir}/webapp"/>
         <war destfile="${dist.dir}/${ant.project.name}.war" webxml="${src.dir}/webapp/WEB-INF/web.xml">
             <classes dir="${dist.dir}/classes"/>
-            <webinf dir="${src.dir}/deployment">
-                <include name="applicationContext-*.xml"/>
-            </webinf>
             <fileset dir="${src.dir}/webapp">
-                <exclude name="**/applicationContext-properties.xml"/>
-                <exclude name="**/web.xml"/>
                 <exclude name="static/"/>
-                <exclude name="src/"/>
             </fileset>
+
             <zipfileset prefix="${build.number}" dir="${dist.dir}/webapp"/>
             <zipfileset prefix="${build.number}" dir="${src.dir}/webapp">
                 <exclude name="static/js/page/**/*.js"/>
@@ -154,6 +144,14 @@
             <lib dir="${compile.dir}" excludes="*-tests.jar"/>
             <lib dir="lib/runtime/jar"/>
         </war>
+    </target>
+
+    <target name="copy-files-to-class-path">
+        <copy todir="${dist.dir}/classes">
+            <fileset dir="${src.dir}/webapp/WEB-INF" includes="applicationContext*.xml"/>
+             <fileset dir="${src.dir}/deployment/env/dev" includes="app-external.properties"/>
+        </copy>
+
     </target>
 
     <target name="make-zip" depends="make-war">
