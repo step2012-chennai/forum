@@ -20,6 +20,8 @@ public class PostQuestion {
     }
 
     public void insert(String question) {
+        QuestionValidation validation = new QuestionValidation(question);
+        question = validation.insertApostrophe();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
