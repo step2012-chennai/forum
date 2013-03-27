@@ -14,6 +14,7 @@ public class QuestionValidation {
         if (question == null) return false;
         if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
         question = getPlainText(question);
+        System.out.println(question);
         int spaces = 0, actualSpaces = 0;
 
         for (int i = 0; i < question.length(); i++) {
@@ -28,7 +29,7 @@ public class QuestionValidation {
     }
 
     private String getPlainText(String question) {
-        question = question.replaceAll("\\<.*?>", "");
+        question = question.replaceAll("\\<.*>", "");
         return StringEscapeUtils.unescapeHtml(question);
     }
 }

@@ -35,7 +35,7 @@ public class ShowQuestionsTest {
     @Test
     public void shouldRetrieveDataFromTheDataBase() {
         postQuestion.insert("thor");
-        SqlRowSet sqlRowSet = questions.show();
+        SqlRowSet sqlRowSet = questions.show(1,1);
         sqlRowSet.first();
         assertTrue(sqlRowSet.getString("question").equals("thor"));
     }
