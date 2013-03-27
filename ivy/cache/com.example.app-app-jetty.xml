@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="com.example.app"
+		module="app"
+		revision="working@gauravmi-Latitude-E6500"
+		conf="jetty"
+		confs="jetty, runtime, buildtime"
+		date="20130327155732"/>
+	<dependencies>
+		<module organisation="org.seleniumhq.selenium" name="selenium-parent" >
+			<revision name="2.24.1" status="release" pubdate="20120620035901" resolver="public" artresolver="main" homepage="http://selenium.googlecode.com/" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="8">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4378" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.seleniumhq.selenium/selenium-parent/ivy-2.24.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-parent/2.24.1/selenium-parent-2.24.1.pom"/>
+				<caller organisation="com.example.app" name="app" conf="jetty" rev="2.24.1" rev-constraint-default="2.24.1" rev-constraint-dynamic="2.24.1" callerrev="working@gauravmi-Latitude-E6500"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mortbay.jetty" name="jsp-2.1-glassfish" >
+			<revision name="2.1.v20100127" status="release" pubdate="20100128084656" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="3">
+				<license name="CDDL 1.0" url="https://glassfish.dev.java.net/public/CDDLv1.0.html"/>
+				<metadata-artifact status="no" details="" size="4595" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jsp-2.1-glassfish/ivy-2.1.v20100127.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mortbay/jetty/jsp-2.1-glassfish/2.1.v20100127/jsp-2.1-glassfish-2.1.v20100127.pom"/>
+				<caller organisation="com.example.app" name="app" conf="jetty" rev="2.1.v20100127" rev-constraint-default="2.1.v20100127" rev-constraint-dynamic="2.1.v20100127" callerrev="working@gauravmi-Latitude-E6500"/>
+				<artifacts>
+					<artifact name="jsp-2.1-glassfish" type="jar" ext="jar" status="no" details="" size="1026814" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jsp-2.1-glassfish/jars/jsp-2.1-glassfish-2.1.v20100127.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mortbay/jetty/jsp-2.1-glassfish/2.1.v20100127/jsp-2.1-glassfish-2.1.v20100127.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="ant" name="ant" >
+			<revision name="1.6.5" status="release" pubdate="20101015181825" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="6">
+				<metadata-artifact status="no" details="" size="2627" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/ant/ant/ivy-1.6.5.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/ant/ant/1.6.5/ant-1.6.5.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jsp-2.1-glassfish" conf="default, compile, runtime, master" rev="1.6.5" rev-constraint-default="1.6.5" rev-constraint-dynamic="1.6.5" callerrev="2.1.v20100127"/>
+				<artifacts>
+					<artifact name="ant" type="jar" ext="jar" status="no" details="" size="1034049" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/ant/ant/jars/ant-1.6.5.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/ant/ant/1.6.5/ant-1.6.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mortbay.jetty" name="jsp-api-2.1-glassfish" >
+			<revision name="2.1.v20100127" status="release" pubdate="20100128084640" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="5">
+				<license name="CDDL 1.0" url="https://glassfish.dev.java.net/public/CDDLv1.0.html"/>
+				<metadata-artifact status="no" details="" size="4058" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jsp-api-2.1-glassfish/ivy-2.1.v20100127.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mortbay/jetty/jsp-api-2.1-glassfish/2.1.v20100127/jsp-api-2.1-glassfish-2.1.v20100127.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jsp-2.1-glassfish" conf="default, compile, runtime, master" rev="2.1.v20100127" rev-constraint-default="2.1.v20100127" rev-constraint-dynamic="2.1.v20100127" callerrev="2.1.v20100127"/>
+				<artifacts>
+					<artifact name="jsp-api-2.1-glassfish" type="jar" ext="jar" status="no" details="" size="132298" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jsp-api-2.1-glassfish/jars/jsp-api-2.1-glassfish-2.1.v20100127.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mortbay/jetty/jsp-api-2.1-glassfish/2.1.v20100127/jsp-api-2.1-glassfish-2.1.v20100127.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.servlet" name="servlet-api" >
+			<revision name="2.5" status="release" pubdate="20060717163957" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="provided(*), compile, master(*), runtime, provided, compile(*), runtime(*), master" position="7">
+				<metadata-artifact status="no" details="" size="2289" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/javax.servlet/servlet-api/ivy-2.5.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jsp-2.1-glassfish" conf="provided" rev="2.5" rev-constraint-default="2.5" rev-constraint-dynamic="2.5" callerrev="2.1.v20100127"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.jdt.core.compiler" name="ecj" >
+			<revision name="3.5.1" status="release" pubdate="20091024004747" resolver="public" artresolver="main" homepage="http://www.eclipse.org/jdt/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="4">
+				<license name="Eclipse Public License v1.0" url="http://www.eclipse.org/org/documents/epl-v10.php"/>
+				<metadata-artifact status="no" details="" size="2414" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.eclipse.jdt.core.compiler/ecj/ivy-3.5.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/eclipse/jdt/core/compiler/ecj/3.5.1/ecj-3.5.1.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jsp-2.1-glassfish" conf="default, compile, runtime, master" rev="3.5.1" rev-constraint-default="3.5.1" rev-constraint-dynamic="3.5.1" callerrev="2.1.v20100127"/>
+				<artifacts>
+					<artifact name="ecj" type="jar" ext="jar" status="no" details="" size="1674737" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.eclipse.jdt.core.compiler/ecj/jars/ecj-3.5.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/eclipse/jdt/core/compiler/ecj/3.5.1/ecj-3.5.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mortbay.jetty" name="jetty" >
+			<revision name="6.1.22" status="release" pubdate="20091117095810" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="0">
+				<metadata-artifact status="no" details="" size="7195" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jetty/ivy-6.1.22.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.22/jetty-6.1.22.pom"/>
+				<caller organisation="com.example.app" name="app" conf="jetty" rev="6.1.22" rev-constraint-default="6.1.22" rev-constraint-dynamic="6.1.22" callerrev="working@gauravmi-Latitude-E6500"/>
+				<artifacts>
+					<artifact name="jetty" type="jar" ext="jar" status="no" details="" size="536866" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jetty/jars/jetty-6.1.22.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.22/jetty-6.1.22.jar"/>
+					</artifact>
+					<artifact name="jetty" type="source" ext="jar" extra-classifier="sources" status="no" details="" size="394486" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jetty/sources/jetty-6.1.22-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.22/jetty-6.1.22-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mortbay.jetty" name="jetty-util" >
+			<revision name="6.1.22" status="release" pubdate="20091117095556" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="1">
+				<metadata-artifact status="no" details="" size="7137" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jetty-util/ivy-6.1.22.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.22/jetty-util-6.1.22.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jetty" conf="default, compile, runtime, master" rev="6.1.22" rev-constraint-default="6.1.22" rev-constraint-dynamic="6.1.22" callerrev="6.1.22"/>
+				<artifacts>
+					<artifact name="jetty-util" type="jar" ext="jar" status="no" details="" size="176973" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.22.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.22/jetty-util-6.1.22.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.mortbay.jetty" name="servlet-api" >
+			<revision name="2.5-20081211" status="release" pubdate="20081211230400" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="2">
+				<metadata-artifact status="no" details="" size="2950" time="0" location="/home/gauravmi/Workspace/GitHub/prakash/forum/ivy/cache/org.mortbay.jetty/servlet-api/ivy-2.5-20081211.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211.pom"/>
+				<caller organisation="org.mortbay.jetty" name="jetty" conf="default, compile, runtime, master" rev="2.5-20081211" rev-constraint-default="2.5-20081211" rev-constraint-dynamic="2.5-20081211" callerrev="6.1.22"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
