@@ -12,7 +12,6 @@
     <property name="dist.dir" location="${build.dir}/dist"/>
 
     <property name="test.report.dir" location="${report.dir}/test"/>
-
     <path id="common-classpath">
         <pathelement location="${unit.test.dir}/resources"/>
         <pathelement location="${src.dir}/resources"/>
