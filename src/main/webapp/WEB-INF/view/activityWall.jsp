@@ -42,7 +42,7 @@
                   int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
                    SqlRowSet rowSet=showQuestions.show(pageNumber,5);
                 %>
-		             <a href="http://localhost:8080/app/test">
+		             <a href="http://localhost:8080/app/questionDetails">
 		                <% int i=0;
                            while(rowSet.next()) {
                                   out.println(rowSet.getString("question"));
