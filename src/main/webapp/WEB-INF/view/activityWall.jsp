@@ -32,30 +32,29 @@
 
 <form name="list of question" action="ActivityWallControl">
 	<div class="questionList">
-	    <table style="padding-left:200px" class="RecentQuestions" >
-		    <body>
-		        <td>
-              <center>
-                <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
-                <% ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
-                   ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
-                  int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
-                   SqlRowSet rowSet=showQuestions.show(pageNumber,5);
+         <body>
+           <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
+              <% ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
+                ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
+                int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
+                List<String> questions=new ArrayList<String>();
+                questions=showQuestions.show(pageNumber,5);
                 %>
-		             <a href="http://localhost:8080/app/questionDetails">
-		                <% int i=0;
-                           while(rowSet.next()) {
-                                  out.println(rowSet.getString("question"));
-                           }
-		        %>
-		        </a>
-                 </body>
-                </table>
-    	<center><a href="activityWall?pageNumber=<%=pageNumber-1%>"><label>previous  </label></a>
-                           <a href="activityWall?pageNumber=<%=pageNumber+1%>">next</a>
-
-        		        </center>
-
+                <table style="padding-left:200px" class="RecentQuestions" >
+                    <td>
+		                <a href="http://localhost:8080/app/test">
+		                    <%
+                                 for (String question : questions) {
+                                     out.println(question);
+                                 }
+		                     %>
+		               </a>
+		            </td>
+           </table>
+        </body>
+    	 <center><a href="activityWall?pageNumber=<%=pageNumber-1%>" id="a" name="a"><input type="button" id="pre" name="pre" value="Previous"></input></a>
+                <a href="activityWall?pageNumber=<%=pageNumber+1%>"><input type="button" value="Next"></a>
+         </center>
     	</div>
 </body>
 </html>
