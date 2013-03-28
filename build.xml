@@ -58,20 +58,22 @@
         </sequential>
     </macrodef>
 
-    <taskdef resource="org/apache/ivy/ant/antlib.xml">
-        <classpath location="bootstrap/ant/ivy-2.1.0.jar"/>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" >
+        <classpath location="bootstrap/ant/ivy-2.1.0.jar" id="ivy.instance"/>
+        <!--<remove id >-->
     </taskdef>
 
     <taskdef resource="net/sf/antcontrib/antlib.xml">
         <classpath location="bootstrap/ant/ant-contrib-1.0b3.jar"/>
     </taskdef>
 
-    <target name="fetch-libs" description="Fetch third-party libraries using ivy.">
+    <target name="fetch-libs" description="Fetch third-party libraries using ivy."  >
         <property name="ivy.default.ivy.user.dir" value="${basedir}/../ivy"/>
         <configure/>
         <resolve/>
-        <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true"/>
+        <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true" />
     </target>
+
 
     <target name="build" depends="clean, make-war, database" description="Create WAR file."/>
 
