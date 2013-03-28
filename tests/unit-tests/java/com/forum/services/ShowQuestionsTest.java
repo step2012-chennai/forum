@@ -12,7 +12,11 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class ShowQuestionsTest {
@@ -34,10 +38,14 @@ public class ShowQuestionsTest {
     }
 
     @Test
-    public void shouldRetrieveDataFromTheDataBase() {
-        postQuestion.insert("thor");
-        SqlRowSet sqlRowSet = questions.show(1,1);
-        sqlRowSet.first();
-        assertFalse(false);
+    public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
+        int questionsPerPage = 2;
+        int pageNumber = 1;
+        postQuestion.insert("this is first question for testing");
+        postQuestion.insert("this is second question for testing");
+        postQuestion.insert("this is third question for testing");
+        List<String> result = questions.show(pageNumber, questionsPerPage);
+        List<String> expected= Arrays.asList("this is third question for testing","this is second question for testing");
+        assertTrue(expected.equals(result));
     }
 }
