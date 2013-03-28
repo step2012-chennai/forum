@@ -30,6 +30,7 @@ public class PostQuestionController {
         } else {
             mv = new ModelAndView(new RedirectView("postQuestion"));
             mv.addObject("error","Question length must be of at least 20 characters, and should not contain all spaces");
+            mv.addObject("askedQuestion",textarea);
         }
         return mv;
     }

@@ -40,9 +40,10 @@
                 List<String> questions=new ArrayList<String>();
                 questions=showQuestions.show(pageNumber,5);
                 %>
+
                 <table style="padding-left:200px" class="RecentQuestions" >
                     <td>
-		                <a href="http://localhost:8080/app/test">
+		                <a href="http://localhost:8080/app/questionDetails">
 		                    <%
                                  for (String question : questions) {
                                      out.println(question);
