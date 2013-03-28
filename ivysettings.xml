@@ -1,4 +1,4 @@
-<ivysettings>
+<ivysettings override="true">
     <settings defaultResolver="default" />
     <include url="${ivy.default.settings.dir}/ivysettings-public.xml" />
     <include url="${ivy.default.settings.dir}/ivysettings-shared.xml" />
