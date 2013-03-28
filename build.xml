@@ -61,7 +61,6 @@
                 </batchtest>
             </junit>
         </sequential>
-
     </macrodef>
 
     <taskdef resource="org/apache/ivy/ant/antlib.xml">
@@ -81,12 +80,11 @@
 
     <target name="build" depends="clean, make-war, database" description="Create WAR file."/>
 
-    <target name=" " depends="clean, run-tests" description="Run this before committing changes."/>
+    <target name="precommit" depends="clean, run-tests" description="Run this before committing changes."/>
 
     <target name="clean" description="Delete output directory.">
         <delete dir="${build.dir}"/>
     </target>
-
 
     <target name="make-jars" depends="fetch-libs">
         <make-jar srcdir="${src.dir}" jarfile="${ant.project.name}.jar" classpath="common-classpath"/>
