@@ -75,7 +75,7 @@
 
     <target name="build" depends="clean, make-war, database" description="Create WAR file."/>
 
-    <target name="precommit" depends="clean, make-war, run-tests" description="Run this before committing changes."/>
+    <target name="precommit" depends="clean, make-war, database, run-tests" description="Run this before committing changes."/>
 
     <target name="clean" description="Delete output directory.">
         <delete dir="${build.dir}"/>
