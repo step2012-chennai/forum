@@ -1,5 +1,5 @@
-<ivysettings override="true">
-    <settings defaultResolver="default" />
+<ivysettings >
+    <settings defaultResolver="default" override='allowed'/>
     <include url="${ivy.default.settings.dir}/ivysettings-public.xml" />
     <include url="${ivy.default.settings.dir}/ivysettings-shared.xml" />
     <include url="${ivy.default.settings.dir}/ivysettings-local.xml" />
