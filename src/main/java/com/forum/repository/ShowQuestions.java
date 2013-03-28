@@ -18,7 +18,17 @@ public class ShowQuestions {
         this.dataSource = dataSource;
     }
 
-    public SqlRowSet show() {
-        return jdbcTemplate.queryForRowSet("select question from questions ORDER BY q_id DESC");
+    public SqlRowSet show(int pageNumber,int resultPerPage) {
+        SqlRowSet sqlRowSet;
+        int lastQuestionId=pageNumber*resultPerPage;
+        int numberOfRows = numberOfRows();
+        int firstQuestionId= (numberOfRows-lastQuestionId);
+        sqlRowSet = jdbcTemplate.queryForRowSet("select question from questions where q_id between "+
+               (firstQuestionId)   +" and "+(numberOfRows)+" ORDER BY q_id DESC ");
+        return sqlRowSet;
+    }
+
+    private int numberOfRows() {
+        return jdbcTemplate.queryForInt("select count(*) from questions");
     }
 }

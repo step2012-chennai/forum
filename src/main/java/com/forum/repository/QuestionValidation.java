@@ -14,6 +14,8 @@ public class QuestionValidation {
         if (question == null) return false;
 
         question = getPlainText(question);
+        System.out.println(question);
+        int spaces = 0, actualSpaces = 0;
         question = reduceBlanks(question);
         if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
         return true;
