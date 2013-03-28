@@ -59,9 +59,9 @@
     </macrodef>
 
     <target name="fetch-libs" description="Fetch third-party libraries using ivy."  >
-        <property name="ivy.default.ivy.user.dir" value="${basedir}/../ivy"/>
-        <configure id='ivy.instance'/>
-        <resolve />
+        <property name="ivy.default.ivy.user.dir" value="${basedir}/../ivy" />
+        <configure />
+        <resolve file="ivy.xml"/>
         <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true" />
     </target>
 
