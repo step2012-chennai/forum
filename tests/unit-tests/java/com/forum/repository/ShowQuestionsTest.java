@@ -1,7 +1,5 @@
-package com.forum.services;
+package com.forum.repository;
 
-import com.forum.repository.PostQuestion;
-import com.forum.repository.ShowQuestions;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
@@ -9,7 +7,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 
@@ -31,9 +28,9 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        postQuestion.insert("this is first question for testing");
-        postQuestion.insert("this is second question for testing");
         postQuestion.insert("this is third question for testing");
+        postQuestion.insert("this is second question");
+        postQuestion.insert("this is first question for testing which should be trimmed");
     }
 
     @After
@@ -46,12 +43,29 @@ public class ShowQuestionsTest {
         int questionsPerPage = 2;
         int pageNumber = 1;
         List<String> result = questions.show(pageNumber, questionsPerPage);
-        List<String> expected= Arrays.asList("this is third question for testing","this is second question for testing");
+        List<String> expected= Arrays.asList("this is first question for testing which should be...?","this is second question");
         assertTrue(expected.equals(result));
     }
+
+
 
     @Test
     public void shouldShowTheQuestions(){
         assertThat(questions.getQuestions().size(), IsEqual.equalTo(3));
     }
+
+
+    @Test
+    public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark(){
+        String string="It should return a new String till the specified Characters";
+        String expected="It should return a new String till the specified C...?";
+        assertThat(questions.truncateQuestionToCharacterLimit(string),IsEqual.equalTo(expected));
+    }
+
+    @Test
+    public void shouldReturnFullQuestionIfQuestionIsLessThan50Characters(){
+        String question="Don't trim me";
+        assertThat(questions.truncateQuestionToCharacterLimit(question),IsEqual.equalTo(question));
+    }
+
 }
