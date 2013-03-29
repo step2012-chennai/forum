@@ -22,7 +22,16 @@
 				    <center><label for="Tags" onclick="alert('tag link!')"><font size="5" color="white">Tag Cloud</font></label></H1>
 				</td>
 			</body>
-		</table>			
+		</table>
+		<br>
+		<form name="search" action="search">
+
+				<table border="0">
+				<td>  <input type="text" size="50" id="basicSearch" name="basicSearch"></input>
+				 </td><td><input type="submit" value="search"></input>
+				</td>
+				</table>
+		</forum>
     </center>
 
 	<br><br>
