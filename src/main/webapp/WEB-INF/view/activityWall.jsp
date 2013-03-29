@@ -47,6 +47,8 @@
                 int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
                 List<Question> questions=new ArrayList<Question>();
                 questions=showQuestions.show(pageNumber,5);
+                String previousButtonStatus=showQuestions.previousButtonStatus(pageNumber);
+                String nextButtonStatus=showQuestions.nextButtonStatus(pageNumber,5);
                 %>
 
                 <table style="padding-left:275px" class="RecentQuestions" >
@@ -62,8 +64,10 @@
            </table>
         </body>
         <br><br><br><br><br>
-    	 <div style="padding-left:420px"> <a href="activityWall?pageNumber=<%=pageNumber-1%>" id="a" name="a"><input type="button" id="pre" name="pre" value="Previous"></input></a>
-                <a href="activityWall?pageNumber=<%=pageNumber+1%>"><input type="button" value="Next"></a>
+    	 <div style="padding-left:420px">
+    	 <a href="activityWall?pageNumber=<%=pageNumber-1%>" id="a" name="a">
+    	 <input type="button" id="pre" name="pre" value="Previous" <%=previousButtonStatus%>></input></a>
+                <a href="activityWall?pageNumber=<%=pageNumber+1%>"><input type="button" value="Next"  <%=nextButtonStatus%>></a>
          </div>
     	</div>
 </body>

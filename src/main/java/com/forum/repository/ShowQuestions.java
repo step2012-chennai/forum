@@ -24,22 +24,37 @@ public class ShowQuestions {
 
     public List<Question> show(int pageNumber, int questionsPerPage) {
         int endIndex = pageNumber * questionsPerPage;
-        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
         List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
-        List<Question> questionsList = new ArrayList<Question>();
-
+        List<Question> questions = getQuestions();
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
-            questions.next();
-            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3)));
-            if (startIndex < questionsList.size()) {
-                resultQuestions.add(questionsList.get(startIndex));
+            if (startIndex < questions.size()) {
+                resultQuestions.add(questions.get(startIndex));
             }
         }
-
         return resultQuestions;
+    }
+
+    public List<Question> getQuestions() {
+        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
+
+        List<Question> questionsList = new ArrayList<Question>();
+        while (questions.next()) {
+            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3)));
+        }
+        return questionsList;
     }
 
     String truncateQuestionToCharacterLimit(String question) {
         return (question.length() <= CHARACTER_LIMIT) ? question : question.substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
+    }
+
+    public String nextButtonStatus(int pageNumber, int questionsPerPage){
+        int totalNumberOfQuestions=jdbcTemplate.queryForInt("select count(*) from questions");
+        int maxPages=(totalNumberOfQuestions%questionsPerPage==0)? totalNumberOfQuestions/questionsPerPage :totalNumberOfQuestions/questionsPerPage+1;
+        return (pageNumber==maxPages) ? "disabled": "enabled";
+    }
+
+    public String previousButtonStatus(int pageNumber){
+        return (pageNumber==1) ? "disabled" :"enabled";
     }
 }
