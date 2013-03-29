@@ -6,7 +6,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ShowQuestions {
     private JdbcTemplate jdbcTemplate;
@@ -26,9 +25,19 @@ public class ShowQuestions {
         List<String> resultQuestions = new ArrayList<String>(questionsPerPage);
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
             if (startIndex < questions.size()) {
-                resultQuestions.add(questions.get(startIndex));
+                resultQuestions.add(getQuestions().get(startIndex).getQuestion());
             }
         }
         return resultQuestions;
+    }
+
+    public List<Question> getQuestions(){
+        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
+
+        List<Question> questionsList = new ArrayList<Question>();
+        while(questions.next()){
+            questionsList.add(new Question(questions.getString(1),questions.getString(2),questions.getString(3)));
+        }
+        return questionsList;
     }
 }

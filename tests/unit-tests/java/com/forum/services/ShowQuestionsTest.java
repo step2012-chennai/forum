@@ -2,6 +2,7 @@ package com.forum.services;
 
 import com.forum.repository.PostQuestion;
 import com.forum.repository.ShowQuestions;
+import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +31,9 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        postQuestion.insert("this is first question for testing");
+        postQuestion.insert("this is second question for testing");
+        postQuestion.insert("this is third question for testing");
     }
 
     @After
@@ -41,11 +45,13 @@ public class ShowQuestionsTest {
     public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
         int questionsPerPage = 2;
         int pageNumber = 1;
-        postQuestion.insert("this is first question for testing");
-        postQuestion.insert("this is second question for testing");
-        postQuestion.insert("this is third question for testing");
         List<String> result = questions.show(pageNumber, questionsPerPage);
         List<String> expected= Arrays.asList("this is third question for testing","this is second question for testing");
         assertTrue(expected.equals(result));
+    }
+
+    @Test
+    public void shouldShowTheQuestions(){
+        assertThat(questions.getQuestions().size(), IsEqual.equalTo(3));
     }
 }
