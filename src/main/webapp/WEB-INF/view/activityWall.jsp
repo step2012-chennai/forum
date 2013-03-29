@@ -13,7 +13,7 @@
     			<td>
 				    <a href="postQuestion"><center><label for="Ask_Question" ><font size="5" color="white">Ask Question</label></a>
 				</td>
-		
+
 				<td>
     				<center><label for="Answer" onclick="alert('open list of questions link!')"><font size="5" color="white">Answer</font></label></H1>
 				</td>
@@ -32,6 +32,7 @@
 				</td>
 				</table>
 		</forum>
+		</table>
     </center>
 
 	<br><br>
@@ -39,7 +40,6 @@
 	<br><br>
 
 
-<form name="list of question" action="ActivityWallControl">
 	<div class="questionList">
          <body>
            <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>

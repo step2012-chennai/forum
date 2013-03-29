@@ -150,6 +150,7 @@
         <copy todir="${dist.dir}/classes">
             <fileset dir="${src.dir}/resources" includes="applicationContext*.xml"/>
              <fileset dir="${src.dir}/deployment/env/dev" includes="app-external.properties"/>
+            <fileset dir="." includes="config.xml"/>
         </copy>
 
     </target>
