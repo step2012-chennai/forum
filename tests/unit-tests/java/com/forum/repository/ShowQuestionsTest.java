@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,32 +39,26 @@ public class ShowQuestionsTest {
 
     @Test
     public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
-        int questionsPerPage = 2;
-        int pageNumber = 1;
-        List<String> result = questions.show(pageNumber, questionsPerPage);
-        List<String> expected= Arrays.asList("this is first question for testing which should be...?","this is second question");
-        assertTrue(expected.equals(result));
-    }
+        int questionsPerPage = 2, pageNumber = 1;
+        List<Question> result = questions.show(pageNumber, questionsPerPage);
+        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
+        List<String> actual = new ArrayList<String>();
+        actual.add(result.get(0).getQuestion());
+        actual.add(result.get(1).getQuestion());
 
-
-
-    @Test
-    public void shouldShowTheQuestions(){
-        assertThat(questions.getQuestions().size(), IsEqual.equalTo(3));
-    }
-
-
-    @Test
-    public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark(){
-        String string="It should return a new String till the specified Characters";
-        String expected="It should return a new String till the specified C...?";
-        assertThat(questions.truncateQuestionToCharacterLimit(string),IsEqual.equalTo(expected));
+        assertTrue(expected.equals(actual));
     }
 
     @Test
-    public void shouldReturnFullQuestionIfQuestionIsLessThan50Characters(){
-        String question="Don't trim me";
-        assertThat(questions.truncateQuestionToCharacterLimit(question),IsEqual.equalTo(question));
+    public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark() {
+        String string = "It should return a new String till the specified Characters";
+        String expected = "It should return a new String till the specified C...?";
+        assertThat(questions.truncateQuestionToCharacterLimit(string), IsEqual.equalTo(expected));
     }
 
+    @Test
+    public void shouldReturnFullQuestionIfQuestionIsLessThan50Characters() {
+        String question = "Don't trim me";
+        assertThat(questions.truncateQuestionToCharacterLimit(question), IsEqual.equalTo(question));
+    }
 }

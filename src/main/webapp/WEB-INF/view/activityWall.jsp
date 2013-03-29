@@ -42,11 +42,11 @@
 
 	<div class="questionList">
          <body>
-           <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
+           <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,com.forum.repository.Question,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
               <% ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
                 ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
                 int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
-                List<String> questions=new ArrayList<String>();
+                List<Question> questions=new ArrayList<Question>();
                 questions=showQuestions.show(pageNumber,5);
                 %>
 
@@ -54,8 +54,8 @@
                     <td>
 		                <a href="http://localhost:8080/app/questionDetails">
 		                    <%
-                                 for (String question : questions) {
-                                     out.println(question);
+                                 for (Question question : questions) {
+                                      out.println(question.getQuestion());
                                  }
 		                     %>
 		               </a>

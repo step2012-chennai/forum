@@ -186,4 +186,11 @@
         </sql>
     </target>
 
+    <target name="insertData">
+        <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
+            <transaction src="database/insertData.sql"/>
+            <classpath refid="common-classpath"/>
+        </sql>
+    </target>
+
 </project>

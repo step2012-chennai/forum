@@ -22,26 +22,21 @@ public class ShowQuestions {
         this.dataSource = dataSource;
     }
 
-    public List<String> show(int pageNumber, int questionsPerPage) {
+    public List<Question> show(int pageNumber, int questionsPerPage) {
         int endIndex = pageNumber * questionsPerPage;
-        List<String> questions = jdbcTemplate.queryForList("select question from questions ORDER BY q_id DESC", String.class);
-        List<String> resultQuestions = new ArrayList<String>(questionsPerPage);
+        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
+        List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
+        List<Question> questionsList = new ArrayList<Question>();
+
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
-            if (startIndex < questions.size()) {
-                resultQuestions.add(truncateQuestionToCharacterLimit(getQuestions().get(startIndex).getQuestion()));
+            questions.next();
+            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3)));
+            if (startIndex < questionsList.size()) {
+                resultQuestions.add(questionsList.get(startIndex));
             }
         }
+
         return resultQuestions;
-    }
-
-    public List<Question> getQuestions() {
-        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
-
-        List<Question> questionsList = new ArrayList<Question>();
-        while (questions.next()) {
-            questionsList.add(new Question(questions.getString(1), questions.getString(2), questions.getString(3)));
-        }
-        return questionsList;
     }
 
     String truncateQuestionToCharacterLimit(String question) {

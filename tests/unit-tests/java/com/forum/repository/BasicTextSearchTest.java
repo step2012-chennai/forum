@@ -1,6 +1,5 @@
 package com.forum.repository;
 
-
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
