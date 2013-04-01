@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowQuestions {
+    private static final int BEGIN_INDEX = 0;
+    private static final int CHARACTER_LIMIT = 50;
+    private static final String TRAILING_CHARACTERS = "...?";
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
 
@@ -19,25 +22,39 @@ public class ShowQuestions {
         this.dataSource = dataSource;
     }
 
-    public List<String> show(int pageNumber, int questionsPerPage) {
+    public List<Question> show(int pageNumber, int questionsPerPage) {
         int endIndex = pageNumber * questionsPerPage;
-        List<String> questions = jdbcTemplate.queryForList("select question from questions ORDER BY q_id DESC", String.class);
-        List<String> resultQuestions = new ArrayList<String>(questionsPerPage);
+        List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
+        List<Question> questions = getQuestions();
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
             if (startIndex < questions.size()) {
-                resultQuestions.add(getQuestions().get(startIndex).getQuestion());
+                resultQuestions.add(questions.get(startIndex));
             }
         }
         return resultQuestions;
     }
 
-    public List<Question> getQuestions(){
+    public List<Question> getQuestions() {
         SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
 
         List<Question> questionsList = new ArrayList<Question>();
-        while(questions.next()){
-            questionsList.add(new Question(questions.getString(1),questions.getString(2),questions.getString(3)));
+        while (questions.next()) {
+            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3)));
         }
         return questionsList;
+    }
+
+    String truncateQuestionToCharacterLimit(String question) {
+        return (question.length() <= CHARACTER_LIMIT) ? question : question.substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
+    }
+
+    public String nextButtonStatus(int pageNumber, int questionsPerPage){
+        int totalNumberOfQuestions=jdbcTemplate.queryForInt("select count(*) from questions");
+        int maxPages=(totalNumberOfQuestions%questionsPerPage==0)? totalNumberOfQuestions/questionsPerPage :totalNumberOfQuestions/questionsPerPage+1;
+        return (pageNumber==maxPages || totalNumberOfQuestions<=questionsPerPage) ? "disabled": "enabled";
+    }
+
+    public String previousButtonStatus(int pageNumber){
+        return (pageNumber==1) ? "disabled" :"enabled";
     }
 }

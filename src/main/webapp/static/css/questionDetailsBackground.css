@@ -1,0 +1,18 @@
+QD{
+	style="width: 960px; height: 81px; border="0" align="right"
+}
+
+.QD td{
+	<center>
+	left-padding:10em;
+	padding:1em;
+	width:550px;
+	height:50px;
+	border:1px solid #b4b28c;
+	border-radius:20px;
+	-moz-border-radius: 20px;
+	-webkit-box-shadow: 10px 10px 15px #afaf97;
+	-moz-box-shadow: 10px 10px 15px #afaf97;
+	box-shadow: 10px 10px 15px #afaf97;
+	background:white;
+}

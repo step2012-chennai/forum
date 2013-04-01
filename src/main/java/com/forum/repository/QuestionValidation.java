@@ -3,7 +3,9 @@ package com.forum.repository;
 import org.apache.commons.lang.StringEscapeUtils;
 
 public class QuestionValidation {
-    public static final int MINIMUM_CHARACTERS = 20;
+    private static final int MINIMUM_CHARACTERS = 20;
+    private static final int JAVA_SPACE = 32;
+    private static final int HTML_SPACE = 160;
     private String question;
 
     public QuestionValidation(String question) {
@@ -31,7 +33,7 @@ public class QuestionValidation {
         StringBuilder refactoredQuestion = new StringBuilder(question.length());
 
         for (int i = 0; i < question.length(); i++) {
-            boolean spaceCharacter = question.charAt(i) == 32 || question.charAt(i) == 160;
+            boolean spaceCharacter = question.charAt(i) == JAVA_SPACE || question.charAt(i) == HTML_SPACE;
             if(spaceCharacter)spaceCount++;
 
             if (!spaceCharacter || spaceCount <= 1) {

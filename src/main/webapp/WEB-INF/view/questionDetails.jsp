@@ -2,15 +2,19 @@
 <html>
     <head>
         <title>question details</title>
+        <link rel="stylesheet" type="text/css" href="./static/css/questionDetailsBackground.css" />
     </head>
 
     <body>
-        <table>
+        <table border="0" class="QD" cellspacing="12">
             <tbody>
                 <td>
-                    <h2><label> Question:- </label></h2>
+                    <label><b> Question:- </b></label><br><br>
+                    Is this UI looking good?
                 </td>
             </tbody>
+        </table>
+        </tbody>
         </table>
     </body>
 </html>

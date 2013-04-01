@@ -1,0 +1,11 @@
+insert into questions(question) values('<p>this is first question</p>');
+insert into questions(question) values('<p>this is 2nd question</p>');
+insert into questions(question) values('<p>this is 3rd question</p>');
+insert into questions(question) values('<p>this is four question</p>');
+insert into questions(question) values('<p>this is 5th question</p>');
+insert into questions(question) values('<p>this is 6th question</p>');
+insert into questions(question) values('<p>this is 7th question</p>');
+insert into questions(question) values('<p>this is 8th question</p>');
+insert into questions(question) values('<p>this is 9th question</p>');
+insert into questions(question) values('<p>this is 10th question</p>');
+insert into questions(question) values('<p>this is 11th question</p>');
