@@ -51,7 +51,7 @@ public class ShowQuestions {
     public String nextButtonStatus(int pageNumber, int questionsPerPage){
         int totalNumberOfQuestions=jdbcTemplate.queryForInt("select count(*) from questions");
         int maxPages=(totalNumberOfQuestions%questionsPerPage==0)? totalNumberOfQuestions/questionsPerPage :totalNumberOfQuestions/questionsPerPage+1;
-        return (pageNumber==maxPages) ? "disabled": "enabled";
+        return (pageNumber==maxPages || totalNumberOfQuestions<=questionsPerPage) ? "disabled": "enabled";
     }
 
     public String previousButtonStatus(int pageNumber){
