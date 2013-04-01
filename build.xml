@@ -148,9 +148,10 @@
 
     <target name="copy-files-to-class-path">
         <copy todir="${dist.dir}/classes">
-            <fileset dir="${src.dir}/resources" includes="applicationContext*.xml"/>
+            <fileset dir="${src.dir}/resources" includes="*.xml"/>
              <fileset dir="${src.dir}/deployment/env/dev" includes="app-external.properties"/>
             <fileset dir="." includes="config.xml"/>
+            <fileset dir="${src.dir}/webapp/WEB-INF" includes="dispatcher*.xml"/>
         </copy>
 
     </target>
