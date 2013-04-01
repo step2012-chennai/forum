@@ -10,7 +10,7 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="com.forum.controller.*"/>
+     <context:component-scan base-package="com.forum.controller"/>
 
     <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"-->
     <!--p:properties-ref="externalProperties"-->
@@ -19,7 +19,7 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/view/"/>
-        <property name="suffix" value="*.jsp"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
