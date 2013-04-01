@@ -73,7 +73,7 @@
         <classpath location="bootstrap/ant/ant-contrib-1.0b3.jar"/>
     </taskdef>
 
-    <target name="build" depends="clean, make-war, database" description="Create WAR file."/>
+    <target name="build" depends="clean, make-war, database, insertData" description="Create WAR file."/>
 
     <target name="precommit" depends="clean, make-war, database, run-tests" description="Run this before committing changes."/>
 
@@ -192,6 +192,7 @@
             <transaction src="database/insertData.sql"/>
             <classpath refid="common-classpath"/>
         </sql>
+
     </target>
 
 </project>
