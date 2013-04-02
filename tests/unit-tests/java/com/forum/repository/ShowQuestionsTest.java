@@ -45,7 +45,6 @@ public class ShowQuestionsTest {
         List<String> actual = new ArrayList<String>();
         actual.add(result.get(0).getQuestion());
         actual.add(result.get(1).getQuestion());
-
         assertTrue(expected.equals(actual));
     }
 

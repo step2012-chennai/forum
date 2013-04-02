@@ -22,15 +22,17 @@ public class PostQuestionController {
     public ModelAndView postedQuestion(@RequestParam("textareas") String textarea) {
         ModelAndView mv;
         ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
+
         QuestionValidation questionValidation = new QuestionValidation(textarea);
+
         if (questionValidation.isQuestionValid()) {
             PostQuestion post = (PostQuestion) context.getBean("post");
             post.insert(textarea);
             mv = new ModelAndView(new RedirectView("activityWall"));
         } else {
             mv = new ModelAndView(new RedirectView("postQuestion"));
-            mv.addObject("error","Question length must be of at least 20 characters, and should not contain all spaces");
-            mv.addObject("askedQuestion",textarea);
+            mv.addObject("error", "Question length must be of at least 20 characters, and should not contain all spaces");
+            mv.addObject("askedQuestion", textarea);
         }
         return mv;
     }

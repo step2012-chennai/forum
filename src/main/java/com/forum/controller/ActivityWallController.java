@@ -18,6 +18,7 @@ public class ActivityWallController {
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
     public void activityWall() {
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchResult() {
         return new ModelAndView("searchResult");

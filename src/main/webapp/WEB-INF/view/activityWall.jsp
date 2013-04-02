@@ -24,6 +24,7 @@
 			</body>
 		</table>
 		<br>
+
 		<form name="search" action="search">
 
 				<table border="0">
@@ -32,6 +33,7 @@
 				</td>
 				</table>
 		</forum>
+
 		</table>
     </center>
 
@@ -44,6 +46,7 @@
            <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,com.forum.repository.Question,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
               <% ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
                 ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
+
                 int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
                 List<Question> questions=new ArrayList<Question>();
                 questions=showQuestions.show(pageNumber,5);
