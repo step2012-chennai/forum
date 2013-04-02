@@ -56,13 +56,15 @@
 
                 <table style="padding-left:275px" class="RecentQuestions" >
                     <td>
-		                <a href="http://localhost:8080/app/questionDetails">
-		                    <%
-                                 for (Question question : questions) {
-                                      out.println(question.getQuestion());
-                                 }
+                        <%
+                             for (Question question : questions) {
+                             String url = "http://localhost:8080/app/questions/" + question.getId();
+                                 %>
+
+		                <a href=<%= url %>>
+                                  <% out.println(question.getQuestion());  %> </a>
+                                <% }
 		                     %>
-		               </a>
 		            </td>
            </table>
         </body>

@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class QuestionDetailsController {
+public class QuestionController {
 
-    @RequestMapping(value = "/questionDetails", method = RequestMethod.GET)
-    public ModelAndView questionDetails() {
+    @RequestMapping(value = "/questions/{id}", method = RequestMethod.GET)
+    public ModelAndView questionDetails(Integer id) {
         ModelAndView mv = new ModelAndView("questionDetails");
         return mv;
     }
