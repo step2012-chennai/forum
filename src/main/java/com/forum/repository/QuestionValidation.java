@@ -13,7 +13,6 @@ public class QuestionValidation {
         if (question == null) return false;
 
         question = getPlainText(question);
-        System.out.println(question);
         question = reduceBlanks(question);
         if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
         return true;

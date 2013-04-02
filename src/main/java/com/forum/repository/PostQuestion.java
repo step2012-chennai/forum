@@ -1,5 +1,6 @@
 package com.forum.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 @Repository
 public class PostQuestion {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
     private DataSource dataSource;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
