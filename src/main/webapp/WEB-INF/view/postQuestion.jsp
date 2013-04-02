@@ -4,7 +4,8 @@
     <title>Post question</title>
 </head>
 <body class="postQuestion" background-color:#ffffff>
-    <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="/app/static/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="/app/static/javascript/postQuestion.js"></script>
 
     <script type="text/javascript">
     	tinyMCE.init({
