@@ -18,6 +18,7 @@
 
         <dependency org="junit" name="junit" rev="4.8.1" transitive="false" conf="buildtime->*" />
         <dependency org="org.mockito" name="mockito-core" rev="1.8.4" transitive="false" conf="buildtime->*" />
+        <dependency org="org.objenesis" name="objenesis" rev="1.0" />
         <dependency org="commons-logging" name="commons-logging" rev="1.1.1" transitive="false" conf="buildtime,runtime->*" />
         <dependency org="javax.servlet" name="servlet-api" rev="2.5" transitive="false" conf="buildtime->*" />
         <dependency org="org.freemarker" name="freemarker" rev="2.3.16" transitive="false" conf="runtime->*" />

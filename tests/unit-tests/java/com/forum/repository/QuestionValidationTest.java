@@ -12,49 +12,49 @@ public class QuestionValidationTest {
 
     @Test
     public void shouldReturnTrueWhenQuestionIsValid() {
-       questionValidation = new QuestionValidation("this is valid question and has length more than 20");
-        assertTrue(questionValidation.isQuestionValid());
+       questionValidation = new QuestionValidation();
+        assertTrue(questionValidation.isQuestionValid("this is valid question and has length more than 20"));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionIsNotValid() {
-        questionValidation = new QuestionValidation(null);
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid(null));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionIsEmpty() {
-        questionValidation = new QuestionValidation("");
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid(""));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionContainsOnlySpace(){
-        questionValidation = new QuestionValidation("&nbsp;");
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid("&nbsp;"));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionContainsManySpaces(){
-        questionValidation = new QuestionValidation("<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid("<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>"));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionLengthIsLessThanCriteria(){
-        questionValidation = new QuestionValidation("a");
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid("a"));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionIsContainLessCharacterButMoreSpaces(){
-        questionValidation = new QuestionValidation("<p>q&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q</p>");
-        assertFalse(questionValidation.isQuestionValid());
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid("<p>q&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q</p>"));
     }
 
     @Test
     public void shouldAddExtraApostropheWhenApostropheCharacterOccurs(){
-        questionValidation = new QuestionValidation("<p>He is William's and Jhon's Brother</p>");
-        assertThat(questionValidation.insertApostrophe(), IsEqual.equalTo("<p>He is William''s and Jhon''s Brother</p>"));
+        questionValidation = new QuestionValidation();
+        assertThat(questionValidation.insertApostrophe("<p>He is William's and Jhon's Brother</p>"), IsEqual.equalTo("<p>He is William''s and Jhon''s Brother</p>"));
     }
 }
