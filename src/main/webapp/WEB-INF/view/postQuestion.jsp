@@ -4,7 +4,8 @@
     <title>Post question</title>
 </head>
 <body class="postQuestion" background-color:#ffffff>
-    <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
+   <script type="text/javascript" src="/app/static/tiny_mce/tiny_mce.js"></script>
+   <script type="text/javascript" src="/app/static/javascript/postQuestion.js"></script>
     <script type="text/javascript">
     	tinyMCE.init({
     		mode : "textareas",
@@ -23,12 +24,12 @@
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
     <font size=5>Post your question :</font>
-    <form method="post" action = "postedQuestion">
+    <form id="postQuestion" method="post" action = "postedQuestion">
     	<div>
-        <center><div style="color:#FF0000" >${param['error']} </div>
+        <center><div style="color:#FF0000" >${error} </div>
     		<div> <center>
-    			<textarea id="elm1" name="textareas" rows="7" cols="20" style="width: 50%">
-    			 ${param['askedQuestion']}
+    			<textarea id="elm1" name="textareas" rows="7" cols="20" style="width: 50%"/>
+    		${askedQuestion}
     			</textarea>   </center>
     		</div><br>
     		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -36,9 +37,8 @@
     		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
     		<a href = "activityWall"><input type="submit" value="Post Question" /></a>
-    		<input type="reset" value="Reset"/>
+    		<input type="button" onclick="clearTextbox()" value="Reset">
     	</div>
    </form>
 
