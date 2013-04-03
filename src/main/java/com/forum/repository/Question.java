@@ -1,5 +1,7 @@
 package com.forum.repository;
 
+import java.util.ArrayList;
+
 public class Question {
     private String id,question,time;
 
