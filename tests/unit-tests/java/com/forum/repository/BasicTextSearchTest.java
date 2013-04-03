@@ -22,10 +22,11 @@ public class BasicTextSearchTest {
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
         basicTextSearch = (BasicTextSearch) context.getBean("search");
+
         jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
 
-        jdbcTemplate.execute("insert into questions(question) values('this string is given for testing basic search text')");
-        jdbcTemplate.execute("insert into questions(question) values('Given is that user enters some text for searching')");
+        jdbcTemplate.execute("insert into questions(question) values('I want to search for questions i am using key words')");
+        jdbcTemplate.execute("insert into questions(question) values('So that can see a question that interested in search')");
     }
 
     @After
@@ -35,13 +36,21 @@ public class BasicTextSearchTest {
 
     @Test
     public void shouldSearchGivenKeyWord(){
-        List<String> expected= Arrays.asList("this string is given for testing basic search text");
-        assertThat((List<String>) basicTextSearch.search("This"), IsEqual.equalTo(expected));
+
+        String expected= "I want to search for questions i am using key words";
+        List<SearchQuestion> actual = basicTextSearch.search("for");
+        assertThat(actual.get(0).getQuestion(), IsEqual.equalTo(expected));
     }
 
     @Test
     public void shouldSearchGivenMultipleKeyWord(){
-        List<String> expected= Arrays.asList("Given is that user enters some text for searching","this string is given for testing basic search text");
-        assertThat((List<String>) basicTextSearch.search("This is"), IsEqual.equalTo(expected));
+        List<SearchQuestion> actual=basicTextSearch.search("am search");
+        assertThat(actual.get(0).getNoOfWordMatches(), IsEqual.equalTo(2));
+    }
+
+    @Test
+    public void shouldSearchGiveNumberOfKeyWord(){
+        List<SearchQuestion> actual=basicTextSearch.search("question that interested");
+        assertThat(actual.get(0).getNoOfWordMatches(), IsEqual.equalTo(3));
     }
 }

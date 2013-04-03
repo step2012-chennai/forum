@@ -24,6 +24,7 @@
 			</body>
 		</table>
 		<br>
+
 		<form name="search" action="search">
 
 				<table border="0">
@@ -32,10 +33,12 @@
 				</td>
 				</table>
 		</forum>
+
 		</table>
     </center>
 
 	<br><br>
+
 	<font size="5" style="padding-left:200px" color="#888888">Recent Questions</font>
 	<br><br>
 
@@ -44,6 +47,7 @@
            <%@page import="java.util.*,java.sql.*,com.forum.repository.ShowQuestions,com.forum.repository.Question,java.util.*,org.springframework.context.ApplicationContext,org.springframework.context.support.ClassPathXmlApplicationContext,org.springframework.jdbc.support.rowset.SqlRowSet"%>
               <% ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
                 ShowQuestions showQuestions = (ShowQuestions) context.getBean("showQuestions");
+
                 int pageNumber=request.getParameter("pageNumber")==null?1:Integer.parseInt(request.getParameter("pageNumber"));
                 List<Question> questions=new ArrayList<Question>();
                 questions=showQuestions.show(pageNumber,5);
@@ -53,16 +57,19 @@
 
                 <table style="padding-left:275px" class="RecentQuestions" >
                     <td>
-		                <a href="http://localhost:8080/app/questionDetails">
-		                    <%
-                                 for (Question question : questions) {
-                                      out.println(question.getQuestion());
-                                 }
+                        <%
+                         for (Question question : questions) {
+                        %>
+
+		                <a href="question_details?questionId=<%=question.getId()%>">
+                                  <% out.println(question.getQuestion());  %> </a>
+                                <% }
 		                     %>
-		               </a>
 		            </td>
            </table>
         </body>
+
+
         <br><br><br><br><br>
     	 <div style="padding-left:420px">
     	 <a href="activityWall?pageNumber=<%=pageNumber-1%>" id="a" name="a">
