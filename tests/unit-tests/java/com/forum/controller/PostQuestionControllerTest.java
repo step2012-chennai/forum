@@ -22,39 +22,28 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-        "file:./src/main/resources/applicationContext.xml",
-        "file:./src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
-
-public class PostQuestionControllerTest {
-    private MockHttpServletRequest mockHttpServletRequest;
-    private MockHttpServletResponse mockHttpServletResponse;
-    private AnnotationMethodHandlerAdapter handlerAdapter;
+public class PostQuestionControllerTest extends BaseController {
     private PostQuestionController postQuestionController;
     private String question;
+    private QuestionValidation mockQuestionValidation;
+    private PostQuestion mockPostQuestion;
 
     @Before
      public void setUp(){
-         mockHttpServletRequest = new MockHttpServletRequest();
-         mockHttpServletResponse = new MockHttpServletResponse();
-         handlerAdapter = new AnnotationMethodHandlerAdapter();
         postQuestionController = new PostQuestionController();
         question = "kb";
         mockHttpServletRequest.setRequestURI("/postedQuestion");
         mockHttpServletRequest.setMethod("POST");
         mockHttpServletRequest.setParameter("textareas", question);
-     }
+        mockQuestionValidation = (QuestionValidation) createMock(postQuestionController, "questionValidation", QuestionValidation.class);
+        mockPostQuestion = (PostQuestion) createMock(postQuestionController, "post", PostQuestion.class);
+    }
 
     @Test
     public void shouldInsertGivenValidQuestion() throws Exception {
-        QuestionValidation mockQuestionValidation = Mockito.mock(QuestionValidation.class);
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(true);
-        ReflectionTestUtils.setField(postQuestionController, "questionValidation", mockQuestionValidation);
 
-        PostQuestion mockPostQuestion = Mockito.mock(PostQuestion.class);
         doNothing().when(mockPostQuestion).insert(question);
-        ReflectionTestUtils.setField(postQuestionController, "post", mockPostQuestion);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
@@ -65,12 +54,7 @@ public class PostQuestionControllerTest {
 
     @Test
     public void shouldAddErrorWhenValidationFails() throws Exception {
-        QuestionValidation mockQuestionValidation = Mockito.mock(QuestionValidation.class);
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(false);
-        ReflectionTestUtils.setField(postQuestionController, "questionValidation", mockQuestionValidation);
-
-        PostQuestion mockPostQuestion = Mockito.mock(PostQuestion.class);
-        ReflectionTestUtils.setField(postQuestionController, "post", mockPostQuestion);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
