@@ -133,7 +133,6 @@
         <war destfile="${dist.dir}/${ant.project.name}.war" webxml="${src.dir}/webapp/WEB-INF/web.xml">
             <classes dir="${dist.dir}/classes"/>
             <fileset dir="${src.dir}/webapp">
-                <exclude name="static/"/>
             </fileset>
 
             <zipfileset prefix="${build.number}" dir="${dist.dir}/webapp"/>
