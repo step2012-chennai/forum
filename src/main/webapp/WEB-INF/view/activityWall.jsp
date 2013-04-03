@@ -38,6 +38,7 @@
     </center>
 
 	<br><br>
+
 	<font size="5" style="padding-left:200px" color="#888888">Recent Questions</font>
 	<br><br>
 
@@ -57,17 +58,18 @@
                 <table style="padding-left:275px" class="RecentQuestions" >
                     <td>
                         <%
-                             for (Question question : questions) {
-                             String url = "http://localhost:8080/app/questions/" + question.getId();
-                                 %>
+                         for (Question question : questions) {
+                        %>
 
-		                <a href=<%= url %>>
+		                <a href="question_details?questionId=<%=question.getId()%>">
                                   <% out.println(question.getQuestion());  %> </a>
                                 <% }
 		                     %>
 		            </td>
            </table>
         </body>
+
+
         <br><br><br><br><br>
     	 <div style="padding-left:420px">
     	 <a href="activityWall?pageNumber=<%=pageNumber-1%>" id="a" name="a">
