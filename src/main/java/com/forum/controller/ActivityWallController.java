@@ -19,8 +19,9 @@ public class ActivityWallController {
     private ShowQuestions showQuestions;
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
-    public ModelAndView getStatus(@RequestParam("pageNumber") String pageNum) {
-        int pageNumber = pageNum == null ? 1 : Integer.parseInt(pageNum);
+    public ModelAndView getStatus(@RequestParam(value="pageNumber") String pageNum) {
+        int pageNumber = Integer.parseInt(pageNum);
+        System.out.println(pageNumber);
         int questionsPerPage = 5;
         ModelAndView activityWall = new ModelAndView("activityWall");
         activityWall.addObject("prevButton", showQuestions.previousButtonStatus(pageNumber));

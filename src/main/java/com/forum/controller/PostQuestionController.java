@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class PostQuestionController {
@@ -28,7 +29,8 @@ public class PostQuestionController {
 
         if (questionValidation.isQuestionValid(textarea)) {
             post.insert(textarea);
-            mv = new ModelAndView("activityWall");
+            mv = new ModelAndView(new RedirectView("activityWall"));
+            mv.addObject("pageNumber",1);
         } else {
             mv = new ModelAndView("postQuestion");
             mv.addObject("error", "Question length must be of at least 20 characters, and should not contain all spaces");

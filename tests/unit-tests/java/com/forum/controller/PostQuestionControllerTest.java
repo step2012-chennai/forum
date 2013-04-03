@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -49,7 +50,8 @@ public class PostQuestionControllerTest extends BaseController {
 
         verify(mockQuestionValidation).isQuestionValid(question);
         verify(mockPostQuestion).insert(question);
-        assertThat(modelAndView.getViewName(), IsEqual.equalTo("activityWall"));
+        assertThat(modelAndView.getModel().get("pageNumber").toString(), IsEqual.equalTo("1"));
+        assertThat(((RedirectView)modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 
     @Test

@@ -58,11 +58,11 @@
             </td>
             </table>
                 </body>
-                    <br><br><br>
-                    <div style="padding-left:420px">
+                    <br><br>
+                    <div style="padding-left:275px">
                         <a href="activityWall?pageNumber=${param['pageNumber']-1}" id="a" name="a">
                         <input type="button" id="pre" name="pre" value="Previous" ${prevButton}></input></a>
-                        <a href="activityWall?pageNumber=${param['pageNumber']+1}">
+                        <a href="activityWall?pageNumber=${param['pageNumber']+1}" >
                         <input type="button" value="Next"  ${nextButton}></a>
                     </div>
         </div>
