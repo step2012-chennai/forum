@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
         "file:./src/main/resources/applicationContext.xml",
