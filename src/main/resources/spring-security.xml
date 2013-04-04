@@ -11,17 +11,15 @@
         <!-- Order of intercept url is important for access permission-->
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />
-        <form-login login-page="/login" default-target-url="/activityWall"/>
+        <form-login login-page="/login" default-target-url="/activityWall" always-use-default-target="true" authentication-failure-url="/home"/>
 
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="password" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
+        <authentication-provider ref="authenticationManagerImpl"></authentication-provider>
     </authentication-manager>
+
+    <beans:bean id = "authenticationManagerImpl" class = "com.forum.authentication.AuthenticationManagerImpl"/>
 
 </beans:beans>
 
