@@ -41,18 +41,21 @@
 	<font size="5" style="padding-left:200px" color="#888888">Recent Questions</font>
 	<br><br>
 
-	<div class="questionList">
-         <div style="padding-left:275px">
+	    <table style="padding-left:275px">
+	        <tbody>
+	        <td>
                 <%@page import="com.forum.repository.Question, java.util.List"%>
               <%
                 for (Question question : (List<Question>) request.getAttribute("questionList") ) {
-                   %>
+              %>
 
                     <a href= "question_details?questionId=<%=question.getId()%>" >
                     <% out.println(question.getQuestion());  %> </a><%
                 }
               %>
-         </div>
+              </td>
+              </tbody>
+         </table>
                 <br><br>
                 <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
                 <div style="padding-left:275px">

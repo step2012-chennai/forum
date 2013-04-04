@@ -25,18 +25,26 @@ public class AuthenticationManagerImplTest {
     }
 
     @Test
-    public void shouldReturnAuthenticatedObjectWhenUsernameAndPasswordIsCorrect(){
+    public void shouldReturnAuthenticatedObjectWhenUsernameAndPasswordIsCorrect() {
         ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        authentication = new UsernamePasswordAuthenticationToken("user","password", authorities);
+        authentication = new UsernamePasswordAuthenticationToken("user", "password", authorities);
         Authentication actualAuthentication = authenticationManager.authenticate(authentication);
         assertThat(actualAuthentication, equalTo(authentication));
     }
 
     @Test(expected = BadCredentialsException.class)
-    public void shouldThrowExceptionWhenUsernameAndPasswordIsWrong(){
-        authentication = new UsernamePasswordAuthenticationToken("wrong","wrong");
+    public void shouldThrowExceptionWhenUsernameAndPasswordIsWrong() {
+        authentication = new UsernamePasswordAuthenticationToken("wrong", "wrong");
         authenticationManager.authenticate(authentication);
     }
 
+    @Test
+    public void shouldReturnAuthenticatedObjectWhenComparingWithDatabaseUsernamePassword() {
+        ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authentication = new UsernamePasswordAuthenticationToken("user", "password", authorities);
+        Authentication actualAuthentication = authenticationManager.authenticate(authentication);
+        assertThat(actualAuthentication, equalTo(authentication));
+    }
 }

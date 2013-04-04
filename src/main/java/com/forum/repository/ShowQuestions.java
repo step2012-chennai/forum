@@ -14,8 +14,10 @@ public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?";
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     @Autowired
     private DataSource dataSource;
 
@@ -47,7 +49,7 @@ public class ShowQuestions {
 
         List<Question> questionsList = new ArrayList<Question>();
         while (questions.next()) {
-            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3)));
+            questionsList.add(new Question(questions.getString(1), questions.getString(2), questions.getString(3)));
         }
         return questionsList;
     }
