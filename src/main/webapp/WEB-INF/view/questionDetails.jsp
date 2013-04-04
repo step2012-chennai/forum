@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>question details</title>
-        <link rel="stylesheet" type="text/css" href="/forum/static/css/questionDetailsBackground.css" />
+        <link rel="stylesheet" type="text/css" href="/app/static/css/questionDetailsBackground.css" />
     </head>
 
     <body>

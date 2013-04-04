@@ -20,7 +20,7 @@ public class QuestionRepositoryTest {
 
     @After
     public void tearDown() throws Exception {
-//        template.execute("delete from questions;");
+        template.execute("delete from questions;");
     }
 
     @Before
@@ -47,10 +47,4 @@ public class QuestionRepositoryTest {
         assertThat(question, IsEqual.equalTo(expected));
     }
 
-
-    @Test
-    public void get(){
-//        QuestionRepository questionRepository=new QuestionRepository();
-        System.out.println(questionRepository.getQuestionById(53));
-    }
 }
