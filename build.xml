@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="app" default="precommit" basedir=".">
+<project name="forum" default="precommit" basedir=".">
 
     <property name="src.dir" location="src/main"/>
     <property name="unit.test.dir" location="tests/unit-tests"/>
