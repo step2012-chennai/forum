@@ -36,9 +36,9 @@ public class AuthenticationManagerImpl implements AuthenticationProvider {
     private boolean isAuthenticatedUser(Authentication authentication) {
         String principal = authentication.getPrincipal().toString();
         String credentials = authentication.getCredentials().toString();
-
         context = new ClassPathXmlApplicationContext("file:./config.xml");
         jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet("select * from login where username ='" + principal + "' and password= '" + credentials + "' ");
 
         return sqlRowSet.next();
