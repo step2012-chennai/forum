@@ -40,6 +40,24 @@ public class QuestionValidationTest {
         assertFalse(questionValidation.isQuestionValid("<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>"));
     }
 
+
+    @Test
+    public void shouldReturnFalseWhenQuestionContainsManyEnter(){
+        questionValidation = new QuestionValidation();
+        assertFalse(questionValidation.isQuestionValid("<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n" +
+                "<p>&nbsp;</p>\n"));
+    }
+
     @Test
     public void shouldReturnFalseWhenQuestionLengthIsLessThanCriteria(){
         questionValidation = new QuestionValidation();

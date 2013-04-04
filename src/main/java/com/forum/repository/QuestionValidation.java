@@ -8,6 +8,7 @@ public class QuestionValidation {
     private static final int MINIMUM_CHARACTERS = 20;
     private static final int JAVA_SPACE = 32;
     private static final int HTML_SPACE = 160;
+    private static final int ENTER_KEY_LIMIT = 6;
 
     public boolean isQuestionValid(String question) {
         if (question == null) return false;
@@ -25,11 +26,20 @@ public class QuestionValidation {
 
     private String reduceBlanks(String question) {
         int spaceCount = 0;
+        int enterCount = 0;
         StringBuilder refactoredQuestion = new StringBuilder(question.length());
 
         for (int i = 0; i < question.length(); i++) {
             boolean spaceCharacter = question.charAt(i) == JAVA_SPACE || question.charAt(i) == HTML_SPACE;
-            if (spaceCharacter) spaceCount++;
+            if (spaceCharacter) {
+                spaceCount++;
+                enterCount++;
+            }
+
+            if (enterCount > ENTER_KEY_LIMIT) {
+                refactoredQuestion.append(question.charAt(i));
+                break;
+            }
 
             if (!spaceCharacter || spaceCount <= 1) {
                 refactoredQuestion.append(question.charAt(i));

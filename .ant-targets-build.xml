@@ -1,4 +1,3 @@
-build
 clean
 fetch-libs
 package-src
