@@ -19,7 +19,7 @@ public class ActivityWallController {
     private ShowQuestions showQuestions;
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
-    public ModelAndView getStatus(@RequestParam(value="pageNumber") String pageNum) {
+    public ModelAndView getStatus(@RequestParam(value="pageNumber", defaultValue = "1") String pageNum) {
         int pageNumber = Integer.parseInt(pageNum);
         System.out.println(pageNumber);
         int questionsPerPage = 5;
