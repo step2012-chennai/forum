@@ -132,7 +132,9 @@
             <classes dir="${dist.dir}/classes"/>
             <fileset dir="${src.dir}/webapp">
             </fileset>
-
+            <fileset dir="database">
+                <include name="*.sql"/>
+            </fileset>
             <zipfileset prefix="${build.number}" dir="${dist.dir}/webapp"/>
             <lib dir="${compile.dir}" excludes="*-tests.jar"/>
             <lib dir="lib/runtime/jar"/>
