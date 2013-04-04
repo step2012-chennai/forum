@@ -2,18 +2,16 @@
 <html>
     <head>
         <title>question details</title>
-        <link rel="stylesheet" type="text/css" href="/app/static/css/questionDetailsBackground.css" />
+        <link rel="stylesheet" type="text/css" href="/forum/static/css/questionDetailsBackground.css" />
     </head>
 
     <body>
         <table border="0" class="QD" cellspacing="12">
             <tbody>
                 <td>
-                    <label><b> Question:- </b></label><br><br>
+                    <label><b> Question:- </b></label><br>
                      <%@page import="com.forum.repository.Question, java.util.List"%>
-                              Q)  <% out.println(request.getAttribute("question"));  %> <br/><br/>
-
-
+                     <% out.println(request.getAttribute("question"));  %>
                 </td>
             </tbody>
         </table>
