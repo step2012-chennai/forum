@@ -15,3 +15,11 @@ QA{
 	box-shadow: 10px 10px 15px #afaf97;
 	background:green;
 }
+
+    a:link {
+        text-decoration:none;
+    }    /* unvisited link */
+
+    a:hover {
+        text-decoration:underline;
+    }   /* mouse over link */
