@@ -11,7 +11,7 @@
         <!-- Order of intercept url is important for access permission-->
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />
-        <form-login login-page="/login" default-target-url="/activityWall" always-use-default-target="true" authentication-failure-url="/home"/>
+        <form-login login-page="/login" default-target-url="/activityWall"/>
 
     </http>
 
