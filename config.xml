@@ -36,6 +36,5 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
 </beans>
 

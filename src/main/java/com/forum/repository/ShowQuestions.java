@@ -14,8 +14,10 @@ public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?";
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     @Autowired
     private DataSource dataSource;
 
