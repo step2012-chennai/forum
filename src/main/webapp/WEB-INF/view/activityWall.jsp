@@ -46,10 +46,9 @@
                 <%@page import="com.forum.repository.Question, java.util.List"%>
               <%
                 for (Question question : (List<Question>) request.getAttribute("questionList") ) {
-                   String url = "http://localhost:8080/app/questions/" + question.getId();
                    %>
 
-                    <a href= <%= url %> >
+                    <a href= "question_details?questionId=<%=question.getId()%>" >
                     <% out.println(question.getQuestion());  %> </a><%
                 }
               %>

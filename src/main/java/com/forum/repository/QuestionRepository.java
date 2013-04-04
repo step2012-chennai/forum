@@ -36,10 +36,11 @@ public class QuestionRepository {
         jdbcTemplate.execute("insert into questions(question,post_date) values('" + question + "','"+ dateformat +"')");
     }
 
-    public String getQuestion(int questionId) {
+    public String getQuestionById(int questionId) {
+        System.out.println(questionId);
         SqlRowSet question = jdbcTemplate.queryForRowSet("select question from questions where q_id=" + questionId);
         question.next();
+        System.out.println(question.getString("question"));
         return question.getString("question");
     }
-
 }

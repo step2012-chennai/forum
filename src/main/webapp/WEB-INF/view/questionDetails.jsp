@@ -10,7 +10,10 @@
             <tbody>
                 <td>
                     <label><b> Question:- </b></label><br><br>
-                    Is this UI looking good?
+                     <%@page import="com.forum.repository.Question, java.util.List"%>
+                              Q)  <% out.println(request.getAttribute("question"));  %> <br/><br/>
+
+
                 </td>
             </tbody>
         </table>

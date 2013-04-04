@@ -20,14 +20,14 @@ public class QuestionRepositoryTest {
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from questions;");
+//        template.execute("delete from questions;");
     }
 
     @Before
     public void setUp() throws Exception {
         context = new ClassPathXmlApplicationContext("file:./config.xml");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        questionRepository = (QuestionRepository) context.getBean("post");
+        questionRepository = (QuestionRepository) context.getBean("repository");
     }
 
     @Test
@@ -42,8 +42,15 @@ public class QuestionRepositoryTest {
     public void shouldFetchQuestionForGivenQuestionId(){
         questionRepository.insert("What is your name?");
         int questionId = template.queryForInt("select MAX(q_id) from questions");
-        String question= questionRepository.getQuestion(questionId);
+        String question= questionRepository.getQuestionById(questionId);
         String expected="What is your name?";
         assertThat(question, IsEqual.equalTo(expected));
+    }
+
+
+    @Test
+    public void get(){
+//        QuestionRepository questionRepository=new QuestionRepository();
+        System.out.println(questionRepository.getQuestionById(53));
     }
 }

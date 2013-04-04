@@ -26,7 +26,6 @@ public class ActivityWallController {
         List<Question> questionList = showQuestions.show(pageNumber, questionsPerPage);
         activityWall.addObject("questionList", questionList);
         activityWall.addObject("pageNumber",pageNumber + 1);
-
         return activityWall;
     }
 
