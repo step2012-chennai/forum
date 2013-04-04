@@ -91,6 +91,22 @@ public class ActivityWallControllerTest extends BaseController {
         assertThat(modelAndView.getViewName().toString(), IsEqual.equalTo("activityWall"));
     }
 
+    @Test
+    public void shouldReturnPageNumberValue() throws Exception {
+        ArrayList<Question> questions = getQuestions();
+        when(mockShowQuestions.show(1, QUESTIONS_PER_PAGE)).thenReturn(questions);
+        when(mockShowQuestions.nextButtonStatus(1, QUESTIONS_PER_PAGE)).thenReturn("disabled");
+
+        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, activityWallController);
+
+        verify(mockShowQuestions).nextButtonStatus(1, QUESTIONS_PER_PAGE);
+        verify(mockShowQuestions).show(1, QUESTIONS_PER_PAGE);
+        assertThat((ArrayList<Question>) modelAndView.getModel().get("questionList"), IsEqual.equalTo(questions));
+        assertThat((String) modelAndView.getModel().get("nextButton"), IsEqual.equalTo("disabled"));
+        assertThat(modelAndView.getViewName().toString(), IsEqual.equalTo("activityWall"));
+        assertThat((Integer)modelAndView.getModel().get("pageNumber"), IsEqual.equalTo(2));
+    }
+
     private ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<Question>();
         questions.add(new Question("1", "somthing", "dse"));

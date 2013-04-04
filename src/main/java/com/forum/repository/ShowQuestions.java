@@ -14,10 +14,8 @@ public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?";
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     @Autowired
     private DataSource dataSource;
 
@@ -35,7 +33,10 @@ public class ShowQuestions {
         List<Question> questions = getQuestions();
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
             if (startIndex < questions.size()) {
-                resultQuestions.add(questions.get(startIndex));
+                try {
+                    resultQuestions.add(questions.get(startIndex));
+                } catch (Exception e) {
+                }
             }
         }
         return resultQuestions;
@@ -58,11 +59,11 @@ public class ShowQuestions {
     public String nextButtonStatus(int pageNumber, int questionsPerPage) {
         int totalNumberOfQuestions = jdbcTemplate.queryForInt("select count(*) from questions");
         int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
-        return (pageNumber == maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
+        return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
     }
 
     public String previousButtonStatus(int pageNumber) {
-        return (pageNumber == 1 || pageNumber == 0) ? "disabled" : "enabled";
+        return (pageNumber <= 1) ? "disabled" : "enabled";
     }
 
 }

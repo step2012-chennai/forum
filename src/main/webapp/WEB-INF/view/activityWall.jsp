@@ -42,9 +42,8 @@
 	<br><br>
 
 	<div class="questionList">
-         <body>
          <div style="padding-left:275px">
-           <%@page import="com.forum.repository.Question, java.util.List"%>
+                <%@page import="com.forum.repository.Question, java.util.List"%>
               <%
                 for (Question question : (List<Question>) request.getAttribute("questionList") ) {
                    String url = "http://localhost:8080/app/questions/" + question.getId();
@@ -54,17 +53,15 @@
                     <% out.println(question.getQuestion());  %> </a><%
                 }
               %>
-            </div>
-            </td>
-            </table>
-                </body>
-                    <br><br>
-                    <div style="padding-left:275px">
-                        <a href="activityWall?pageNumber=${param['pageNumber']-1}" id="a" name="a">
-                        <input type="button" id="pre" name="pre" value="Previous" ${prevButton}></input></a>
-                        <a href="activityWall?pageNumber=${param['pageNumber']+1}" >
-                        <input type="button" value="Next"  ${nextButton}></a>
-                    </div>
-        </div>
+         </div>
+                <br><br>
+                <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
+                <div style="padding-left:275px">
+                    <a href="activityWall?pageNumber=${param['pageNumber']-1}" id="a" name="a">
+                    <input type="button" id="pre" name="pre" value="Previous" ${prevButton}></input></a>
+                    <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" >
+                    <input type="button" value="Next"  ${nextButton}></a>
+                </div>
+    </div>
 </body>
 </html>
