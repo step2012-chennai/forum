@@ -36,5 +36,10 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <bean id="postAdvice" class="com.forum.repository.AdviceRepository">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 </beans>
 
