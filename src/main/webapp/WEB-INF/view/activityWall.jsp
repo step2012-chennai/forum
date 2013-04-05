@@ -14,18 +14,19 @@
         </div>
         <%@page import="com.forum.repository.Question, java.util.List"%>
         <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>
-            <div class="question">
                 <a href= "question_details?questionId=<%=question.getId()%>" >
-                    <% out.println(question.getQuestion());  %>
+                    <% out.println(question.getQuestion()); %>
                 </a>
+            <div class="question-posted-time">
+                <% out.println(question.getTime()); %>
             </div>
         <%}%>
         <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
         <div class="navigation-panel">
             <a href="activityWall?pageNumber=${param['pageNumber']-1}" class="button-anchor">
-            <input type="button" value="Previous" ${prevButton}></input></a>
+            <input id="previous-button" type="button" value="Previous" ${prevButton}></input></a>
             <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" class="button-anchor" >
-            <input type="button" value="Next"  ${nextButton}></a>
+            <input id="next-button" type="button" value="Next"  ${nextButton}></a>
             </div>
         </div>
     </div>

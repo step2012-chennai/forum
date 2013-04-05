@@ -21,8 +21,9 @@ activity-wall{
     padding-right:200px;
     padding-top:10px;
 }
-
-.question{
+.question-posted-time{
+    color: #666666;
+    font-size: 75%;
     border-bottom: 1px solid #EAEAEA;
 }
 
