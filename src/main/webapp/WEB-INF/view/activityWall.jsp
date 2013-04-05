@@ -1,14 +1,14 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./static/css/activityWall_background.css" />
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Welcome</title>
 </head>
 
 <body background-color:#fffff>
 
 	<center>
-		<table class="QA">
+		<table class="activity-wall">
 			<body>
     			<td>
 				    <a href="postQuestion"><center><label for="Ask_Question" ><font size="5" color="white">Ask Question</label></a>
@@ -59,9 +59,9 @@
                 <br><br>
                 <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
                 <div style="padding-left:275px">
-                    <a href="activityWall?pageNumber=${param['pageNumber']-1}" id="a" name="a">
-                    <input type="button" id="pre" name="pre" value="Previous" ${prevButton}></input></a>
-                    <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" >
+                    <a href="activityWall?pageNumber=${param['pageNumber']-1}" class="button-anchor">
+                    <input type="button" value="Previous" ${prevButton}></input></a>
+                    <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" class="button-anchor" >
                     <input type="button" value="Next"  ${nextButton}></a>
                 </div>
     </div>

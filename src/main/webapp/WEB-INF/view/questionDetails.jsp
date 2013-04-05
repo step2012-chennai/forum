@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <table border="0" class="QD" cellspacing="12">
+        <table border="0" class="question-details" cellspacing="12">
             <tbody>
                 <td>
                     <label><b> Question:- </b></label><br>

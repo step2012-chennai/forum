@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Post question</title>
 </head>
 <body class="postQuestion" background-color:#ffffff>
@@ -18,7 +19,6 @@
     	 	spellchecker_languages : "+English=en",
     	});
     </script> <br><br>
-
     <div style="padding-left:315px"><font size=5>Post your question :</font></center></div>
     <form id="postQuestion" method="post" action = "postedQuestion">
     	<div>
@@ -29,7 +29,7 @@
     			</textarea>   </center>
     		</div><br>
 
-    		<div style="padding-left:400px"><a href = "activityWall"><input type="submit" value="Post Question" /></a>
+    		<div style="padding-left:400px"><a href="activityWall" class="button-anchor"><input type="submit" value="Post Question" /></a>
     		<input type="button" onclick="clearTextbox()" value="Reset">
     		</div>
     	</div>

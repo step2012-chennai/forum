@@ -1,0 +1,29 @@
+activity-wall{
+	style="width: 960px; height: 81px; border="0" align="center"
+}
+
+.activity-wall td{
+	<center>
+	padding:1em;
+	width:300px;
+	height:80px;
+	border:1px solid #b4b28c;
+	border-radius:20px;
+	-moz-border-radius: 20px;
+	-webkit-box-shadow: 10px 10px 15px #afaf97;
+	-moz-box-shadow: 10px 10px 15px #afaf97;
+	box-shadow: 10px 10px 15px #afaf97;
+	background:green;
+}
+
+a:link {
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+a.button-anchor:hover{
+    text-decoration:none;
+    cursor:text;
+}
