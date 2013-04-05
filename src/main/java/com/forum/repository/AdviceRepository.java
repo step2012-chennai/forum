@@ -20,6 +20,7 @@ public class AdviceRepository {
     @Autowired
     private DataSource dataSource;
 
+
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
