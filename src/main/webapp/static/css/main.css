@@ -26,6 +26,10 @@ activity-wall{
     border-bottom: 1px solid #EAEAEA;
 }
 
+.answer{
+    border-bottom: 1px solid #EAEAEA;
+}
+
 .navigation-panel{
     padding-top:20px;
 }
