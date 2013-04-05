@@ -32,38 +32,31 @@
 				 </td><td><input type="submit" value="search"></input>
 				</td>
 				</table>
-		</forum>
+		</form>
 
 		</table>
     </center>
 
-	<br><br>
-	<font size="5" style="padding-left:200px" color="#888888">Recent Questions</font>
-	<br><br>
-
-	    <table style="padding-left:275px">
-	        <tbody>
-	        <td>
-                <%@page import="com.forum.repository.Question, java.util.List"%>
-              <%
-                for (Question question : (List<Question>) request.getAttribute("questionList") ) {
-              %>
-
-                    <a href= "question_details?questionId=<%=question.getId()%>" >
-                    <% out.println(question.getQuestion());  %> </a><%
-                }
-              %>
-              </td>
-              </tbody>
-         </table>
-                <br><br>
-                <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
-                <div style="padding-left:275px">
-                    <a href="activityWall?pageNumber=${param['pageNumber']-1}" class="button-anchor">
-                    <input type="button" value="Previous" ${prevButton}></input></a>
-                    <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" class="button-anchor" >
-                    <input type="button" value="Next"  ${nextButton}></a>
-                </div>
+	<div class="recent-questions-panel">
+        <div>
+            <font size="5" color="#888888">Recent Questions</font>
+        </div>
+        <%@page import="com.forum.repository.Question, java.util.List"%>
+        <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>
+            <div class="question">
+                <a href= "question_details?questionId=<%=question.getId()%>" >
+                    <% out.println(question.getQuestion());  %>
+                </a>
+            </div>
+        <%}%>
+        <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
+        <div class="navigation-panel">
+            <a href="activityWall?pageNumber=${param['pageNumber']-1}" class="button-anchor">
+            <input type="button" value="Previous" ${prevButton}></input></a>
+            <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" class="button-anchor" >
+            <input type="button" value="Next"  ${nextButton}></a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

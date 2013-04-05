@@ -16,6 +16,20 @@ activity-wall{
 	background:green;
 }
 
+.recent-questions-panel{
+    padding-left:200px;
+    padding-right:200px;
+    padding-top:10px;
+}
+
+.question{
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.navigation-panel{
+    padding-top:20px;
+}
+
 a:link {
     text-decoration:none;
 }
