@@ -27,6 +27,7 @@ public class QuestionController {
         answers= adviceRepository.getAdvices(Integer.parseInt(questionId));
         questionDetail.addObject("question",question);
         questionDetail.addObject("answers",answers);
+        questionDetail.addObject("noOfAnswer",answers.size());
         return questionDetail;
     }
 }

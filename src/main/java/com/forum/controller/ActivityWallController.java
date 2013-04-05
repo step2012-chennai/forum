@@ -35,21 +35,3 @@ public class ActivityWallController {
     }
 
 }
-
-
-//<div>
-//<font size="5" color="#888888"><% out.print(request.getAttribute("question") );%></font>
-//</div>
-//<%@page import="com.forum.repository.Question, java.util.List"%>
-//
-//
-//
-//
-//<% int i=1;
-//for(String answer : (List<String>)request.getAttribute("answers")){
-//        %> <br><b><%
-//        out.print("Answer " + i + " : ");%></b><%
-//        out.println(answer + "<br/>");
-//i++;
-//}
-//        %>
