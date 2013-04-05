@@ -12,7 +12,16 @@
                     <label><b> Question:- </b></label><br>
                      <%@page import="com.forum.repository.Question, java.util.List"%>
                      <% out.println(request.getAttribute("question"));  %>
-                </td>
+                 </td>
+
+                     <%
+                        for(String answer : (List<String>)request.getAttribute("answers")){
+                         %><tr><td> <br> <%
+                            out.println(answer);
+                            %> </td></tr><%
+                        }
+                     %>
+
             </tbody>
         </table>
         </tbody>
