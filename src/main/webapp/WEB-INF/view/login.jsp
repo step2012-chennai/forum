@@ -6,7 +6,11 @@
 <head>
 <title>Login</title>
 </head>
-    <center><body bgcolor="white">
+    <center>
+    <body bgcolor="white">
+       <script>
+       window.history.forward(1);
+       </script>
         <form id="loginForm" name="loginForm" action="j_spring_security_check" method = "post">
            <br><br><br><br><br><br><br><br><br><br> <table
            style="border:1px solid #b4b28c;border-radius:0px; moz-border-radius: 25px; background:#C0C0C0;">
