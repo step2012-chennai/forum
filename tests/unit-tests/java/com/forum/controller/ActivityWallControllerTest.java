@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 
 public class ActivityWallControllerTest extends BaseController {
 
-    public static final int QUESTIONS_PER_PAGE = 5;
+    public static final int QUESTIONS_PER_PAGE = 10;
     private ActivityWallController activityWallController;
     private ShowQuestions mockShowQuestions;
 

@@ -15,15 +15,15 @@ import java.util.List;
 public class ActivityWallController {
     @Autowired
     private ShowQuestions showQuestions;
+    private static final int QUESTIONS_PER_PAGE=10;
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
-    public ModelAndView getStatus(@RequestParam(value="pageNumber", defaultValue = "1") String pageNum) {
+    public ModelAndView activityWall(@RequestParam(value = "pageNumber", defaultValue = "1") String pageNum) {
         int pageNumber = Integer.parseInt(pageNum);
-        int questionsPerPage = 5;
         ModelAndView activityWall = new ModelAndView("activityWall");
         activityWall.addObject("prevButton", showQuestions.previousButtonStatus(pageNumber));
-        activityWall.addObject("nextButton", showQuestions.nextButtonStatus(pageNumber, questionsPerPage));
-        List<Question> questionList = showQuestions.show(pageNumber, questionsPerPage);
+        activityWall.addObject("nextButton", showQuestions.nextButtonStatus(pageNumber, QUESTIONS_PER_PAGE));
+        List<Question> questionList = showQuestions.show(pageNumber, QUESTIONS_PER_PAGE);
         activityWall.addObject("questionList", questionList);
         activityWall.addObject("pageNumber",pageNumber + 1);
         return activityWall;
