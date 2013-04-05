@@ -32,7 +32,7 @@ public class AuthenticationManagerImpl implements AuthenticationProvider {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), authorities);
             return authenticationToken;
         }
-        throw new BadCredentialsException("Username / Password is incorrect");
+        throw new BadCredentialsException("Username/Password is incorrect");
     }
 
     private boolean isAuthenticatedUser(Authentication authentication) {

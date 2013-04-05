@@ -40,7 +40,6 @@ public class QuestionRepository {
         System.out.println(questionId);
         SqlRowSet question = jdbcTemplate.queryForRowSet("select question from questions where q_id=" + questionId);
         question.next();
-        System.out.println(question.getString("question"));
         return question.getString("question");
     }
 }
