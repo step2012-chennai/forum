@@ -10,7 +10,6 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-
 public class PostQuestionTestCase {
     private Selenium selenium;
     private SeleniumServer seleniumServer;

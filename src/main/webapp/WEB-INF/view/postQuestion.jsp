@@ -19,17 +19,17 @@
     	});
     </script> <br><br>
 
-    <div style="padding-left:315px"><font size=5>Post your question :</font></center></div>
+    <div style="padding-left:240px"><font size=5>Post your question :</font></center></div>
     <form id="postQuestion" method="post" action = "postedQuestion">
-    	<div style="padding-left:415px">
+    	<div style="padding-left:240px">
         <div style="color:#FF0000" >${error} </div>
     		<div>
-    			<textarea id="elm1" name="textareas" rows="12" cols="20" style="width: 60%"/>
+    			<textarea id="elm1" name="textareas" rows="12" cols="20" style="width: 80%"/>
     		${askedQuestion}
     			</textarea>   </center>
     		</div><br>
 
-    		<div style="padding-left:570px">
+    		<div style="padding-left:635px">
     		<form action="activityWall"><input type="submit" value="Post Question"></form>
     		<input type="button" onclick="clearTextbox()" value="Reset">
     		</div>
