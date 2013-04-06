@@ -35,10 +35,3 @@ public class QuestionController {
         return questionDetail;
     }
 }
-
-//for(Advice answer : (List<Advice>)request.getAttribute("answers")) { %>
-//<div class="answer" color="blue"> <b>
-//<% out.print("Answer&nbsp" + i + " :");%> &nbsp &nbsp</b>
-//<% out.println(answer.getAdvice + "<br/><br/>");%>
-//</div>
-//<% i++; } %>

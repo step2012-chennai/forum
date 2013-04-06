@@ -40,7 +40,7 @@ public class AdviceRepository {
 
 
     public List<Advice> getAdvices(int questionId) {
-        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q_id,answer,post_date from answers where q_id=" + questionId);
+        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q_id,answer,post_date from answers where q_id='" + questionId +"'ORDER BY ans_id DESC");
         List<Advice> advices = new ArrayList<Advice>();
         while (advice.next()) {
             advices.add(new Advice(advice.getString(1),advice.getString(2),advice.getString(3)));
