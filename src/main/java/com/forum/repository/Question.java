@@ -3,19 +3,18 @@ package com.forum.repository;
 public class Question {
     private String id;
     private String question;
+    private String userName;
     private String time;
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    private String user_name;
-
-    public Question(String id, String question, String time,String user_name ) {
+    public Question(String id, String question, String time, String userName) {
         this.id = id;
         this.question = question;
         this.time = time;
-        this.user_name=user_name;
+        this.userName = userName;
     }
 
     public String getId() {

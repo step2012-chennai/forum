@@ -19,17 +19,19 @@
     	 	spellchecker_languages : "+English=en",
     	});
     </script> <br><br>
-    <div style="padding-left:315px"><font size=5>Post your question :</font></center></div>
+
+    <div style="padding-left:415px"><font size=5>Post your question :</font></center></div>
     <form id="postQuestion" method="post" action = "postedQuestion">
-    	<div>
-        <center><div style="color:#FF0000" >${error} </div>
-    		<div> <center>
-    			<textarea id="elm1" name="textareas" rows="7" cols="20" style="width: 50%"/>
+    	<div style="padding-left:415px">
+        <div style="color:#FF0000" >${error} </div>
+    		<div>
+    			<textarea id="elm1" name="textareas" rows="12" cols="20" style="width: 60%"/>
     		${askedQuestion}
     			</textarea>   </center>
     		</div><br>
 
-    		<div style="padding-left:400px"><a href="activityWall" class="button-anchor"><input type="submit" value="Post Question" /></a>
+    		<div style="padding-left:570px">
+    		<form action="activityWall"><input type="submit" value="Post Question"></form>
     		<input type="button" onclick="clearTextbox()" value="Reset">
     		</div>
     	</div>

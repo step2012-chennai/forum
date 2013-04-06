@@ -28,12 +28,7 @@ public class QuestionController {
         Question question=questionRepository.getQuestionById(Integer.parseInt(questionId));
         answers= adviceRepository.getAdvices(Integer.parseInt(questionId));
         questionDetail.addObject("question",question.getQuestion());
-        questionDetail.addObject("question_user",question.getUser_name());
-        System.out.println(question.getUser_name());
-        for (Advice answer : answers) {
-            System.out.println(answer.getAdvice());
-        }
-
+        questionDetail.addObject("question_user",question.getUserName());
         questionDetail.addObject("answers", answers);
         questionDetail.addObject("noOfAnswer",answers.size());
         return questionDetail;
