@@ -2,6 +2,7 @@ package com.forum.controller;
 
 import com.forum.repository.Advice;
 import com.forum.repository.AdviceRepository;
+import com.forum.repository.Question;
 import com.forum.repository.QuestionRepository;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
@@ -33,21 +34,26 @@ public class QuestionControllerTest extends BaseController{
         mockHttpServletRequest.setParameter("questionId", "10");
         ArrayList<Advice> questionDetails = getQuestions();
         when(mockAdviceRepository.getAdvices(10)).thenReturn(questionDetails);
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1","what is nano","12","Anil"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         assertThat((ArrayList<Advice>) modelAndView.getModel().get("answers"), IsEqual.equalTo(questionDetails));
     }
 
     @Test
-    public void shouldGiveTheQuestionOfGivenQuestion() throws Exception {
+    public void shouldGiveTheQuestionOfLastInsertedQuestion() throws Exception {
         mockHttpServletRequest.setParameter("questionId", "10");
-        when(mockQuestionRepository.getQuestionById(10)).thenReturn("what is your name");
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1","what is nano","12","Anil"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
-        assertThat(String.valueOf(modelAndView.getModel().get("question")), IsEqual.equalTo("what is your name"));
+        Question expected=new Question("1","what is nano","12","Anil");
+        assertThat((String) modelAndView.getModel().get("question"), IsEqual.equalTo(expected.getQuestion()));
     }
 
     @Test
     public void shouldRedirectToJspPage() throws Exception {
+        ArrayList<Advice> questionDetails = getQuestions();
         mockHttpServletRequest.setParameter("questionId", "10");
+        when(mockAdviceRepository.getAdvices(10)).thenReturn(questionDetails);
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1","what is nano","12","Anil"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("questionDetails"));
     }

@@ -11,7 +11,9 @@
 
 	<div class="recent-questions-panel">
         <div>
-           <font size="6" color="#888888"><% out.print(request.getAttribute("question") );%></font>
+           <font size="5" color="black"><% out.print(request.getAttribute("question_user") + "  Asked :-");%></font>
+                      <font size="6" color="#888888"><% out.print(request.getAttribute("question"));%></font>
+
            <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
         </div>
         <%@page import="com.forum.repository.Question,com.forum.repository.Advice, java.util.List"%>

@@ -1,14 +1,21 @@
 package com.forum.repository;
 
-import java.util.ArrayList;
-
 public class Question {
-    private String id,question,time;
+    private String id;
+    private String question;
+    private String time;
 
-    public Question(String id, String question, String time) {
+    public String getUser_name() {
+        return user_name;
+    }
+
+    private String user_name;
+
+    public Question(String id, String question, String time,String user_name ) {
         this.id = id;
         this.question = question;
         this.time = time;
+        this.user_name=user_name;
     }
 
     public String getId() {

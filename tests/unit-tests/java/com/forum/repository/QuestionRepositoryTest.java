@@ -40,11 +40,11 @@ public class QuestionRepositoryTest {
     }
     @Test
     public void shouldFetchQuestionForGivenQuestionId(){
-        questionRepository.insert("What is your name?");
+        questionRepository.insert("what is nano");
         int questionId = template.queryForInt("select MAX(q_id) from questions");
-        String question= questionRepository.getQuestionById(questionId);
-        String expected="What is your name?";
-        assertThat(question, IsEqual.equalTo(expected));
+        Question question= questionRepository.getQuestionById(questionId);
+        Question expected=new Question("1","what is nano","12","Anil");
+        assertThat(question.getQuestion(), IsEqual.equalTo(expected.getQuestion()));
     }
 
 }

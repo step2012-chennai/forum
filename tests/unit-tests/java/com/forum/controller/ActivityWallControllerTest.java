@@ -109,7 +109,7 @@ public class ActivityWallControllerTest extends BaseController {
 
     private ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<Question>();
-        questions.add(new Question("1", "somthing", "dse"));
+        questions.add(new Question("1","what is nano","12","Anil"));
         return questions;
     }
 }

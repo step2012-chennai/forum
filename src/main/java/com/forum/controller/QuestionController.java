@@ -2,6 +2,7 @@ package com.forum.controller;
 
 import com.forum.repository.Advice;
 import com.forum.repository.AdviceRepository;
+import com.forum.repository.Question;
 import com.forum.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,15 @@ public class QuestionController {
     public ModelAndView questionDetails(@RequestParam("questionId") String questionId) {
         List<Advice> answers;
         ModelAndView questionDetail = new ModelAndView("questionDetails");
-        String question=questionRepository.getQuestionById(Integer.parseInt(questionId));
+        Question question=questionRepository.getQuestionById(Integer.parseInt(questionId));
         answers= adviceRepository.getAdvices(Integer.parseInt(questionId));
-        questionDetail.addObject("question",question);
+        questionDetail.addObject("question",question.getQuestion());
+        questionDetail.addObject("question_user",question.getUser_name());
+        System.out.println(question.getUser_name());
         for (Advice answer : answers) {
             System.out.println(answer.getAdvice());
         }
+
         questionDetail.addObject("answers", answers);
         questionDetail.addObject("noOfAnswer",answers.size());
         return questionDetail;
