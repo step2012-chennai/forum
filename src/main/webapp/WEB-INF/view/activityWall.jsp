@@ -5,8 +5,8 @@
 </head>
 
 <body background-color:#fffff>
-
 	<%@include file="header.jsp" %>
+    <script type="text/javascript" src="/forum/static/javascript/autoRefresh.js"></script>
 
 	<div class="recent-questions-panel">
         <div>
