@@ -1,14 +1,14 @@
-insert into questions(question,post_date,user_name)   values('<p>What is java ? </p>','2013/04/05 23:08:27','Sandeep');
-insert into questions(question,post_date,user_name)   values('<p>How to connect with postgresql in java ? </p>','2013/04/05 23:08:27','Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>Where is thought works in chennai ? </p>','2013/04/05 23:08:27','Anil');
-insert into questions(question,post_date,user_name)   values('<p>How to write insert command in sql ?</p>','2013/04/05 23:08:27','Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>How to use spring ?</p>','2013/04/05 23:08:27','Sandeep');
-insert into questions(question,post_date,user_name)   values('<p>What is servlet ?</p>','2013/04/05 23:08:27','Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>Can i use driver for connection to database ?</p>','2013/04/05 23:08:27','Anil');
-insert into questions(question,post_date,user_name)   values('<p>Who is father of computer ? </p>','2013/04/05 23:08:27','Anil');
-insert into questions(question,post_date,user_name)   values('<p>How to create android application ? </p>','2013/04/05 23:08:27','Sandeep');
-insert into questions(question,post_date,user_name)   values('<p>How to use intellej for web application</p>','2013/04/05 23:08:27','Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>Where is Marina Beach in India ? </p>','2013/04/05 23:08:27','Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>What is java ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>How to connect with postgresql in java ? </p>',CURRENT_TIMESTAMP(0),'Bipilesh');
+insert into questions(question,post_date,user_name)   values('<p>Where is thought works in chennai ? </p>',CURRENT_TIMESTAMP(0),'Anil');
+insert into questions(question,post_date,user_name)   values('<p>How to write insert command in sql ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
+insert into questions(question,post_date,user_name)   values('<p>How to use spring ?</p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>What is servlet ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
+insert into questions(question,post_date,user_name)   values('<p>Can i use driver for connection to database ?</p>',CURRENT_TIMESTAMP(0),'Anil');
+insert into questions(question,post_date,user_name)   values('<p>Who is father of computer ? </p>',CURRENT_TIMESTAMP(0),'Anil');
+insert into questions(question,post_date,user_name)   values('<p>How to create android application ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>How to use intellej for web application</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
+insert into questions(question,post_date,user_name)   values('<p>Where is Marina Beach in India ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
 
 --for login test
 insert into login(username,password) values('sandeep','5f4dcc3b5aa765d61d8327deb882cf99');
@@ -30,30 +30,30 @@ insert into login(username,password) values('user','5f4dcc3b5aa765d61d8327deb882
 
 -- for details of Question
 
-insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 1','2013/04/05 23:08:27','Ravi');
-insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 2','2013/04/05 23:08:27','Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 3','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 4','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 5','2013/04/05 23:08:27','Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 1','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 2','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 3','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 4','2013/04/05 23:08:27','Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 1','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 2','2013/04/05 23:08:27','Ravi');
-insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 3','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 4','2013/04/05 23:08:27','Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 5','2013/04/05 23:08:27','Ravi');
-insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 8 question . 1','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 8 question . 2','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 1','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 2','2013/04/05 23:08:27','Prakash');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 3','2013/04/05 23:08:27','Ravi');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 4','2013/04/05 23:08:27','Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 5','2013/04/05 23:08:27','Ajit');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 6','2013/04/05 23:08:27','Prasath');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 7','2013/04/05 23:08:27','Ravi');
-insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 8','2013/04/05 23:08:27','Prakash');
-insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 7 question . 8','2013/04/05 23:08:27','Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 4',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 5',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 1',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 2',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 4',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 1',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 2',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 3',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 4',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 5',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 8 question . 1',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 8 question . 2',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 1',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 2',CURRENT_TIMESTAMP(0),'Prakash');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 3',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 4',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 5',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 6',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 7',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values(7,'answer for 7 question . 8',CURRENT_TIMESTAMP(0),'Prakash');
+insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 7 question . 8',CURRENT_TIMESTAMP(0),'Gaurav');
 
 

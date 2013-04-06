@@ -45,7 +45,7 @@ public class ShowQuestions {
     }
 
     public List<Question> getQuestions() {
-        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY q_id DESC");
+        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY post_date DESC");
 
         List<Question> questionsList = new ArrayList<Question>();
         while (questions.next()) {
