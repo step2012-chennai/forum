@@ -61,7 +61,7 @@ public class QuestionControllerTest extends BaseController{
     private ArrayList<Advice> getQuestions() {
         ArrayList<Advice> questions = new ArrayList<Advice>();
         for (int i = 0; i < 10; i++) {
-              questions.add(new Advice("1","Advice",""));
+              questions.add(new Advice("1","Advice","",""));
         }
         return questions;
     }

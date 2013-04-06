@@ -6,12 +6,13 @@ public class Advice {
     private final String id;
     private String advice;
     private final String time;
+    private String userName;
 
-
-    public Advice(String id, String advice, String time) {
+    public Advice(String id, String advice, String time, String userName) {
         this.id = id;
         this.advice = advice;
         this.time = time;
+        this.userName = userName;
     }
 
     public String getTime() {
@@ -26,5 +27,7 @@ public class Advice {
         return advice;
     }
 
-
+    public String getUserName() {
+        return userName;
+    }
 }
