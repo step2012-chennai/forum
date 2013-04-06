@@ -12,14 +12,13 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public void login() {
-
     }
 
     @RequestMapping(value = "/loginfail", method = RequestMethod.GET)
     public ModelAndView getInput() {
         ModelAndView mv;
         mv = new ModelAndView("login");
-        mv.addObject("error", "Password/Username is incorrect");
+        mv.addObject("error", "Username/Password is incorrect");
         return mv;
     }
 }

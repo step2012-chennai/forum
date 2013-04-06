@@ -15,8 +15,6 @@ public class LoginControllerTest {
     private MockHttpServletResponse mockHttpServletResponse;
     private MockHttpServletRequest mockHttpServletRequest;
     AnnotationMethodHandlerAdapter handlerAdapter ;
-    private String expectedErrorMessage;
-    private String expectedPage;
 
     @Before
     public void setUp() throws Exception {
@@ -31,8 +29,8 @@ public class LoginControllerTest {
         mockHttpServletRequest.setRequestURI("/loginfail");
         mockHttpServletRequest.setMethod("GET");
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, loginController);
-        expectedPage = "login";
-        expectedErrorMessage = "Password/Username is incorrect";
+        String expectedPage = "login";
+        String expectedErrorMessage = "Username/Password is incorrect";
         assertThat(modelAndView.getViewName(), IsEqual.equalTo(expectedPage));
         assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo(expectedErrorMessage));
     }
