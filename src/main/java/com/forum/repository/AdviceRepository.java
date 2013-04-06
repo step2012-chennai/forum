@@ -39,11 +39,11 @@ public class AdviceRepository {
     }
 
 
-    public List<String> getAdvices(int questionId) {
-        SqlRowSet advice = jdbcTemplate.queryForRowSet("select answer from answers where q_id=" + questionId);
-        List<String> advices = new ArrayList<String>();
+    public List<Advice> getAdvices(int questionId) {
+        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q_id,answer,post_date from answers where q_id=" + questionId);
+        List<Advice> advices = new ArrayList<Advice>();
         while (advice.next()) {
-            advices.add(advice.getString("answer"));
+            advices.add(new Advice(advice.getString(1),advice.getString(2),advice.getString(3)));
         }
         return advices;
     }

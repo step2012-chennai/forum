@@ -12,18 +12,21 @@
 	<div class="recent-questions-panel">
         <div>
            <font size="6" color="#888888"><% out.print(request.getAttribute("question") );%></font>
-           <%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%>
+           <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
         </div>
-        <%@page import="com.forum.repository.Question, java.util.List"%>
-           <font size="4">
-          <%int i=1;
-          for(String answer : (List<String>)request.getAttribute("answers")) { %>
-                 <div class="answer"> <b>
+        <%@page import="com.forum.repository.Question,com.forum.repository.Advice, java.util.List"%>
+                  <font size="4" color="blue">
+                 <%int i=1;
+                 for(Advice answer : (List<Advice>)request.getAttribute("answers")) { %>
+                   <div class="answer" color="blue"> <b>
                         <% out.print("Answer&nbsp" + i + " :");%> &nbsp &nbsp</b>
-                        <% out.println(answer + "<br/>");%>
-                 </div>
-          <% i++; } %>
-          </font>
+                        <% out.println(answer.getAdvice() + "<br/><br/>");%>
+                        <div class="question-posted-time">
+                                       <% out.println(answer.getTime()); %>
+                        </div>
+                   </div>
+                 <% i++; } %>
+                 </font>
     </div>
 </body>
 </html>

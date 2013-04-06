@@ -24,7 +24,7 @@ public class AdviceRepositoryTest {
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from answers;");
+        template.execute("delete from answers where answer='Advice1';");
     }
 
     @Before
@@ -48,6 +48,6 @@ public class AdviceRepositoryTest {
         adviceRepository.insert(questionId,"Advice1");
         adviceRepository.insert(questionId,"Advice1");
         List advices= (List) adviceRepository.getAdvices(questionId);
-        assertTrue(advices.size()==2);
+        assertTrue(advices.size()==7);
     }
 }

@@ -1,5 +1,6 @@
 package com.forum.controller;
 
+import com.forum.repository.Advice;
 import com.forum.repository.AdviceRepository;
 import com.forum.repository.QuestionRepository;
 import org.hamcrest.core.IsEqual;
@@ -30,10 +31,10 @@ public class QuestionControllerTest extends BaseController{
     @Test
     public void shouldGiveTheAdviceOfGivenQuestion() throws Exception {
         mockHttpServletRequest.setParameter("questionId", "10");
-        ArrayList<String> questionDetails = getQuestions();
+        ArrayList<Advice> questionDetails = getQuestions();
         when(mockAdviceRepository.getAdvices(10)).thenReturn(questionDetails);
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
-        assertThat((ArrayList<String>) modelAndView.getModel().get("answers"), IsEqual.equalTo(questionDetails));
+        assertThat((ArrayList<Advice>) modelAndView.getModel().get("answers"), IsEqual.equalTo(questionDetails));
     }
 
     @Test
@@ -51,10 +52,10 @@ public class QuestionControllerTest extends BaseController{
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("questionDetails"));
     }
 
-    private ArrayList<String> getQuestions() {
-        ArrayList<String> questions = new ArrayList<String>();
+    private ArrayList<Advice> getQuestions() {
+        ArrayList<Advice> questions = new ArrayList<Advice>();
         for (int i = 0; i < 10; i++) {
-              questions.add("Advice : " + i);
+              questions.add(new Advice("1","Advice",""));
         }
         return questions;
     }
