@@ -26,6 +26,7 @@ public class QuestionRepositoryTestCase {
         selenium.type("j_username", "user");
         selenium.type("j_password", "password");
         selenium.click("submit");
+        Thread.sleep(1000);
     }
 
     @After
@@ -35,13 +36,11 @@ public class QuestionRepositoryTestCase {
 
     @Test
     public void verifyTheTargetHitsCorrectUrl() throws InterruptedException {
-        Thread.sleep(1000);
         assertTrue(selenium.isTextPresent("Recent Questions"));
     }
 
     @Test
     public void verifyTheURLOfTheFirstQuestionInActivityWall() throws InterruptedException {
-        Thread.sleep(1000);
         selenium.click("css=p");
         Thread.sleep(1000);
         assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/question_details?questionId=1"));
@@ -49,7 +48,6 @@ public class QuestionRepositoryTestCase {
 
     @Test
     public void verifyTheClickedQuestionFromTheActivityWallInQuestionDetailPage() throws InterruptedException {
-        Thread.sleep(1000);
         String firstQuestion = selenium.getText("css=p");
         selenium.click("css=p");
         Thread.sleep(1000);
@@ -58,7 +56,6 @@ public class QuestionRepositoryTestCase {
 
     @Test
     public void verifyThatNoOfAdvicesIsPresentInQuestionDetailPage() throws InterruptedException {
-        Thread.sleep(1000);
         selenium.click("css=p");
         Thread.sleep(1000);
         assertTrue(selenium.isTextPresent("No of Advice:"));
