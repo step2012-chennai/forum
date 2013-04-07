@@ -1,6 +1,7 @@
 package com.forum.repository;
 
 import org.hamcrest.core.IsEqual;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -10,40 +11,39 @@ import static org.junit.Assert.assertTrue;
 public class QuestionValidationTest {
     private QuestionValidation questionValidation;
 
+    @Before
+    public void setUp() {
+        questionValidation = new QuestionValidation();
+    }
+
     @Test
     public void shouldReturnTrueWhenQuestionIsValid() {
-       questionValidation = new QuestionValidation();
         assertTrue(questionValidation.isQuestionValid("this is valid question and has length more than 20"));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionIsNotValid() {
-        questionValidation = new QuestionValidation();
         assertFalse(questionValidation.isQuestionValid(null));
     }
 
     @Test
     public void shouldReturnFalseWhenQuestionIsEmpty() {
-        questionValidation = new QuestionValidation();
         assertFalse(questionValidation.isQuestionValid(""));
     }
 
     @Test
-    public void shouldReturnFalseWhenQuestionContainsOnlySpace(){
-        questionValidation = new QuestionValidation();
+    public void shouldReturnFalseWhenQuestionContainsOnlySpace() {
         assertFalse(questionValidation.isQuestionValid("&nbsp;"));
     }
 
     @Test
-    public void shouldReturnFalseWhenQuestionContainsManySpaces(){
-        questionValidation = new QuestionValidation();
+    public void shouldReturnFalseWhenQuestionContainsManySpaces() {
         assertFalse(questionValidation.isQuestionValid("<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>"));
     }
 
 
     @Test
-    public void shouldReturnFalseWhenQuestionContainsManyEnter(){
-        questionValidation = new QuestionValidation();
+    public void shouldReturnFalseWhenQuestionContainsManyEnter() {
         assertFalse(questionValidation.isQuestionValid("<p>&nbsp;</p>\n" +
                 "<p>&nbsp;</p>\n" +
                 "<p>&nbsp;</p>\n" +
@@ -59,20 +59,17 @@ public class QuestionValidationTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenQuestionLengthIsLessThanCriteria(){
-        questionValidation = new QuestionValidation();
+    public void shouldReturnFalseWhenQuestionLengthIsLessThanCriteria() {
         assertFalse(questionValidation.isQuestionValid("a"));
     }
 
     @Test
-    public void shouldReturnFalseWhenQuestionIsContainLessCharacterButMoreSpaces(){
-        questionValidation = new QuestionValidation();
+    public void shouldReturnFalseWhenQuestionIsContainLessCharacterButMoreSpaces() {
         assertFalse(questionValidation.isQuestionValid("<p>q&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q</p>"));
     }
 
     @Test
-    public void shouldAddExtraApostropheWhenApostropheCharacterOccurs(){
-        questionValidation = new QuestionValidation();
+    public void shouldAddExtraApostropheWhenApostropheCharacterOccurs() {
         assertThat(questionValidation.insertApostrophe("<p>He is William's and Jhon's Brother</p>"), IsEqual.equalTo("<p>He is William''s and Jhon''s Brother</p>"));
     }
 }
