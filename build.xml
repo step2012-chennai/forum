@@ -56,7 +56,7 @@
         <sequential>
             <mkdir dir="${compile.dir}/classes"/>
             <javac srcdir="@{srcdir}/java" destdir="${compile.dir}/classes" classpathref="@{classpath}"
-                   includeantruntime="no" debug="yes"/>
+                   includeantruntime="no" debug="yes" target="1.6"/>
             <jar jarfile="${compile.dir}/@{jarfile}" basedir="${compile.dir}/classes">
                 <fileset dir="@{srcdir}/java" excludes="**/*.java"/>
             </jar>
@@ -71,11 +71,11 @@
             <mkdir dir="${test.report.dir}"/>
             <junit fork="yes" forkmode="once" failureproperty="unit.tests.failed" printsummary="yes" haltonfailure="on">
                 <sysproperty key="net.sourceforge.cobertura.datafile" file="${instrument.dir}/cobertura.ser"/>
-                <!--<classpath>-->
-                    <!--<fileset dir="${instrument.dir}">-->
-                        <!--<include name="*.jar"/>-->
-                    <!--</fileset>-->
-                <!--</classpath>-->
+                <classpath>
+                    <fileset dir="${instrument.dir}">
+                        <include name="*.jar"/>
+                    </fileset>
+                </classpath>
                 <classpath refid="@{classpath}"/>
                 <formatter type="xml"/>
                 <batchtest todir="${test.report.dir}">
