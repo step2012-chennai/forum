@@ -18,16 +18,13 @@
                     <% out.println(question.getQuestion()); %>
                 </a>
             <div class="question-posted-time">
-                <% out.println(question.getTime()); %>
+                <% out.println(question.getUserName()+ "&nbsp&nbsp|&nbsp&nbsp" + question.getTime());%>
             </div>
         <%}%>
         <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
         <div class="navigation-panel">
-            <a href="activityWall?pageNumber=${param['pageNumber']-1}" class="button-anchor">
-            <input id="previous-button" type="button" value="Previous" ${prevButton}></input></a>
-            <a rel="next" href="activityWall?pageNumber=<%= currentPageNumber %>" class="button-anchor" >
-            <input id="next-button" type="button" value="Next"  ${nextButton}></a>
-            </div>
+            <input type="button" id="previous-button" value="Previous" onclick="javascript:window.location.href='activityWall?pageNumber=${param['pageNumber']-1}'" ${prevButton} ></input>
+            <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='activityWall?pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
         </div>
     </div>
 </body>
