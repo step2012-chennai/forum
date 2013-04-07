@@ -15,7 +15,7 @@ insert into login(username,password) values('sandeep','5f4dcc3b5aa765d61d8327deb
 insert into login(username,password) values('gaurav','5f4dcc3b5aa765d61d8327deb882cf99');
 insert into login(username,password) values('anil','5f4dcc3b5aa765d61d8327deb882cf99');
 insert into login(username,password) values('prasad','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('vikyath','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into login(username,password) values('vikhyath','5f4dcc3b5aa765d61d8327deb882cf99');
 insert into login(username,password) values('ajit','5f4dcc3b5aa765d61d8327deb882cf99');
 insert into login(username,password) values('ravi','5f4dcc3b5aa765d61d8327deb882cf99');
 insert into login(username,password) values('prasanth','5f4dcc3b5aa765d61d8327deb882cf99');
