@@ -19,7 +19,7 @@ public class PostQuestionTestCase {
         RemoteControlConfiguration rc = new RemoteControlConfiguration();
         rc.setReuseBrowserSessions(true);
         seleniumServer = new SeleniumServer(rc);
-        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/forum/");
+        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://10.10.5.126:8080/forum/");
         seleniumServer.start();
         selenium.start();
         selenium.open("postQuestion");

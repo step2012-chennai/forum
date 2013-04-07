@@ -30,8 +30,9 @@
     		</div><br>
 
     		<div style="padding-left:635px">
-    		<form action="activityWall"><input type="submit" value="Post Question"></form>
-    		<input type="button" onclick="clearTextbox()" value="Reset">
+    		<form action="activityWall">
+    		<input type="submit" id="post" value="Post Question"></form>
+    		<input type="button" id="reset" onclick="clearTextbox()" value="Reset">
     		</div>
     	</div>
    </form>

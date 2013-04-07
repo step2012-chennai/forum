@@ -19,7 +19,7 @@ public class QuestionRepositoryTestCase {
         RemoteControlConfiguration rc = new RemoteControlConfiguration();
         rc.setReuseBrowserSessions(true);
         seleniumServer = new SeleniumServer(rc);
-        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/forum/");
+        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://10.10.5.126:8080/forum/");
         seleniumServer.start();
         selenium.start();
         selenium.open("activityWall");
@@ -44,7 +44,7 @@ public class QuestionRepositoryTestCase {
         Thread.sleep(1000);
         selenium.click("css=p");
         Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://localhost:8080/forum/question_details?questionId=1"));
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/question_details?questionId=1"));
     }
 
     @Test
