@@ -73,7 +73,7 @@
         <classpath location="bootstrap/ant/ant-contrib-1.0b3.jar"/>
     </taskdef>
 
-    <target name="precommit" depends="clean, make-war, database, run-tests, insert-data" description="Run this before committing changes."/>
+    <target name="precommit" depends="clean, make-war, create-tables, run-tests, insert-data" description="Run this before committing changes."/>
 
     <target name="clean" description="Delete output directory.">
         <delete dir="${build.dir}"/>
@@ -176,7 +176,7 @@
         <input message="Build number?" addproperty="build.number"/>
     </target>
 
-    <target name="database">
+    <target name="create-tables">
         <sql driver="org.postgresql.Driver" url="jdbc:postgresql://localhost:5432/forum" userid="forum_user" password="password">
             <transaction src="database/tableCreation.sql"/>
             <classpath refid="common-classpath"/>
