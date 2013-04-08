@@ -5,8 +5,10 @@ import com.forum.repository.ShowQuestions;
 import org.seleniumhq.jetty7.security.UserAuthentication;
 import org.seleniumhq.jetty7.server.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,9 @@ import java.util.List;
 
 @Controller
 public class ActivityWallController {
+    private static final int QUESTIONS_PER_PAGE = 10;
     @Autowired
     private ShowQuestions showQuestions;
-    private static final int QUESTIONS_PER_PAGE=10;
     private SecurityContext context;
 
     @RequestMapping(value = "/activityWall", method = RequestMethod.GET)
@@ -40,4 +42,5 @@ public class ActivityWallController {
         session.setAttribute("userName", principal);
         return activityWall;
     }
+
 }
