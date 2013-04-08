@@ -24,6 +24,16 @@ public class QuestionValidation {
         return StringEscapeUtils.unescapeHtml(question);
     }
 
+    public String trimExtraSpaces(String question) {
+        question = question.replaceAll("[|]", " ").replaceAll("!", " ").replaceAll("\\\\", " ").replaceAll("[()]", " ").replaceAll(":"," ").replaceAll("'"," ").replaceAll("&"," ");
+        System.out.println("after removed good\"" + question + "|");
+
+        question = question.replaceAll("( )+", " ");
+        question = question.trim();
+        System.out.println("|" + question + "|");
+        return question;
+    }
+
     private String reduceBlanks(String question) {
         int spaceCount = 0;
         int enterCount = 0;
@@ -40,14 +50,12 @@ public class QuestionValidation {
                 refactoredQuestion.append(question.charAt(i));
                 break;
             }
-
             if (!spaceCharacter || spaceCount <= 1) {
                 refactoredQuestion.append(question.charAt(i));
             }
 
             if (!spaceCharacter) spaceCount = 0;
         }
-
         return refactoredQuestion.toString();
     }
 
