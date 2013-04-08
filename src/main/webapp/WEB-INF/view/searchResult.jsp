@@ -14,20 +14,14 @@
                              <% out.println(question.getQuestion()); %>
                          </a>
                      <div class="question-posted-time">
-                         <% out.println(question.getTime()); %>
+                         <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime());%>
                      </div>
                  <%}%>
                  <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
 
                  <div class="navigation-panel">
-                     <a href="search?basicSearch=${param['basicSearch']}&pageNumber=${param['pageNumber']-1}" class="button-anchor">
-                     <input id="previous-button" type="button" value="Previous" ${prevButton}></input></a>
-                     <a rel="next" href="search?basicSearch=${param['basicSearch']}&pageNumber=<%= currentPageNumber %> " class="button-anchor" >
-                     <input id="next-button" type="button" value="Next"  ${nextButton}></a>
-                     <a href="activityWall">
-                     <input id="redirect-to-activityWall" type="button" value="activityWall">
-                     </input>
-                     </a>
+                     <input type="button" id="previous-button" value="Previous" onclick="javascript:window.location.href='search?basicSearch=${param['basicSearch']}&pageNumber=${param['pageNumber']-1}'" ${prevButton} ></input>
+                     <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='search?basicSearch=${param['basicSearch']}&pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
                      </div>
                  </div>
              </div>

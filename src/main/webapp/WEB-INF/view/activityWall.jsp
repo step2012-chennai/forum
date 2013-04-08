@@ -6,7 +6,7 @@
 
 <body background-color:#fffff>
 	<%@include file="header.jsp" %>
-    <script type="text/javascript" src="./static/javascript/autoRefresh.js"></script>
+	<%@include file="autoRefresh.jsp" %>
 
 	<div class="recent-questions-panel">
         <div>
@@ -18,7 +18,7 @@
                     <% out.println(question.getQuestion()); %>
                 </a>
             <div class="question-posted-time">
-                <% out.println(question.getUserName()+ "&nbsp&nbsp|&nbsp&nbsp" + question.getTime());%>
+                <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime());%>
             </div>
         <%}%>
         <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
