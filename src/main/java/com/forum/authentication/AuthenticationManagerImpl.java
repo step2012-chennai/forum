@@ -43,7 +43,7 @@ public class AuthenticationManagerImpl implements AuthenticationProvider {
     private boolean isAuthenticatedUser(Authentication authentication) {
         String principal = authentication.getPrincipal().toString();
         String credentials = authentication.getCredentials().toString();
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet("select * from login where username ='" + principal + "' and password= '" + encryption.encryptUsingMd5(credentials) + "' ");
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet("select * from login where LOWER(username) = LOWER('" + principal+ "') and password= '" + encryption.encryptUsingMd5(credentials) + "' ");
         return sqlRowSet.next();
     }
 

@@ -3,7 +3,6 @@ package com.forum.authentication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,8 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -38,16 +35,7 @@ public class AuthenticationManagerImplTest {
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from login where username='temp';");
-    }
-
-    @Test
-    public void shouldReturnAuthenticatedObjectWhenUsernameAndPasswordIsCorrect() {
-        ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        authentication = new UsernamePasswordAuthenticationToken("temp", "password", authorities);
-        Authentication actualAuthentication = authenticationManager.authenticate(authentication);
-        assertThat(actualAuthentication, equalTo(authentication));
+        template.execute("delete from login where username='temp' OR username='SOMEUSER' ; ");
     }
 
     @Test(expected = BadCredentialsException.class)
@@ -64,4 +52,16 @@ public class AuthenticationManagerImplTest {
         Authentication actualAuthentication = authenticationManager.authenticate(authentication);
         assertThat(actualAuthentication, equalTo(authentication));
     }
+
+    @Test
+    public void shouldCheckIfAuthenticationIsSuccessfulIfUserNameIsInDifferentCase() {
+        template.execute("insert into login(username,password) values('SOMEUSER','5f4dcc3b5aa765d61d8327deb882cf99');");
+        ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authentication = new UsernamePasswordAuthenticationToken("sOmeUser", "password", authorities);
+        Authentication actualAuthentication = authenticationManager.authenticate(authentication);
+        assertThat(actualAuthentication, equalTo(authentication));
+
+    }
+
 }
