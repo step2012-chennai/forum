@@ -37,6 +37,7 @@ public class BasicTextSearchController {
         searchResult.addObject("prevButton", basicTextSearch.previousButtonStatus(pageNumber));
         searchResult.addObject("searchList",search);
         searchResult.addObject("pageNumber", pageNumber + 1);
+        searchResult.addObject("question", question);
 
         return searchResult;
     }
