@@ -40,4 +40,9 @@ public class ActivityWallController {
         session.setAttribute("userName", principal);
         return activityWall;
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchResult() {
+        return new ModelAndView("searchResult");
+    }
 }

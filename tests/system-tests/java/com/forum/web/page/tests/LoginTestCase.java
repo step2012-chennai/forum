@@ -84,8 +84,27 @@ public class LoginTestCase {
     }
 
     @Test
-    public void verifyThatAfterEnteringCorrectUserNameAndPasswordPageIsRedirectedToActivityWall() throws InterruptedException {
+    public void verifyThatAfterEnteringCorrectCredentialsPageIsRedirectedToActivityWall() throws InterruptedException {
         selenium.type("j_username", "user");
+        selenium.type("j_password", "password");
+        selenium.click("submit");
+        Thread.sleep(1000);
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
+        assertTrue(selenium.isTextPresent("Recent Questions"));
+    }
+
+    @Test
+    public void verifyThatAfterEnteringCaseSensetiveUsernameAndInCaseSensetivePasswordPageIsNotRedirectedToActivityWall() throws InterruptedException {
+        selenium.type("j_username", "user");
+        selenium.type("j_password", "PASSWORD");
+        selenium.click("submit");
+        Thread.sleep(1000);
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/loginfail"));
+    }
+
+    @Test
+    public void verifyThatAfterEnteringInCaseSensetiveUsernameAndCaseSensetivePasswordPageIsRedirectedToActivityWall() throws InterruptedException {
+        selenium.type("j_username", "USER");
         selenium.type("j_password", "password");
         selenium.click("submit");
         Thread.sleep(1000);

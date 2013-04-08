@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class PostQuestionTestCase {
+public class AdviceRepositoryTestCase {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 
@@ -22,7 +22,7 @@ public class PostQuestionTestCase {
         selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://10.10.5.126:8080/forum/");
         seleniumServer.start();
         selenium.start();
-        selenium.open("postQuestion");
+        selenium.open("activityWall");
         selenium.type("j_username", "user");
         selenium.type("j_password", "password");
         selenium.click("submit");
@@ -36,44 +36,66 @@ public class PostQuestionTestCase {
 
     @Test
     public void verifyTheTargetHitsCorrectUrl() throws InterruptedException {
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/postQuestion"));
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Post your question "));
+        assertTrue(selenium.isTextPresent("Recent Questions"));
+    }
+
+    @Test
+    public void verifyThatFirstLinkInActivityWallIsViewedAndClickOnPostAdvice() throws InterruptedException {
+        selenium.click("css=p");
+        Thread.sleep(1000);
+        selenium.click("post-button");
+        Thread.sleep(1000);
+        assertTrue(selenium.isTextPresent("Post your Advice :"));
     }
 
     @Test
     public void verifyTheErrorMessageIfNoTextIsPresentInTextArea() throws InterruptedException {
+        selenium.click("css=p");
+        Thread.sleep(1000);
+        selenium.click("post-button");
+        Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Question length must be of at least 20 characters, and should not contain all spaces"));
+        assertTrue(selenium.isTextPresent("Advice length must be of at least 20 characters, and should not contain all spaces "));
     }
-
     @Test
     public void verifyTheErrorMessageIfTextIsLessThan20CharactersInTextArea() throws InterruptedException {
+        selenium.click("css=p");
+        Thread.sleep(1000);
+        selenium.click("post-button");
+        Thread.sleep(1000);
         selenium.runScript("tinymce.get('elm1').setContent('What?')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Question length must be of at least 20 characters, and should not contain all spaces"));
+        assertTrue(selenium.isTextPresent("Advice length must be of at least 20 characters, and should not contain all spaces "));
     }
 
     @Test
     public void verifyTheErrorMessageIfTextContainsAllSpacesInTextArea() throws InterruptedException {
+        selenium.click("css=p");
+        Thread.sleep(1000);
+        selenium.click("post-button");
+        Thread.sleep(1000);
         selenium.runScript("tinymce.get('elm1').setContent('                                                     ')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Question length must be of at least 20 characters, and should not contain all spaces"));
+        assertTrue(selenium.isTextPresent("Advice length must be of at least 20 characters, and should not contain all spaces "));
     }
 
     @Test
-    public void verifyThatQuestionMoreThan20CharactersInTextAreaIsPostedInActivityWall() throws InterruptedException {
-        selenium.runScript("tinymce.get('elm1').setContent('Is this Question POSTED ??')");
+    public void verifyThatAdviceMoreThan20CharactersInTextAreaIsPostedInActivityWall() throws InterruptedException {
+        selenium.click("css=p");
+        Thread.sleep(1000);
+        selenium.click("post-button");
+        Thread.sleep(3000);
+        selenium.runScript("tinymce.get('elm1').setContent('Is this Advice POSTED ??')");
         Thread.sleep(1000);
         selenium.click("post");
-        Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall?pageNumber=1"));
-        Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Is this Question POSTED ??"));
+        Thread.sleep(3000);
+        assertTrue(selenium.isTextPresent("Is this Advice POSTED ??"));
     }
 }
