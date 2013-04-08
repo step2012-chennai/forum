@@ -6,10 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -33,10 +30,7 @@ public class AdviceRepository {
     public void insert(int question_id,String answer) {
         QuestionValidation validation = new QuestionValidation();
         answer = validation.insertApostrophe(answer);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String dateformat = dateFormat.format(date);
-        jdbcTemplate.execute("insert into answers(q_id,answer) values(" + question_id + ",'" + answer + "')");
+        jdbcTemplate.execute("insert into answers(q_id,answer,post_date) values(" + question_id + ",'" + answer + "',CURRENT_TIMESTAMP(0))");
     }
 
 
