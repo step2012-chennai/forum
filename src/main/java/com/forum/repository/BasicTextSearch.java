@@ -46,7 +46,6 @@ public class BasicTextSearch {
         QuestionValidation questionValidation = new QuestionValidation();
         searchedQuestions = new ArrayList<Question>();
         searchText = questionValidation.trimExtraSpaces(searchText);
-        System.out.println("search text   "+"*"+searchText+"*");
         searchText = searchText.replaceAll(" ", " | ");
         if (searchText.equals("")) return searchedQuestions;
         SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name," +

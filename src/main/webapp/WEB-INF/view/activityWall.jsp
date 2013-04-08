@@ -6,7 +6,7 @@
 
 <body background-color:#fffff>
 	<%@include file="header.jsp" %>
-    <script type="text/javascript" src="./static/javascript/autoRefresh.js"></script>
+	<%@include file="autoRefresh.jsp" %>
 
 	<div class="recent-questions-panel">
         <div>

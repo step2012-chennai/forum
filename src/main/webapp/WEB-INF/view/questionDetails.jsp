@@ -6,7 +6,6 @@
             <title>Welcome</title>
     </head>
 <body background-color:#fffff>
-
 	<%@include file="header.jsp" %>
 
 	<div class="recent-questions-panel">
