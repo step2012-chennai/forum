@@ -46,6 +46,7 @@ public class BasicTextSearch {
         QuestionValidation questionValidation = new QuestionValidation();
         searchedQuestions = new ArrayList<Question>();
         searchText = questionValidation.trimExtraSpaces(searchText);
+        System.out.println("search text   "+"*"+searchText+"*");
         searchText = searchText.replaceAll(" ", " | ");
         if (searchText.equals("")) return searchedQuestions;
         SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name," +
@@ -63,5 +64,9 @@ public class BasicTextSearch {
         int totalNumberOfQuestions = getQuestions(question).size();
         int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
         return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
+    }
+
+    public String previousButtonStatus(int pageNumber) {
+        return (pageNumber <= 1) ? "disabled" : "enabled";
     }
 }

@@ -21,8 +21,7 @@ import java.util.List;
 public class BasicTextSearchController {
     @Autowired
     private BasicTextSearch basicTextSearch;
-    @Autowired
-    private ShowQuestions showQuestions;
+
     private static final int QUESTIONS_PER_PAGE = 10;
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchResult(@RequestParam(value="basicSearch",defaultValue = "") String question,HttpServletRequest request,@RequestParam(value = "pageNumber", defaultValue = "1") String pageNum) {
@@ -35,7 +34,7 @@ public class BasicTextSearchController {
         int pageNumber = Integer.parseInt(pageNum);
         List<Question> search = basicTextSearch.search(pageNumber, QUESTIONS_PER_PAGE,question);
         searchResult.addObject("nextButton", basicTextSearch.nextButtonStatus(pageNumber, QUESTIONS_PER_PAGE,question));
-        searchResult.addObject("prevButton", showQuestions.previousButtonStatus(pageNumber));
+        searchResult.addObject("prevButton", basicTextSearch.previousButtonStatus(pageNumber));
         searchResult.addObject("searchList",search);
         searchResult.addObject("pageNumber", pageNumber + 1);
 
