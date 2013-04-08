@@ -29,10 +29,6 @@ public class PostQuestion {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
-<<<<<<< HEAD
         jdbcTemplate.execute("insert into Questions(question,post_date,user_name) values('" + question + "','"+ dateformat +"','"+userName+"')");
-=======
-        jdbcTemplate.execute("insert into Questions(question,post_date) values('" + question + "',CURRENT_TIMESTAMP(0))");
->>>>>>> Prashant,Sandeep | UI design done for Post Advice
     }
 }
