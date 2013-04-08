@@ -25,6 +25,7 @@ public class AdviceRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }

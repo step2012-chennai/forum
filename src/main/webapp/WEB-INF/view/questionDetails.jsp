@@ -13,10 +13,15 @@
         <div>
            <font size="5" color="black"><b><% out.print(request.getAttribute("question_user") + "</b> Asked :-");%></font>
                       <font size="6" color="#008000"><% out.print(request.getAttribute("question"));%></font>
+                      <% String q_id =request.getParameter("questionId"); %>
+                       <a rel="next" href="postAdvice?pageNumber=<%= q_id %>">
+                                          <input type ="button" value="Post Advice"/>
+                         </a>
 
            <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
         </div>
         <%@page import="com.forum.repository.Question,com.forum.repository.Advice, java.util.List"%>
+                  <font size="4" color="blue">
                  <%int i=1;
                  for(Advice answer : (List<Advice>)request.getAttribute("answers")) { %>
                    <div class="answer" color="blue">
