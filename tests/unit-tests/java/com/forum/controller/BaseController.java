@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAda
         "file:./src/main/resources/applicationContext.xml",
         "file:./src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
 
-public class BaseController {
+public class BaseController  {
     MockHttpServletRequest mockHttpServletRequest;
     MockHttpServletResponse mockHttpServletResponse;
     AnnotationMethodHandlerAdapter handlerAdapter;

@@ -1,5 +1,9 @@
+build
+ci
 clean
+coverage
 fetch-libs
+init
 package-src
 precommit
 run-jetty
