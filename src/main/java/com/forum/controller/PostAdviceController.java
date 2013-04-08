@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class PostAdviceController {
 
     @Autowired
-    private AdviceRepository post;
+    private AdviceRepository adviceRepository;
 
     @RequestMapping(value = "/postAdvice", method = RequestMethod.GET)
     public void postAdvice() {
     }
 
     @RequestMapping(value = "/postedAdvice", method = RequestMethod.POST)
-    public ModelAndView postedAdvice(@RequestParam("textarea") String textarea) {
-        ModelAndView mv;
-        post.insert(1,textarea);
-        mv = new ModelAndView(new RedirectView("questionDetails"));
-        return mv;
+    public ModelAndView postedAdvice(@RequestParam("textareas") String textarea,@RequestParam("questionId") String questionId,HttpServletRequest request) {
+        String path=request.getContextPath();
+        adviceRepository.insert(Integer.parseInt(questionId), textarea);
+        return new ModelAndView(new RedirectView(""+path+"/question_details?questionId="+questionId+""));
     }
 }
