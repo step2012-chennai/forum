@@ -24,19 +24,21 @@ public class PostQuestionController {
     private PostQuestion post;
 
     @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
-    public void postQuestion() {
+    public void postQuestion( HttpServletRequest request) {
+        Object principal = getUserName();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userName", principal);
+    }
 
+    private Object getUserName() {
+        context = SecurityContextHolder.getContext();
+        return context.getAuthentication().getPrincipal();
     }
 
     @RequestMapping(value = "/postedQuestion", method = RequestMethod.POST)
     public ModelAndView postedQuestion(@RequestParam("textareas") String textarea, HttpServletRequest request) {
         ModelAndView mv;
-
-        context = SecurityContextHolder.getContext();
-        Object principal = context.getAuthentication().getPrincipal();
-        HttpSession session = request.getSession(true);
-        session.setAttribute("userName", principal);
-
+        Object principal = getUserName();
         if (questionValidation.isQuestionValid(textarea)) {
             post.insert(textarea, principal.toString());
             mv = new ModelAndView(new RedirectView("activityWall"));
