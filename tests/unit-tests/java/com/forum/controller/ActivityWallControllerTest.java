@@ -5,6 +5,9 @@ import com.forum.repository.ShowQuestions;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ public class ActivityWallControllerTest extends BaseController {
     public static final int QUESTIONS_PER_PAGE = 10;
     private ActivityWallController activityWallController;
     private ShowQuestions mockShowQuestions;
+    private SecurityContext mockSecurityContext;
 
     @Before
     public void setUp() throws Exception {
@@ -25,19 +29,25 @@ public class ActivityWallControllerTest extends BaseController {
         mockHttpServletRequest.setMethod("GET");
         activityWallController = new ActivityWallController();
         mockShowQuestions = (ShowQuestions) createMock(activityWallController, "showQuestions", ShowQuestions.class);
+        mockSecurityContext = (SecurityContext) createMock(activityWallController, "context", SecurityContext.class);
+        SecurityContextHolder.setContext(mockSecurityContext);
+        when(mockSecurityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken("temp", "password"));
     }
 
     @Test
     public void shouldReturnPreviousButtonStatusForFirstPageWhenNoQuestionsArePresent() throws Exception {
-        mockHttpServletRequest.setParameter("pageNumber","1");
+        mockHttpServletRequest.setParameter("pageNumber", "1");
         ArrayList<Question> questions = getQuestions();
         when(mockShowQuestions.show(1, QUESTIONS_PER_PAGE)).thenReturn(questions);
         when(mockShowQuestions.previousButtonStatus(1)).thenReturn("disabled");
+
+
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, activityWallController);
 
         verify(mockShowQuestions).previousButtonStatus(1);
         verify(mockShowQuestions).show(1, QUESTIONS_PER_PAGE);
+        verify(mockSecurityContext).getAuthentication();
         assertThat((ArrayList<Question>) modelAndView.getModel().get("questionList"), IsEqual.equalTo(questions));
         assertThat((String) modelAndView.getModel().get("prevButton"), IsEqual.equalTo("disabled"));
         assertThat(modelAndView.getViewName().toString(), IsEqual.equalTo("activityWall"));
@@ -45,7 +55,7 @@ public class ActivityWallControllerTest extends BaseController {
 
     @Test
     public void shouldReturnPreviousButtonStatusForSecondPage() throws Exception {
-        mockHttpServletRequest.setParameter("pageNumber","2");
+        mockHttpServletRequest.setParameter("pageNumber", "2");
         ArrayList<Question> questions = getQuestions();
         when(mockShowQuestions.show(2, QUESTIONS_PER_PAGE)).thenReturn(questions);
         when(mockShowQuestions.previousButtonStatus(2)).thenReturn("enabled");
@@ -61,7 +71,7 @@ public class ActivityWallControllerTest extends BaseController {
 
     @Test
     public void shouldReturnNextButtonStatusForFirstPageWhenQuestionAreMoreThanQuestionsPerPage() throws Exception {
-        mockHttpServletRequest.setParameter("pageNumber","2");
+        mockHttpServletRequest.setParameter("pageNumber", "2");
         ArrayList<Question> questions = getQuestions();
         when(mockShowQuestions.show(2, QUESTIONS_PER_PAGE)).thenReturn(questions);
         when(mockShowQuestions.nextButtonStatus(2, QUESTIONS_PER_PAGE)).thenReturn("enabled");
@@ -77,7 +87,7 @@ public class ActivityWallControllerTest extends BaseController {
 
     @Test
     public void shouldReturnNextButtonStatusWhenQuestionsAreLessThanLimitOfQuestionPerPage() throws Exception {
-        mockHttpServletRequest.setParameter("pageNumber","1");
+        mockHttpServletRequest.setParameter("pageNumber", "1");
         ArrayList<Question> questions = getQuestions();
         when(mockShowQuestions.show(1, QUESTIONS_PER_PAGE)).thenReturn(questions);
         when(mockShowQuestions.nextButtonStatus(1, QUESTIONS_PER_PAGE)).thenReturn("disabled");
@@ -104,12 +114,12 @@ public class ActivityWallControllerTest extends BaseController {
         assertThat((ArrayList<Question>) modelAndView.getModel().get("questionList"), IsEqual.equalTo(questions));
         assertThat((String) modelAndView.getModel().get("nextButton"), IsEqual.equalTo("disabled"));
         assertThat(modelAndView.getViewName().toString(), IsEqual.equalTo("activityWall"));
-        assertThat((Integer)modelAndView.getModel().get("pageNumber"), IsEqual.equalTo(2));
+        assertThat((Integer) modelAndView.getModel().get("pageNumber"), IsEqual.equalTo(2));
     }
 
     private ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<Question>();
-        questions.add(new Question("1","what is nano","12","Anil"));
+        questions.add(new Question("1", "what is nano", "12", "Anil"));
         return questions;
     }
 }

@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class PostQuestionControllerTest extends BaseController {
+    public static final String userName = "anil";
     private PostQuestionController postQuestionController;
     private String question;
     private QuestionValidation mockQuestionValidation;
@@ -24,6 +25,8 @@ public class PostQuestionControllerTest extends BaseController {
         mockHttpServletRequest.setRequestURI("/postedQuestion");
         mockHttpServletRequest.setMethod("POST");
         mockHttpServletRequest.setParameter("textareas", question);
+        mockHttpServletRequest.setParameter("userName", userName);
+
         mockQuestionValidation = (QuestionValidation) createMock(postQuestionController, "questionValidation", QuestionValidation.class);
         mockPostQuestion = (PostQuestion) createMock(postQuestionController, "post", PostQuestion.class);
     }
@@ -32,12 +35,12 @@ public class PostQuestionControllerTest extends BaseController {
     public void shouldInsertGivenValidQuestion() throws Exception {
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(true);
 
-        doNothing().when(mockPostQuestion).insert(question);
+        doNothing().when(mockPostQuestion).insert(question,userName);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion).insert(question);
+        verify(mockPostQuestion).insert(question,userName);
         assertThat(modelAndView.getModel().get("pageNumber").toString(), IsEqual.equalTo("1"));
         assertThat(((RedirectView)modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
@@ -49,7 +52,7 @@ public class PostQuestionControllerTest extends BaseController {
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion,never()).insert(question);
+        verify(mockPostQuestion,never()).insert(question,userName);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("postQuestion"));
         assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("Question length must be of at least 20 characters, and should not contain all spaces"));
     }

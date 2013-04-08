@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class PostQuestionController {
 
@@ -28,7 +30,7 @@ public class PostQuestionController {
         ModelAndView mv;
 
         if (questionValidation.isQuestionValid(textarea)) {
-            post.insert(textarea);
+            post.insert(textarea,"anil");
             mv = new ModelAndView(new RedirectView("activityWall"));
             mv.addObject("pageNumber",1);
         } else {

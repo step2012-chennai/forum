@@ -23,12 +23,12 @@ public class PostQuestion {
         this.dataSource = dataSource;
     }
 
-    public void insert(String question) {
+    public void insert(String question,String userName) {
         QuestionValidation validation = new QuestionValidation();
         question = validation.insertApostrophe(question);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
-        jdbcTemplate.execute("insert into Questions(question,post_date) values('" + question + "','"+ dateformat +"')");
+        jdbcTemplate.execute("insert into Questions(question,post_date,user_name) values('" + question + "','"+ dateformat +"','"+userName+"')");
     }
 }

@@ -46,3 +46,8 @@ a.button-anchor:hover{
     text-decoration:none;
     cursor:text;
 }
+
+.user-name {
+   padding-left: 1584px;
+   color: blueviolet;
+}

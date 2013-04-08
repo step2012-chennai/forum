@@ -6,6 +6,7 @@
 <body background-color:#fffff>
 	<center>
 
+        <div class="user-name" >${userName}    | <a href="#">Logout</a></div>
 		<table class="activity-wall">
 			<body>
     			<td>

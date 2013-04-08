@@ -27,33 +27,32 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        postQuestion.insert("this is third question for testing");
-        postQuestion.insert("this is second question");
-        postQuestion.insert("this is first question for testing which should be trimmed");
+        postQuestion.insert("this is first question for testing which should be trimmed","Anil");
+        postQuestion.insert("this is second question","Anil");
     }
 
     @After
     public void tearDown() {
         template.execute("delete from questions;");
     }
-//
-//    @Test
-//    public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
-//        int questionsPerPage = 2, pageNumber = 1;
-//        List<Question> result = questions.show(pageNumber, questionsPerPage);
-//        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
-//        List<String> actual = new ArrayList<String>();
-//        actual.add(result.get(0).getQuestion());
-//        actual.add(result.get(1).getQuestion());
-//        assertTrue(expected.equals(actual));
-//    }
-//
-//    @Test
-//    public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark() {
-//        String string = "It should return a new String till the specified Characters";
-//        String expected = "It should return a new String till the specified C...?";
-//        assertThat(questions.truncateQuestionToCharacterLimit(string), IsEqual.equalTo(expected));
-//    }
+
+    @Test
+    public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
+        int questionsPerPage = 2, pageNumber = 1;
+        List<Question> result = questions.show(pageNumber, questionsPerPage);
+        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
+        List<String> actual = new ArrayList<String>();
+        actual.add(result.get(0).getQuestion());
+        actual.add(result.get(1).getQuestion());
+        assertTrue(expected.equals(actual));
+    }
+
+    @Test
+    public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark() {
+        String string = "It should return a new String till the specified Characters";
+        String expected = "It should return a new String till the specified C...?";
+        assertThat(questions.truncateQuestionToCharacterLimit(string), IsEqual.equalTo(expected));
+    }
 
     @Test
     public void shouldReturnFullQuestionIfQuestionIsLessThan50Characters() {
