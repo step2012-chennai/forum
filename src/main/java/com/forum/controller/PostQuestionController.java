@@ -3,6 +3,8 @@ package com.forum.controller;
 import com.forum.repository.PostQuestion;
 import com.forum.repository.QuestionValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,29 +12,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class PostQuestionController {
-
+    private SecurityContext context;
     @Autowired
     private QuestionValidation questionValidation;
-
     @Autowired
     private PostQuestion post;
 
     @RequestMapping(value = "/postQuestion", method = RequestMethod.GET)
-    public void postQuestion() {
+    public void postQuestion( HttpServletRequest request) {
+        Object principal = getUserName();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userName", principal);
+    }
+
+    private Object getUserName() {
+        context = SecurityContextHolder.getContext();
+        return context.getAuthentication().getPrincipal();
     }
 
     @RequestMapping(value = "/postedQuestion", method = RequestMethod.POST)
-    public ModelAndView postedQuestion(@RequestParam("textareas") String textarea) {
+    public ModelAndView postedQuestion(@RequestParam("textareas") String textarea, HttpServletRequest request) {
         ModelAndView mv;
-
+        Object principal = getUserName();
         if (questionValidation.isQuestionValid(textarea)) {
-            post.insert(textarea,"anil");
+            post.insert(textarea, principal.toString());
             mv = new ModelAndView(new RedirectView("activityWall"));
-            mv.addObject("pageNumber",1);
+            mv.addObject("pageNumber", 1);
         } else {
             mv = new ModelAndView("postQuestion");
             mv.addObject("error", "Question length must be of at least 20 characters, and should not contain all spaces");

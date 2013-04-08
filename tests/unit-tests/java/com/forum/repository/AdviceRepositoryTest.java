@@ -38,7 +38,7 @@ public class AdviceRepositoryTest {
 
     @Test
     public void shouldAddQuestionToDatabase() {
-        adviceRepository.insert(questionId,"Advice1");
+        adviceRepository.insert("user",questionId,"Advice1");
         List<String> answers = template.queryForList("select answer from answers where ans_id=(select MAX(ans_id) from answers)",String.class);
         List<String> expected = Arrays.asList("Advice1");
         assertThat(answers,IsEqual.equalTo(expected));
@@ -46,8 +46,8 @@ public class AdviceRepositoryTest {
 
     @Test
     public void shouldFetchAdviceWhenAdviceIsPresentForGivenQuestionId(){
-        adviceRepository.insert(questionId,"Advice1");
-        adviceRepository.insert(questionId,"Advice1");
+        adviceRepository.insert("user",questionId,"Advice1");
+        adviceRepository.insert("user",questionId,"Advice1");
         List advices= (List) adviceRepository.getAdvices(questionId);
         assertTrue(advices.size()==2);
     }
