@@ -64,8 +64,4 @@ public class BasicTextSearch {
         int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
         return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
     }
-
-    public String previousButtonStatus(int pageNumber) {
-        return (pageNumber <= 1) ? "disabled" : "enabled";
-    }
 }

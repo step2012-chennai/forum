@@ -2,6 +2,7 @@ package com.forum.controller;
 
 import com.forum.repository.BasicTextSearch;
 import com.forum.repository.Question;
+import com.forum.repository.ShowQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -20,10 +21,12 @@ import java.util.List;
 public class BasicTextSearchController {
     @Autowired
     private BasicTextSearch basicTextSearch;
+    @Autowired
+    private ShowQuestions showQuestions;
     private static final int QUESTIONS_PER_PAGE = 10;
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchResult(@RequestParam(value="basicSearch",defaultValue = "") String question,HttpServletRequest request,@RequestParam(value = "pageNumber", defaultValue = "1") String pageNum) {
+
         if(question.equals("")){
             return new ModelAndView(new RedirectView(request.getHeader("referer")));
         }
@@ -32,7 +35,7 @@ public class BasicTextSearchController {
         int pageNumber = Integer.parseInt(pageNum);
         List<Question> search = basicTextSearch.search(pageNumber, QUESTIONS_PER_PAGE,question);
         searchResult.addObject("nextButton", basicTextSearch.nextButtonStatus(pageNumber, QUESTIONS_PER_PAGE,question));
-        searchResult.addObject("prevButton", basicTextSearch.previousButtonStatus(pageNumber));
+        searchResult.addObject("prevButton", showQuestions.previousButtonStatus(pageNumber));
         searchResult.addObject("searchList",search);
         searchResult.addObject("pageNumber", pageNumber + 1);
 

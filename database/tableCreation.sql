@@ -15,7 +15,7 @@ CREATE TEXT SEARCH DICTIONARY english_stem_nostop (
 );
 
 CREATE TEXT SEARCH CONFIGURATION public.english_nostop ( COPY = pg_catalog.english );
-
++
 ALTER TEXT SEARCH CONFIGURATION public.english_nostop ALTER MAPPING FOR asciiword, asciihword, hword_asciipart, hword, hword_part, word WITH english_stem_nostop;
 
 CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON questions FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger('question_tsvector', 'public.english_nostop', 'question');
