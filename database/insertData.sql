@@ -1,14 +1,14 @@
-insert into questions(question,post_date,user_name)   values('<p>What is java ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
-insert into questions(question,post_date,user_name)   values('<p>How to connect with postgresql in java ? </p>',CURRENT_TIMESTAMP(0),'Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>Where is thought works in chennai ? </p>',CURRENT_TIMESTAMP(0),'Anil');
+insert into questions(question,post_date,user_name)   values('<p>What is java ?</p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>How to connect with postgresql in java ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
+insert into questions(question,post_date,user_name)   values('<p>Where is thought works in chennai ?</p>',CURRENT_TIMESTAMP(0),'Anil');
 insert into questions(question,post_date,user_name)   values('<p>How to write insert command in sql ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
 insert into questions(question,post_date,user_name)   values('<p>How to use spring ?</p>',CURRENT_TIMESTAMP(0),'Sandeep');
 insert into questions(question,post_date,user_name)   values('<p>What is servlet ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
 insert into questions(question,post_date,user_name)   values('<p>Can i use driver for connection to database ?</p>',CURRENT_TIMESTAMP(0),'Anil');
-insert into questions(question,post_date,user_name)   values('<p>Who is father of computer ? </p>',CURRENT_TIMESTAMP(0),'Anil');
-insert into questions(question,post_date,user_name)   values('<p>How to create android application ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>Who is father of computer ?</p>',CURRENT_TIMESTAMP(0),'Anil');
+insert into questions(question,post_date,user_name)   values('<p>How to create android application ?</p>',CURRENT_TIMESTAMP(0),'Sandeep');
 insert into questions(question,post_date,user_name)   values('<p>How to use intellej for web application</p>',CURRENT_TIMESTAMP(0),'Bipilesh');
-insert into questions(question,post_date,user_name)   values('<p>Where is Marina Beach in India ? </p>',CURRENT_TIMESTAMP(0),'Sandeep');
+insert into questions(question,post_date,user_name)   values('<p>Where is Marina Beach in India ?</p>',CURRENT_TIMESTAMP(0),'Sandeep');
 
  insert into questions(question,post_date,user_name)   values
               ('Whats your name?',CURRENT_TIMESTAMP(0),'Sandeep'),
