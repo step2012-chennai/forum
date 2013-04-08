@@ -48,6 +48,8 @@ a.button-anchor:hover{
 }
 
 .user-name {
-   padding-left: 1584px;
+   float: right;
+   top: 0;
+   right: 0;
    color: blueviolet;
 }

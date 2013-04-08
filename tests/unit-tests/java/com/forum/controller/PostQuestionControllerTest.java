@@ -5,6 +5,9 @@ import com.forum.repository.QuestionValidation;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -12,35 +15,39 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class PostQuestionControllerTest extends BaseController {
-    public static final String userName = "anil";
+    private static  String userName = "anil";
     private PostQuestionController postQuestionController;
     private String question;
     private QuestionValidation mockQuestionValidation;
     private PostQuestion mockPostQuestion;
+    private SecurityContext mockSecurityContext;
 
     @Before
-     public void setUp(){
+    public void setUp(){
         postQuestionController = new PostQuestionController();
         question = "kb";
         mockHttpServletRequest.setRequestURI("/postedQuestion");
         mockHttpServletRequest.setMethod("POST");
         mockHttpServletRequest.setParameter("textareas", question);
         mockHttpServletRequest.setParameter("userName", userName);
-
         mockQuestionValidation = (QuestionValidation) createMock(postQuestionController, "questionValidation", QuestionValidation.class);
         mockPostQuestion = (PostQuestion) createMock(postQuestionController, "post", PostQuestion.class);
+        mockSecurityContext = (SecurityContext) createMock(postQuestionController, "context", SecurityContext.class);
+        SecurityContextHolder.setContext(mockSecurityContext);
+        when(mockSecurityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken(userName, "password"));
     }
 
     @Test
     public void shouldInsertGivenValidQuestion() throws Exception {
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(true);
 
-        doNothing().when(mockPostQuestion).insert(question,userName);
+        doNothing().when(mockPostQuestion).insert(question, userName);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
         verify(mockPostQuestion).insert(question,userName);
+        verify(mockSecurityContext).getAuthentication();
         assertThat(modelAndView.getModel().get("pageNumber").toString(), IsEqual.equalTo("1"));
         assertThat(((RedirectView)modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
