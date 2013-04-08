@@ -30,6 +30,5 @@ public class PostAdviceControllerTest extends  BaseController {
         doNothing().when(mockAdviceRepository).insert(1,advice);
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postAdviceController);
         verify(mockAdviceRepository).insert(1,advice);
-//        assertThat(((RedirectView)modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 }
