@@ -27,7 +27,7 @@
             <div style="color:#FF0000" >${error} </div>
         		<div>
         			<textarea id="elm1" name="textareas" rows="12" cols="20" style="width: 80%"/>
-        		${askedQuestion}
+        		${GivenAnswer}
         			</textarea>   </center>
         		</div><br>
 
