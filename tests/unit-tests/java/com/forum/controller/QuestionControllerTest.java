@@ -7,6 +7,9 @@ import com.forum.repository.QuestionRepository;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -18,9 +21,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class QuestionControllerTest extends BaseController{
+    private static  String userName = "anil";
     private QuestionController questionController;
     private QuestionRepository mockQuestionRepository;
     private AdviceRepository mockAdviceRepository;
+    private SecurityContext mockSecurityContext;
 
     @Before
     public void setUp(){
@@ -30,6 +35,9 @@ public class QuestionControllerTest extends BaseController{
         questionController=new QuestionController();
         mockQuestionRepository = (QuestionRepository) createMock(questionController, "questionRepository", QuestionRepository.class);
         mockAdviceRepository = (AdviceRepository) createMock(questionController, "adviceRepository", AdviceRepository.class);
+        mockSecurityContext = (SecurityContext) createMock(questionController, "context", SecurityContext.class);
+        SecurityContextHolder.setContext(mockSecurityContext);
+        when(mockSecurityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken(userName, "password"));
     }
 
     @Test
@@ -59,29 +67,6 @@ public class QuestionControllerTest extends BaseController{
         when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1","what is nano","12","Anil"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("questionDetails"));
-    }
-
-    @Test
-    public void shouldGetQuestionBasedOnTheUserId() throws Exception {
-        String userName = "Prasath";
-        List questionIds = new ArrayList();
-        List questions = new ArrayList();
-        questionIds.add("1");
-        questions.add("Question_1");
-        ModelAndView modelAndView;
-
-        mockHttpServletRequest.setRequestURI("/question_advised");
-        mockHttpServletRequest.setParameter("userName", userName);
-        mockHttpServletRequest.setMethod("GET");
-
-        when(mockAdviceRepository.getQuestionIdAnsweredBy(userName)).thenReturn(questionIds);
-        when(mockQuestionRepository.getQuestions(questionIds)).thenReturn(questions);
-
-        modelAndView=handlerAdapter.handle(mockHttpServletRequest,mockHttpServletResponse,questionController);
-
-        verify(mockAdviceRepository).getQuestionIdAnsweredBy(userName);
-        verify(mockQuestionRepository).getQuestions(questionIds);
-        assertThat(modelAndView.getViewName(),IsEqual.equalTo("myAnswers"));
     }
 
     private ArrayList<Advice> getQuestions() {

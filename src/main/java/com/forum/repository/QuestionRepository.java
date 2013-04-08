@@ -46,7 +46,7 @@ public class QuestionRepository {
     }
 
     public List<Question> getQuestions(List questionIds) {
-        String query = "select * from questions where q_id in (" + questionIds.get(0);
+        String query = "select distinct(q_id),question,post_date,user_name from questions where q_id in (" + questionIds.get(0);
         List<Question> questions=new ArrayList<Question>();
         for(int i=1; i<questionIds.size(); i++){
             query = query + "," + questionIds.get(i);

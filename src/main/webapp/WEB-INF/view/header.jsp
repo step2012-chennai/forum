@@ -6,14 +6,14 @@
 <body background-color:#fffff>
 	<center>
 
-        <div class="user-name" >${userName}    | <a href="#">Logout</a></div>
+        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a href="#">Logout</a></div>
 		<table class="activity-wall">
 			<body>
     			<td>
 				    <a href="postQuestion"><center><label for="Ask_Question" ><font size="5" color="white">Ask Question</label></a>
 				</td>
 				<td>
-    				<center><label for="Answer" onclick="alert('open list of questions link!')"><font size="5" color="white">Answer</font></label></H1>
+    				<a href="questions_advised"><center><label for="Answer"><font size="5" color="white"> My Answer</font></label></H1></a>
 				</td>
 				<td>
 				    <center><label for="Tags" onclick="alert('tag link!')"><font size="5" color="white">Tag Cloud</font></label></H1>

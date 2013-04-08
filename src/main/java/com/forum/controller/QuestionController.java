@@ -5,22 +5,29 @@ import com.forum.repository.AdviceRepository;
 import com.forum.repository.Question;
 import com.forum.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 public class QuestionController {
+    private SecurityContext context;
     @Autowired
     private QuestionRepository questionRepository;
     @Autowired
     private AdviceRepository adviceRepository;
+
 
     @RequestMapping(value = "/question_details", method = RequestMethod.GET)
     public ModelAndView questionDetails(@RequestParam("questionId") String questionId) {
@@ -35,11 +42,15 @@ public class QuestionController {
         return questionDetail;
     }
 
-    @RequestMapping(value = "/question_advised", method = RequestMethod.GET)
-    public ModelAndView questionedAdvisedBy(@RequestParam("userName")String userName){
+    @RequestMapping(value = "/questions_advised", method = RequestMethod.GET)
+    public ModelAndView questionedAdvisedBy(HttpServletRequest request){
+        context = SecurityContextHolder.getContext();
+        Object principal = context.getAuthentication().getPrincipal();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userName", principal);
         ModelAndView myAnswers=new ModelAndView("myAnswers");
-        List questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(userName));
-        myAnswers.addObject("answers",questions);
+        List<Question> questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(principal.toString()));
+        myAnswers.addObject("questions",questions);
         return myAnswers;
     }
 }
