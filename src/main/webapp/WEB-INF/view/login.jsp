@@ -18,7 +18,7 @@
                     <tr> <div style="color:#FF0000" > ${error} </div>
                         <td  style="height:100px;margin:auto;">
                             <label>Username:</label>
-                            <input type='text' name='j_username' id="j_username"/>
+                            <input type='text' name='j_username' id="j_username" value="${username}"/>
                         </td>
                     </tr>
                     <tr>

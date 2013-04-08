@@ -12,15 +12,17 @@
         <intercept-url pattern="/login"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />
-        <form-login login-page="/login"  authentication-failure-url="/loginfail" default-target-url="/activityWall" />
+        <form-login login-page="/login" default-target-url="/activityWall" authentication-failure-handler-ref="loginFailureHandler" />
 
     </http>
 
     <authentication-manager>
-        <authentication-provider ref="authenticationManagerImpl"></authentication-provider>
+        <authentication-provider ref="authenticationManagerImpl"/>
     </authentication-manager>
+    <beans:bean id ="authenticationManagerImpl" class = "com.forum.authentication.AuthenticationManagerImpl"/>
 
-    <beans:bean id = "authenticationManagerImpl" class = "com.forum.authentication.AuthenticationManagerImpl"/>
+    <beans:bean id="loginFailureHandler" class="com.forum.authentication.LoginFailureHandler">
+    </beans:bean>
 
 </beans:beans>
 
