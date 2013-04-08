@@ -47,4 +47,13 @@ public class AdviceRepository {
         }
         return advices;
     }
+
+    public List<String> getQuestionIdAnsweredBy(String userName) {
+        SqlRowSet results=jdbcTemplate.queryForRowSet("select q_id from answers where user_name = '" + userName + "' order by post_date DESC");
+        List<String> questionIds=new ArrayList<String>();
+        while (results.next()){
+            questionIds.add(results.getString(1));
+        }
+        return questionIds;
+    }
 }

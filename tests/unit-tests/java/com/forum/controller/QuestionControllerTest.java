@@ -10,8 +10,11 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class QuestionControllerTest extends BaseController{
@@ -56,6 +59,29 @@ public class QuestionControllerTest extends BaseController{
         when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1","what is nano","12","Anil"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("questionDetails"));
+    }
+
+    @Test
+    public void shouldGetQuestionBasedOnTheUserId() throws Exception {
+        String userName = "Prasath";
+        List questionIds = new ArrayList();
+        List questions = new ArrayList();
+        questionIds.add("1");
+        questions.add("Question_1");
+        ModelAndView modelAndView;
+
+        mockHttpServletRequest.setRequestURI("/question_advised");
+        mockHttpServletRequest.setParameter("userName", userName);
+        mockHttpServletRequest.setMethod("GET");
+
+        when(mockAdviceRepository.getQuestionIdAnsweredBy(userName)).thenReturn(questionIds);
+        when(mockQuestionRepository.getQuestions(questionIds)).thenReturn(questions);
+
+        modelAndView=handlerAdapter.handle(mockHttpServletRequest,mockHttpServletResponse,questionController);
+
+        verify(mockAdviceRepository).getQuestionIdAnsweredBy(userName);
+        verify(mockQuestionRepository).getQuestions(questionIds);
+        assertThat(modelAndView.getViewName(),IsEqual.equalTo("myAnswers"));
     }
 
     private ArrayList<Advice> getQuestions() {

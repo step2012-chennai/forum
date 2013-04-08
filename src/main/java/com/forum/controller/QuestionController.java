@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,5 +33,13 @@ public class QuestionController {
         questionDetail.addObject("answers", answers);
         questionDetail.addObject("noOfAnswer",answers.size());
         return questionDetail;
+    }
+
+    @RequestMapping(value = "/question_advised", method = RequestMethod.GET)
+    public ModelAndView questionedAdvisedBy(@RequestParam("userName")String userName){
+        ModelAndView myAnswers=new ModelAndView("myAnswers");
+        List questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(userName));
+        myAnswers.addObject("answers",questions);
+        return myAnswers;
     }
 }

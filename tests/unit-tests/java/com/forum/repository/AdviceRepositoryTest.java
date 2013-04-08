@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AdviceRepositoryTest {
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from answers where answer='Advice1';");
+        template.execute("delete from answers ;");
     }
 
     @Before
@@ -49,5 +50,25 @@ public class AdviceRepositoryTest {
         adviceRepository.insert(questionId,"Advice1");
         List advices= (List) adviceRepository.getAdvices(questionId);
         assertTrue(advices.size()==2);
+    }
+
+    @Test
+    public void shouldReturnQuestionIdsForGivenUser(){
+        List<String> actual=new ArrayList();
+        List<String> expected=new ArrayList();
+
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values(9,'answer for 9 question . 3',CURRENT_TIMESTAMP(0) + time '03:00','Prasath')");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values(10,'answer for 10 question . 3',CURRENT_TIMESTAMP(0) - time '02:00','Prasath')");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values(11,'answer for 11 question . 3',CURRENT_TIMESTAMP(0) - time '04:00','Prasath')");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values(8,'answer for 8 question . 3',CURRENT_TIMESTAMP(0),'Prasath')");
+
+        expected.add("9");
+        expected.add("8");
+        expected.add("10");
+        expected.add("11");
+
+        actual=adviceRepository.getQuestionIdAnsweredBy("Prasath");
+        assertThat(actual,IsEqual.equalTo(expected));
+
     }
 }

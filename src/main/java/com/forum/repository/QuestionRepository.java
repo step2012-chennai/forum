@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class QuestionRepository {
@@ -40,6 +43,20 @@ public class QuestionRepository {
         SqlRowSet question = jdbcTemplate.queryForRowSet("select * from questions where q_id=" + questionId);
         question.next();
         return new Question(question.getString(1), question.getString(2), question.getString(3),question.getString(4));
+    }
 
+    public List<Question> getQuestions(List questionIds) {
+        String query = "select * from questions where q_id in (" + questionIds.get(0);
+        List<Question> questions=new ArrayList<Question>();
+        for(int i=1; i<questionIds.size(); i++){
+            query = query + "," + questionIds.get(i);
+        }
+        query = query + ")";
+        SqlRowSet results=jdbcTemplate.queryForRowSet(query);
+        while(results.next()){
+            questions.add(new Question(results.getString("q_id"), results.getString("question"),
+                    results.getString("post_date"), results.getString("user_name")));
+        }
+        return questions;
     }
 }
