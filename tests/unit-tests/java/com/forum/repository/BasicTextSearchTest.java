@@ -4,17 +4,19 @@ import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertThat;
 
 public class BasicTextSearchTest {
+    @Autowired
     private BasicTextSearch basicTextSearch;
     private JdbcTemplate jdbcTemplate;
 
@@ -24,9 +26,16 @@ public class BasicTextSearchTest {
         basicTextSearch = (BasicTextSearch) context.getBean("search");
 
         jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
+                "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector);\n");
 
-        jdbcTemplate.execute("insert into questions(question) values('I want to search for questions i am using key words')");
-        jdbcTemplate.execute("insert into questions(question) values('So that can see a question that interested in search')");
+        jdbcTemplate.execute("INSERT INTO questions (question) VALUES" +
+                "('Stop words are words that are very common')," +
+                "('Stop words are words that are very')," +
+                "('Stop words are words that are')," +
+                "('Stop words are words that')," +
+                "('Stop words are words')," +
+                "('Stop');");
     }
 
     @After
@@ -35,22 +44,32 @@ public class BasicTextSearchTest {
     }
 
     @Test
-    public void shouldSearchGivenKeyWord(){
-
-        String expected= "I want to search for questions i am using key words";
-        List<SearchQuestion> actual = basicTextSearch.search("for");
-        assertThat(actual.get(0).getQuestion(), IsEqual.equalTo(expected));
+    public void shouldGiveZeroSearchResultWhenSearchKeywordIsEmpty() {
+        String searchKeyword = "";
+        assertThat(basicTextSearch.search(1, 10, searchKeyword).size(), IsEqual.equalTo(0));
     }
 
     @Test
-    public void shouldSearchGivenMultipleKeyWord(){
-        List<SearchQuestion> actual=basicTextSearch.search("am search");
-        assertThat(actual.get(0).getNoOfWordMatches(), IsEqual.equalTo(2));
+    public void shouldGiveSearchResultsWhenGivenSearchKeywordIsPresentInTheDataBase() {
+        String searchKeyword = "Stop words are words that are very common";
+        assertThat(basicTextSearch.search(1, 10, searchKeyword).size(), IsEqual.equalTo(6));
     }
 
     @Test
-    public void shouldSearchGiveNumberOfKeyWord(){
-        List<SearchQuestion> actual=basicTextSearch.search("question that interested");
-        assertThat(actual.get(0).getNoOfWordMatches(), IsEqual.equalTo(3));
+    public void shouldGiveSearchResultInTheOrderOfMaximumMatch() {
+        String searchKeyword = "Stop words are words that are very common";
+        List<String> expected = new ArrayList<String>();
+        expected.add("Stop words are words that are very common");
+        expected.add("Stop words are words that are very");
+        expected.add("Stop words are words that are");
+        expected.add("Stop words are words that");
+        expected.add("Stop words are words");
+        expected.add("Stop");
+        List<Question> source = basicTextSearch.search(1, 10, searchKeyword);
+        int i = 0;
+        for (Question question : source) {
+            assertThat(question.getQuestion(), IsEqual.equalTo(expected.get(i)));
+            i++;
+        }
     }
 }

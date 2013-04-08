@@ -1,23 +1,22 @@
 package com.forum.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Repository
 public class BasicTextSearch {
     private static final String FETCH_QUESTIONS_QUERY = "select question from questions order by q_id desc";
+    @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
     private DataSource dataSource;
-
-
-    public BasicTextSearch(JdbcTemplate jdbcTemplate, DataSource dataSource) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.dataSource = dataSource;
-    }
-
-    public BasicTextSearch() {
-    }
+    private List<Question> searchedQuestions;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -27,43 +26,47 @@ public class BasicTextSearch {
         this.dataSource = dataSource;
     }
 
+    public List<Question> search(int pageNumber, int questionsPerPage, String searchText) {
+        int endIndex = pageNumber * questionsPerPage;
+        List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
+        List<Question> questions = getQuestions(searchText);
 
-    public List<SearchQuestion> search(String keyWord) {
-        List<String> questions = jdbcTemplate.queryForList(FETCH_QUESTIONS_QUERY, String.class);
-        List<SearchQuestion> result=new ArrayList<SearchQuestion>();
-        for (String question : questions) {
-            int noOfMatches = noOfKeyWordsPresent(question, keyWord);
-            if(noOfMatches>0){
-                    result.add(new SearchQuestion(question,noOfMatches));
-                }
-        }
-        sort(result);
-        return result;
-    }
-
-    private void sort(List<SearchQuestion> result) {
-        SearchQuestion temp;
-        for(int i=0; i < result.size(); i++){
-            for(int j=1; j <(result.size()-i); j++){
-                if(result.get(j-1).compare(result.get(j)))
-                 {
-                     temp = result.get(j-1);
-                     result.add(j-1, result.remove(j));
-                     result.add(j,temp);
+        for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
+            if (startIndex < questions.size()) {
+                try {
+                    resultQuestions.add(questions.get(startIndex));
+                } catch (Exception e) {
                 }
             }
         }
+        return resultQuestions;
     }
 
-    private int noOfKeyWordsPresent(String question, String keyWordSet) {
-        String[] splitWord = keyWordSet.split(" ");
-        int keyWordCounter=0;
-        for (String s : splitWord) {
-            if(!(s.equals("")) && question.toLowerCase().contains(s.toLowerCase())){
-                ++keyWordCounter;
-            }
+    public List<Question> getQuestions(String searchText) {
+        QuestionValidation questionValidation = new QuestionValidation();
+        searchedQuestions = new ArrayList<Question>();
+        searchText = questionValidation.trimExtraSpaces(searchText);
+        System.out.println("search text   "+"*"+searchText+"*");
+        searchText = searchText.replaceAll(" ", " | ");
+        if (searchText.equals("")) return searchedQuestions;
+        SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name," +
+                " ts_rank(question_tsvector, plainto_tsquery('english_nostop','" + searchText + "'), 1 ) AS rank" +
+                " FROM questions WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
+                " @@ to_tsquery('english_nostop','" + searchText + "') order by rank desc;");
+
+        while (result.next()) {
+            searchedQuestions.add(new Question(result.getString(1), result.getString(2), result.getString(3), result.getString(4)));
         }
-        return keyWordCounter;
+        return searchedQuestions;
+    }
+
+    public String nextButtonStatus(int pageNumber, int questionsPerPage, String question) {
+        int totalNumberOfQuestions = getQuestions(question).size();
+        int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
+        return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
+    }
+
+    public String previousButtonStatus(int pageNumber) {
+        return (pageNumber <= 1) ? "disabled" : "enabled";
     }
 }
-
