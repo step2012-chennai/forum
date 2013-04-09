@@ -46,8 +46,9 @@ public class QuestionRepository {
     }
 
     public List<Question> getQuestions(List questionIds) {
-        String query = "select distinct(q_id),question,post_date,user_name from questions where q_id in (" + questionIds.get(0);
         List<Question> questions=new ArrayList<Question>();
+        try{
+           String query = "select distinct(q_id),question,post_date,user_name from questions where q_id in (" + questionIds.get(0);
         for(int i=1; i<questionIds.size(); i++){
             query = query + "," + questionIds.get(i);
         }
@@ -57,6 +58,9 @@ public class QuestionRepository {
             questions.add(new Question(results.getString("q_id"), results.getString("question"),
                     results.getString("post_date"), results.getString("user_name")));
         }
+       }catch(Exception e){
+
+       }
         return questions;
     }
 }
