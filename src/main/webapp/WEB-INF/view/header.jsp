@@ -27,13 +27,8 @@
 		 if(question1 == null)question1="";
 		 %>
 				<table border="0">
-<<<<<<< Updated upstream
-				<td><input type="text" size="50" id="basicSearch" name="basicSearch" value="<%=question1%>"></input></td>
-				<td><input type="submit" value="search"></input></td>
-=======
 				<td><input type="text" size="50" id="basicSearch" name="basicSearch"></input></td>
 				<td><input id="search" type="submit" value="search"></input></td>
->>>>>>> Stashed changes
 				</table>
 		</form>
 		</table>
