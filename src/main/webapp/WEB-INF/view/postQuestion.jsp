@@ -7,7 +7,7 @@
 <body class="postQuestion" background-color:#ffffff>
     <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
     <script type="text/javascript" src="./static/javascript/postQuestion.js"></script>
-     <div class="user-name" >${userName}    | <a href="#">Logout</a></div>
+     <div class="user-name" > Logged in as<a href="activityWall"> ${userName}</a>  | <a href="#">Logout</a></div>
     <script type="text/javascript">
     	tinyMCE.init({
     		mode : "textareas",
