@@ -1,5 +1,6 @@
 package com.forum.repository;
 
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -55,7 +56,8 @@ public class ShowQuestions {
     }
 
     String truncateQuestionToCharacterLimit(String question) {
-        return (question.length() <= CHARACTER_LIMIT) ? question : question.substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
+            String questionToTruncate = Jsoup.parse(question).text();
+            return (questionToTruncate.length() <= CHARACTER_LIMIT) ? question : questionToTruncate.substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
     }
 
     public String nextButtonStatus(int pageNumber, int questionsPerPage) {

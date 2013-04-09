@@ -50,6 +50,7 @@
         <dependency org="asm" name="asm" rev="3.0" ><artifact name="asm"/></dependency>
         <dependency org="asm" name="asm-tree" rev="3.0" ><artifact name="asm-tree"/></dependency>
         <dependency org="oro" name="oro" rev="2.0.8" conf="buildtime->*"/>
+        <dependency org="org.jsoup" name="jsoup" rev="0.2.2" transitive="false" conf="buildtime->*"/>
 
     </dependencies>
 </ivy-module>
