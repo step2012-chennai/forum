@@ -27,8 +27,6 @@ public class ActivityWallTestCase {
         selenium.type("j_password", "password");
         selenium.click("submit");
         Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
-        Thread.sleep(1000);
     }
 
     @After
@@ -38,11 +36,12 @@ public class ActivityWallTestCase {
 
     @Test
     public void verifyTheTargetHitsCorrectUrl() throws InterruptedException {
-        assertTrue(selenium.isTextPresent("Recent Questions"));
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
     }
 
     @Test
     public void verifyTheAskQuestionAnswerAndTagCloudIsPresent() throws InterruptedException {
+        assertTrue(selenium.isTextPresent("Recent Questions"));
         assertTrue(selenium.isTextPresent("Ask Question"));
         assertTrue(selenium.isTextPresent("Answer"));
         assertTrue(selenium.isTextPresent("Tag Cloud"));

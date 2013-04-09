@@ -30,7 +30,7 @@ public class PostQuestionController {
         session.setAttribute("userName", principal);
     }
 
-    private Object getUserName() {
+    Object getUserName() {
         context = SecurityContextHolder.getContext();
         return context.getAuthentication().getPrincipal();
     }

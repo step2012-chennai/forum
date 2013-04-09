@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class PostQuestionControllerTest extends BaseController {
-    private static  String userName = "anil";
+    private static String userName = "anil";
     private PostQuestionController postQuestionController;
     private String question;
     private QuestionValidation mockQuestionValidation;
@@ -23,7 +23,7 @@ public class PostQuestionControllerTest extends BaseController {
     private SecurityContext mockSecurityContext;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         postQuestionController = new PostQuestionController();
         question = "kb";
         mockHttpServletRequest.setRequestURI("/postedQuestion");
@@ -46,10 +46,10 @@ public class PostQuestionControllerTest extends BaseController {
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion).insert(question,userName);
+        verify(mockPostQuestion).insert(question, userName);
         verify(mockSecurityContext).getAuthentication();
         assertThat(modelAndView.getModel().get("pageNumber").toString(), IsEqual.equalTo("1"));
-        assertThat(((RedirectView)modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
+        assertThat(((RedirectView) modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 
     @Test
@@ -59,9 +59,21 @@ public class PostQuestionControllerTest extends BaseController {
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion,never()).insert(question,userName);
+        verify(mockPostQuestion, never()).insert(question, userName);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("postQuestion"));
         assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("Question length must be of at least 20 characters, and should not contain all spaces"));
     }
 
+    @Test
+    public void shouldGiveTheCorrectUserName() throws Exception {
+        mockHttpServletRequest.setRequestURI("/postQuestion");
+        mockHttpServletRequest.setMethod("GET");
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken("temp", "adsd");
+        PostQuestionController postQuestionControllerSpy = spy(postQuestionController);
+        doReturn(usernamePasswordAuthenticationToken).when(postQuestionControllerSpy).getUserName();
+        postQuestionControllerSpy.postQuestion(mockHttpServletRequest);
+
+        verify(postQuestionControllerSpy).getUserName();
+        assertThat(mockHttpServletRequest.getSession().getAttribute("userName").toString(), IsEqual.equalTo(usernamePasswordAuthenticationToken.toString()));
+    }
 }
