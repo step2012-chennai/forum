@@ -224,15 +224,15 @@
     <!--target for cobertura-->
     <target name="coverage" depends="instrument-cobertura, run-tests, report-cobertura"
             description="Calculate the percentage of code accessed by tests.">
-        <!--<cobertura-check datafile="${instrument.dir}/cobertura.ser"-->
-                <!--branchrate="80" totalbranchrate="72" linerate="80" totallinerate="81">-->
-            <!--<regex pattern="com.forum.domain.DomainObject" branchrate="0" linerate="0"/>-->
-            <!--<regex pattern="com.forum.repository.ShowQuestions" branchrate="0" linerate="25"/>-->
-            <!--<regex pattern="com.forum.controller.BasicTextSearchController" branchrate="0" linerate="20"/>-->
-            <!--<regex pattern="com.forum.repository.InvalidQuestionException" branchrate="50" linerate="0"/>-->
-            <!--<regex pattern="com.forum.repository.Advice" branchrate="50" linerate="60"/>-->
-            <!--<regex pattern="com.forum.authentication.Encryption" branchrate="70" linerate="70"/>-->
-        <!--</cobertura-check>-->
+        <cobertura-check datafile="${instrument.dir}/cobertura.ser"
+                branchrate="80" totalbranchrate="72" linerate="80" totallinerate="81">
+            <regex pattern="com.forum.domain.DomainObject" branchrate="0" linerate="0"/>
+            <regex pattern="com.forum.repository.ShowQuestions" branchrate="0" linerate="25"/>
+            <regex pattern="com.forum.controller.BasicTextSearchController" branchrate="0" linerate="20"/>
+            <regex pattern="com.forum.repository.InvalidQuestionException" branchrate="50" linerate="0"/>
+            <regex pattern="com.forum.repository.Advice" branchrate="50" linerate="60"/>
+            <regex pattern="com.forum.authentication.Encryption" branchrate="70" linerate="70"/>
+        </cobertura-check>
     </target>
 
     <target name="init-cobertura" depends="clean-cobertura">
