@@ -7,6 +7,7 @@
 	<center>
 
         <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a href="#">Logout</a></div>
+		<br>
 		<table class="activity-wall">
 			<body>
     			<td>
