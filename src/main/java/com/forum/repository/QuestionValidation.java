@@ -24,13 +24,10 @@ public class QuestionValidation {
         return StringEscapeUtils.unescapeHtml(question);
     }
 
-    public String trimExtraSpaces(String question) {
-        question = question.replaceAll("[|]", " ").replaceAll("!", " ").replaceAll("\\\\", " ").replaceAll("[()]", " ").replaceAll(":"," ").replaceAll("'"," ").replaceAll("&"," ");
-        System.out.println("after removed good\"" + question + "|");
-
+    public String trimSpecialSymbolsAndSpaces(String question) {
+        question = question.replaceAll("[|]", " ").replaceAll("!", " ").replaceAll("\\\\", " ").replaceAll("[()]", " ").replaceAll(":", " ").replaceAll("'", " ").replaceAll("&", " ");
         question = question.replaceAll("( )+", " ");
         question = question.trim();
-        System.out.println("|" + question + "|");
         return question;
     }
 

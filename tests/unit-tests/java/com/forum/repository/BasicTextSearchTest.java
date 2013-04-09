@@ -29,13 +29,20 @@ public class BasicTextSearchTest {
         jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
                 "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector);\n");
 
-        jdbcTemplate.execute("INSERT INTO questions (question) VALUES" +
-                "('Stop words are words that are very common')," +
-                "('Stop words are words that are very')," +
-                "('Stop words are words that are')," +
-                "('Stop words are words that')," +
-                "('Stop words are words')," +
-                "('Stop');");
+        jdbcTemplate.execute("INSERT INTO questions (q_id,question) VALUES" +
+                "('11','Stop words are words that are very common')," +
+                "('22','Stop words are words that are very');");
+        jdbcTemplate.execute("INSERT INTO questions(question,user_name) VALUES" +
+                "('what is java 1.3','vickhyath')," +
+                "('what is java 1.3','vickhyath')," +
+                "('what is java 1.3','vickhyath')," +
+                "('what is java 1.4','vickhyath')," +
+                "('what is java 1.5','vickhyath')," +
+                "('what is java 1.6','vickhyath')," +
+                "('what is java 1.7','vickhyath')," +
+                "('what is java 1.8','vickhyath')," +
+                "('what is java 1.9','vickhyath')," +
+                "('what is java 1.10','vickhyath');");
     }
 
     @After
@@ -46,13 +53,13 @@ public class BasicTextSearchTest {
     @Test
     public void shouldGiveZeroSearchResultWhenSearchKeywordIsEmpty() {
         String searchKeyword = "";
-        assertThat(basicTextSearch.search(1, 10, searchKeyword).size(), IsEqual.equalTo(0));
+        assertThat(basicTextSearch.searchAll(searchKeyword).size(), IsEqual.equalTo(0));
     }
 
     @Test
     public void shouldGiveSearchResultsWhenGivenSearchKeywordIsPresentInTheDataBase() {
         String searchKeyword = "Stop words are words that are very common";
-        assertThat(basicTextSearch.search(1, 10, searchKeyword).size(), IsEqual.equalTo(6));
+        assertThat(basicTextSearch.searchAll(searchKeyword).size(), IsEqual.equalTo(2));
     }
 
     @Test
@@ -61,15 +68,38 @@ public class BasicTextSearchTest {
         List<String> expected = new ArrayList<String>();
         expected.add("Stop words are words that are very common");
         expected.add("Stop words are words that are very");
-        expected.add("Stop words are words that are");
-        expected.add("Stop words are words that");
-        expected.add("Stop words are words");
-        expected.add("Stop");
-        List<Question> source = basicTextSearch.search(1, 10, searchKeyword);
+        List<Question> source = basicTextSearch.searchAll(searchKeyword);
         int i = 0;
         for (Question question : source) {
             assertThat(question.getQuestion(), IsEqual.equalTo(expected.get(i)));
             i++;
         }
+    }
+
+    @Test
+    public void shouldNotReturnAnyResult() {
+        String searchKeyword = "Obama";
+        List<Question> expected = new ArrayList<Question>();
+        assertThat(basicTextSearch.searchAll(searchKeyword), IsEqual.equalTo(expected));
+    }
+
+    @Test
+    public void shouldReturnTenQuestionPerPage() {
+        String searchKeyWord1 = "what is java";
+
+        List<String> expected = new ArrayList<String>();
+        expected.add("what is java 1.3");
+        expected.add("what is java 1.4");
+        expected.add("what is java 1.5");
+        expected.add("what is java 1.4");
+        expected.add("what is java 1.4");
+        expected.add("what is java 1.6");
+        expected.add("what is java 1.7");
+        expected.add("what is java 1.8");
+        expected.add("what is java 1.9");
+        expected.add("what is java 1.10");
+
+        assertThat(basicTextSearch.getQuestionsPerPage(1, 10, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
+
     }
 }

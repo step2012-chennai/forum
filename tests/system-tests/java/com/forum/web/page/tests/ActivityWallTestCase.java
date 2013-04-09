@@ -32,7 +32,7 @@ public class ActivityWallTestCase {
     }
 
     @After
-    public void teatDown(){
+    public void teatDown() {
         seleniumServer.stop();
     }
 

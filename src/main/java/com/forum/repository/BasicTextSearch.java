@@ -26,10 +26,10 @@ public class BasicTextSearch {
         this.dataSource = dataSource;
     }
 
-    public List<Question> search(int pageNumber, int questionsPerPage, String searchText) {
+    public List<Question> getQuestionsPerPage(int pageNumber, int questionsPerPage, String searchText) {
         int endIndex = pageNumber * questionsPerPage;
         List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
-        List<Question> questions = getQuestions(searchText);
+        List<Question> questions = searchAll(searchText);
 
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
             if (startIndex < questions.size()) {
@@ -42,13 +42,7 @@ public class BasicTextSearch {
         return resultQuestions;
     }
 
-    public List<Question> getQuestions(String searchText) {
-        QuestionValidation questionValidation = new QuestionValidation();
-        searchedQuestions = new ArrayList<Question>();
-        searchText = questionValidation.trimExtraSpaces(searchText);
-        System.out.println("search text   "+"*"+searchText+"*");
-        searchText = searchText.replaceAll(" ", " | ");
-        if (searchText.equals("")) return searchedQuestions;
+    private List<Question> fetchQuestions(String searchText) {
         SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name," +
                 " ts_rank(question_tsvector, plainto_tsquery('english_nostop','" + searchText + "'), 1 ) AS rank" +
                 " FROM questions WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
@@ -57,16 +51,27 @@ public class BasicTextSearch {
         while (result.next()) {
             searchedQuestions.add(new Question(result.getString(1), result.getString(2), result.getString(3), result.getString(4)));
         }
+
         return searchedQuestions;
     }
 
-    public String nextButtonStatus(int pageNumber, int questionsPerPage, String question) {
-        int totalNumberOfQuestions = getQuestions(question).size();
-        int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
-        return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
+    public List<Question> searchAll(String searchText) {
+        QuestionValidation questionValidation = new QuestionValidation();
+        searchedQuestions = new ArrayList<Question>();
+        searchText = questionValidation.trimSpecialSymbolsAndSpaces(searchText);
+        searchText = convertToKeyWords(searchText);
+        if (searchText.equals("")) return searchedQuestions;
+        return fetchQuestions(searchText);
     }
 
-    public String previousButtonStatus(int pageNumber) {
-        return (pageNumber <= 1) ? "disabled" : "enabled";
+    private String convertToKeyWords(String searchText) {
+        searchText = searchText.replaceAll(" ", " | ");
+        return searchText;
+    }
+
+    public String nextButtonStatus(int pageNumber, int questionsPerPage, String question) {
+        int totalNumberOfQuestions = searchAll(question).size();
+        int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
+        return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
     }
 }

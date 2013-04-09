@@ -8,7 +8,7 @@ public class SearchResultsPage implements Page {
     private Browser browser;
 
     public void verify(Browser browser) {
-        assertThat("Unexpected page", browser.getBodyClass(), containsString("search results"));
+        assertThat("Unexpected page", browser.getBodyClass(), containsString("getQuestionsPerPage results"));
         this.browser = browser;
     }
 
