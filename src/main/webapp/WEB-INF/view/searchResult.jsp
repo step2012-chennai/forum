@@ -6,7 +6,7 @@
   <%@include file="header.jsp" %>
          <div class="recent-questions-panel">
                  <div>
-                     <font size="5" color="#888888">Recent Questions</font>
+                     <font size="5" color="#888888">Search Result</font>
                  </div>
                  <%@page import="com.forum.repository.Question, java.util.List"%>
                  <% for (Question question : (List<Question>) request.getAttribute("searchList") ) { %>
