@@ -7,8 +7,8 @@
 <body background-color:#fffff>
 	<%@include file="header.jsp" %>
 	<div class="recent-questions-panel">
-        <div>
-            <font size="5" color="#888888">My Answers</font>
+        <div class="list-heading">
+           My Answers
         </div>
         <%@page import="com.forum.repository.*, java.util.List"%>
         <% for (Question question : (List<Question>) request.getAttribute("questions") ) { %>

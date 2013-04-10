@@ -2,15 +2,16 @@
 <html>
 <head>
     <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css"/>
 </head>
 
-<body background-color:#fffff>
+<body>
 	<%@include file="header.jsp" %>
 	<%@include file="autoRefresh.jsp" %>
 
 	<div class="recent-questions-panel">
-        <div>
-            <font size="5" color="#888888">Recent Questions</font>
+        <div class="list-heading">
+            Recent Questions
         </div>
         <%@page import="com.forum.repository.Question, java.util.List"%>
         <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>

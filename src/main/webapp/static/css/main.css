@@ -1,7 +1,9 @@
 activity-wall{
 	style="width: 960px; height: 81px; border="0" align="center"
 }
-
+body{
+     background-color:#fffff;
+}
 .activity-wall td{
 	<center>
 	padding:1em;
@@ -52,4 +54,19 @@ a.button-anchor:hover{
    top: 0;
    right: 0;
    color: blueviolet;
+
 }
+.list-heading{
+    font-size:150%;
+    color:#888888;
+}
+
+.header-navigator-panel{
+    font-size:150%;
+    color:white;
+}
+
+#basicSearch{
+    width:500;
+}
+
