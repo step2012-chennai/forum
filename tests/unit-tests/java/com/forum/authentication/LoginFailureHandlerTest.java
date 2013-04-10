@@ -34,8 +34,8 @@ public class LoginFailureHandlerTest {
     @Test
     public void shouldAddUsernameAttributeInSession() throws IOException, ServletException {
         String expectedUsername = "failed_username";
-        mockHttpServletRequest.addParameter(LoginFailureHandler.FORM_USERNAME_KEY, expectedUsername);
-        loginFailureHandler.onAuthenticationFailure(mockHttpServletRequest, mockHttpServletResponse, mockException);
+        mockHttpServletRequest.addParameter(LoginFailureHandler.FORM_USERNAME_KEY,expectedUsername);
+        loginFailureHandler.onAuthenticationFailure(mockHttpServletRequest,mockHttpServletResponse, mockException);
         String actualUsername = (String) mockHttpServletRequest.getSession().getAttribute("username");
         assertThat(actualUsername, IsEqual.equalTo(expectedUsername));
     }

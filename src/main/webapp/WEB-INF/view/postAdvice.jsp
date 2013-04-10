@@ -22,7 +22,7 @@
 
      <div style="padding-left:240px"><font size=5>Post your Advice :</font></center></div>
         <% String q_id =request.getParameter("questionId"); %>
-        <form id="postAdvice" method="post" action = "postedAdvice?questionId=<%= q_id %>">
+        <form id="postAdvice" method="post" action = "question_details?questionId=<%= q_id %>">
         	<div style="padding-left:240px">
             <div style="color:#FF0000" >${error} </div>
         		<div>
