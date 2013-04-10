@@ -26,8 +26,10 @@ public class BasicTextSearchTest {
         basicTextSearch = (BasicTextSearch) context.getBean("search");
 
         jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        jdbcTemplate.execute("DROP TABLE IF EXISTS answers;");
         jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
                 "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector);\n");
+        jdbcTemplate.execute("create table answers(ans_id serial,q_id int references questions(q_id),answer varchar,post_date timestamp,user_name varchar);");
 
         jdbcTemplate.execute("INSERT INTO questions (q_id,question) VALUES" +
                 "('11','Stop words are words that are very common')," +

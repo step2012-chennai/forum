@@ -37,7 +37,6 @@ public class QuestionRepositoryTest {
 
     @Test
     public void shouldAddQuestionToDatabase() {
-
         questionRepository.insert("What is your name?");
         SqlRowSet sqlRowSet = template.queryForRowSet("select question from questions where q_id =(select MAX(q_id) from questions);");
         sqlRowSet.next();
