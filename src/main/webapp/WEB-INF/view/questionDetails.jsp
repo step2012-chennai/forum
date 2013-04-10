@@ -43,11 +43,6 @@
                       		</div>
                       	</div>
                      </form>
-
-
-              <input type="button" id="post-button" value="Post Advice" onclick="javascript:window.location.href='postAdvice?questionId=<%= q_id %>'" ></input>
-
-
            <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
         </div>
         <%@page import="com.forum.repository.Question,com.forum.repository.Advice, java.util.List"%>
