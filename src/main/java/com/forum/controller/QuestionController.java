@@ -48,6 +48,9 @@ public class QuestionController {
         context = SecurityContextHolder.getContext();
         Object principal = context.getAuthentication().getPrincipal();
         List<Question> questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(principal.toString()));
+        for (Question question : questions) {
+            System.out.println(question.getQuestion());
+        }
         ModelAndView myAnswers=new ModelAndView("myAnswers");
         myAnswers.addObject("questions",questions);
         return myAnswers;

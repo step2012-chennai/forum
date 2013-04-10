@@ -33,6 +33,7 @@ public class ShowQuestionsTest {
 
     @After
     public void tearDown() {
+        template.execute("delete from answers;");
         template.execute("delete from questions;");
     }
 
@@ -40,10 +41,11 @@ public class ShowQuestionsTest {
     public void shouldGiveNewlyInsertedQuestionsOfAGivenPageNumberAccordingToQuestionsPerPage() {
         int questionsPerPage = 2, pageNumber = 1;
         List<Question> result = questions.show(pageNumber, questionsPerPage);
-        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
         List<String> actual = new ArrayList<String>();
-        actual.add(result.get(0).getQuestion());
-        actual.add(result.get(1).getQuestion());
+        for (Question question : result) {
+            actual.add(question.getQuestion());
+        }
+        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
         assertTrue(expected.equals(actual));
     }
 
