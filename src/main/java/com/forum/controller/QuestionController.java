@@ -46,11 +46,8 @@ public class QuestionController {
     public ModelAndView getAdvisedQuestions(){
 
         context = SecurityContextHolder.getContext();
-        Object principal = context.getAuthentication().getPrincipal();
-        List<Question> questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(principal.toString()));
-        for (Question question : questions) {
-            System.out.println(question.getQuestion());
-        }
+        Object userName = context.getAuthentication().getPrincipal();
+        List<Question> questions = questionRepository.getQuestions(adviceRepository.getQuestionIdAnsweredBy(userName.toString()));
         ModelAndView myAnswers=new ModelAndView("myAnswers");
         myAnswers.addObject("questions",questions);
         return myAnswers;
