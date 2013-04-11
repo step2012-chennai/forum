@@ -1,4 +1,4 @@
-package com.forum.web.page.tests;
+package com.forum.web.tests;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
