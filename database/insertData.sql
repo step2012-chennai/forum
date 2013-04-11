@@ -1,21 +1,21 @@
---for login test
-insert into login(username,password) values('sandeep','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('gaurav','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('anil','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('prasad','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('vikhyath','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('ajit','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('ravi','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('prasanth','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('bipilesh','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('jaideep','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('prakash','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('suganthi','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('geetha','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('kalai','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('user','5f4dcc3b5aa765d61d8327deb882cf99');
-insert into login(username,password) values('seeker','15b421d36a6cc2028ff1d0f8f29c65ab');
-insert into login(username,password) values('advisor','90855e629cbebcc7db5dfc4d79dafa06');
+--for Login test
+insert into Login(username,password) values('sandeep','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('gaurav','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('anil','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('prasad','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('vikhyath','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('ajit','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('ravi','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('prasanth','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('bipilesh','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('jaideep','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('prakash','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('suganthi','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('geetha','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('kalai','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('user','5f4dcc3b5aa765d61d8327deb882cf99');
+insert into Login(username,password) values('seeker','15b421d36a6cc2028ff1d0f8f29c65ab');
+insert into Login(username,password) values('advisor','90855e629cbebcc7db5dfc4d79dafa06');
 
 
 
