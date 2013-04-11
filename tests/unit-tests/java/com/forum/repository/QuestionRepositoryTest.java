@@ -10,12 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 
 public class QuestionRepositoryTest {
@@ -25,6 +23,7 @@ public class QuestionRepositoryTest {
 
     @After
     public void tearDown() throws Exception {
+        template.execute("delete from answers;");
         template.execute("delete from questions;");
     }
 
@@ -52,27 +51,25 @@ public class QuestionRepositoryTest {
     }
 
     @Test
-    public void shouldFetchQuestionsForGivenIds(){
+    public void shouldFetchQuestionsForGivenIds() {
         ArrayList questionIds = new ArrayList();
-
-        template.execute("insert into questions(q_id,question,post_date,user_name) values(1,'What is java?',CURRENT_TIMESTAMP(0),'Sandeep')");
-        template.execute("insert into questions(q_id,question,post_date,user_name) values(2,'How to connect with postgresql in java ?',CURRENT_TIMESTAMP(0),'Bipilesh')");
-
-        int questionId = template.queryForInt("select MAX(q_id) from questions");
-        questionIds.add(questionId - 2);
-        questionIds.add(questionId - 1);
-        questionIds.add(questionId);
-
-        Question expectedQuestion1 = new Question("id1", "What is java?", null, "Sandeep");
-        Question expectedQuestion2 = new Question("id2", "How to connect with postgresql in java ?", null, "Bipilesh");
-
-        List<Question> expectedQuestions=new ArrayList<Question>();
+        questionRepository.insert("What is java?");
+        questionRepository.insert("How to connect with postgresql in java ?");
+        int questionId1 = template.queryForInt("select q_id from questions where question='How to connect with postgresql in java ?' ");
+        int questionId2 = template.queryForInt("select q_id from questions where question='What is java?' ");
+        questionIds.add(questionId1);
+        questionIds.add(questionId2);
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values('"+questionId1+"','latest answer',CURRENT_TIMESTAMP(0),'user')");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values('"+(questionId2)+"','previously answered','2013-04-09 19:34:56','user')");
+        Question expectedQuestion1 = new Question("id1", "What is java?", null, "user");
+        Question expectedQuestion2 = new Question("id2", "How to connect with postgresql in java ?", null, "user");
+        List<Question> actualQuestions = questionRepository.getQuestions(questionIds);
+        List<Question> expectedQuestions = new ArrayList<Question>();
         expectedQuestions.add(expectedQuestion1);
         expectedQuestions.add(expectedQuestion2);
 
-        List<Question> actualQuestions = questionRepository.getQuestions(questionIds);
-        assertEquals(expectedQuestion1.getQuestion(), actualQuestions.get(0).getQuestion());
-        assertThat(actualQuestions.get(1).getQuestion(), IsEqual.equalTo((expectedQuestions.get(1).getQuestion())));
+        assertEquals(expectedQuestion1.getQuestion(), actualQuestions.get(1).getQuestion());
+        assertEquals(expectedQuestion2.getQuestion(), actualQuestions.get(0).getQuestion());
     }
 
 }

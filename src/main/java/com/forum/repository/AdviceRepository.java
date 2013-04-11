@@ -31,6 +31,7 @@ public class AdviceRepository {
         QuestionValidation validation = new QuestionValidation();
         answer = validation.insertApostrophe(answer);
         jdbcTemplate.execute("insert into answers(q_id,answer,post_date,user_name) values(" + question_id + ",'" + answer + "',CURRENT_TIMESTAMP(0),'" + user + "')");
+
     }
 
 

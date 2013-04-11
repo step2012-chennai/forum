@@ -47,20 +47,24 @@ public class QuestionRepository {
 
     public List<Question> getQuestions(List questionIds) {
         List<Question> questions=new ArrayList<Question>();
-        try{
-           String query = "select distinct(q_id),question,post_date,user_name from questions where q_id in (" + questionIds.get(0);
-        for(int i=1; i<questionIds.size(); i++){
-            query = query + "," + questionIds.get(i);
-        }
-        query = query + ")";
+              String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name from questions q" +
+                   " join answers a on q.q_id=a.q_id where q.q_id in ("+convertArrayToString(questionIds)+") group by q.q_id, q.question, q.user_name order by post_date DESC" ;
         SqlRowSet results=jdbcTemplate.queryForRowSet(query);
         while(results.next()){
             questions.add(new Question(results.getString("q_id"), results.getString("question"),
                     results.getString("post_date"), results.getString("user_name")));
         }
-       }catch(Exception e){
-
-       }
         return questions;
+    }
+
+    private String convertArrayToString(List questionIds) {
+        String questionIdString="";
+        for(int i=0; i< questionIds.size(); i++){
+            questionIdString = questionIdString + questionIds.get(i);
+            if(i != questionIds.size()-1) {
+            questionIdString = questionIdString + "," ;
+            }
+        }
+        return questionIdString;
     }
 }
