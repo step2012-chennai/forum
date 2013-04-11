@@ -30,21 +30,12 @@ public class BasicTextSearchTest {
         jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
                 "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector);\n");
         jdbcTemplate.execute("create table answers(ans_id serial,q_id int references questions(q_id),answer varchar,post_date timestamp,user_name varchar);");
-
         jdbcTemplate.execute("INSERT INTO questions (q_id,question) VALUES" +
                 "('11','Stop words are words that are very common')," +
                 "('22','Stop words are words that are very');");
         jdbcTemplate.execute("INSERT INTO questions(question,user_name) VALUES" +
                 "('what is java 1.3','vickhyath')," +
-                "('what is java 1.3','vickhyath')," +
-                "('what is java 1.3','vickhyath')," +
-                "('what is java 1.4','vickhyath')," +
-                "('what is java 1.5','vickhyath')," +
-                "('what is java 1.6','vickhyath')," +
-                "('what is java 1.7','vickhyath')," +
-                "('what is java 1.8','vickhyath')," +
-                "('what is java 1.9','vickhyath')," +
-                "('what is java 1.10','vickhyath');");
+                "('what is java 1.3','vickhyath');");
     }
 
     @After
@@ -88,20 +79,9 @@ public class BasicTextSearchTest {
     @Test
     public void shouldReturnTenQuestionPerPage() {
         String searchKeyWord1 = "what is java";
-
         List<String> expected = new ArrayList<String>();
         expected.add("what is java 1.3");
         expected.add("what is java 1.4");
-        expected.add("what is java 1.5");
-        expected.add("what is java 1.4");
-        expected.add("what is java 1.4");
-        expected.add("what is java 1.6");
-        expected.add("what is java 1.7");
-        expected.add("what is java 1.8");
-        expected.add("what is java 1.9");
-        expected.add("what is java 1.10");
-
-        assertThat(basicTextSearch.getQuestionsPerPage(1, 10, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
-
+        assertThat(basicTextSearch.getQuestionsPerPage(1, 2, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
     }
 }
