@@ -11,14 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class QuestionRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     @Autowired
     private DataSource dataSource;
 
@@ -36,21 +34,22 @@ public class QuestionRepository {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
-        jdbcTemplate.execute("insert into questions(question,post_date) values('" + question + "','"+ dateformat +"')");
+        jdbcTemplate.execute("insert into questions(question,post_date) values('" + question + "','" + dateformat + "')");
     }
 
     public Question getQuestionById(int questionId) {
         SqlRowSet question = jdbcTemplate.queryForRowSet("select * from questions where q_id=" + questionId);
         question.next();
-        return new Question(question.getString(1), question.getString(2), question.getString(3),question.getString(4));
+        return new Question(question.getString(1), question.getString(2), question.getString(3), question.getString(4));
     }
 
     public List<Question> getQuestions(List questionIds) {
-        List<Question> questions=new ArrayList<Question>();
-              String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name from questions q" +
-                   " join answers a on q.q_id=a.q_id where q.q_id in ("+convertArrayToString(questionIds)+") group by q.q_id, q.question, q.user_name order by post_date DESC" ;
-        SqlRowSet results=jdbcTemplate.queryForRowSet(query);
-        while(results.next()){
+        List<Question> questions = new ArrayList<Question>();
+        if (questionIds.equals(new ArrayList())) return questions;
+        String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name from questions q" +
+                " join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id, q.question, q.user_name order by post_date DESC";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(query);
+        while (results.next()) {
             questions.add(new Question(results.getString("q_id"), results.getString("question"),
                     results.getString("post_date"), results.getString("user_name")));
         }
@@ -58,11 +57,11 @@ public class QuestionRepository {
     }
 
     private String convertArrayToString(List questionIds) {
-        String questionIdString="";
-        for(int i=0; i< questionIds.size(); i++){
+        String questionIdString = "";
+        for (int i = 0; i < questionIds.size(); i++) {
             questionIdString = questionIdString + questionIds.get(i);
-            if(i != questionIds.size()-1) {
-            questionIdString = questionIdString + "," ;
+            if (i != questionIds.size() - 1) {
+                questionIdString = questionIdString + ",";
             }
         }
         return questionIdString;
