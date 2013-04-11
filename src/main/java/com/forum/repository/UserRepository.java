@@ -30,7 +30,7 @@ public class UserRepository {
         return (count==1);
     }
 
-    public void register(String userName, String name, String password, String dob, String location, String gender) {
+    public void register(String userName, String name, String password, Date dob, String location, String gender) {
         jdbcTemplate.execute("insert into userDetails(username,name,password,dob,location,gender) values('"
            + userName + "','" + name + "','" + password + "','" + dob + "','" + location + "','" + gender + "')");
     }

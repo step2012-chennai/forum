@@ -8,6 +8,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -37,8 +41,8 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void shouldStoreTheUserDetailsInDataBase(){
-        userRepository.register("sachin","Sachin","password","24-04-1974","mumbai","male");
+    public void shouldStoreTheUserDetailsInDataBase() throws ParseException {
+        userRepository.register("sachin", "Sachin", "password", new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH).parse("24-04-1974"),"mumbai","male");
         assertTrue(userRepository.isUserNameExists("sachin"));
         template.execute("delete from userDetails where username='sachin'");
     }
