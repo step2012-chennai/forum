@@ -27,8 +27,8 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        postQuestion.insert("this is first question for testing which should be trimmed","Anil");
-        postQuestion.insert("this is second question","Anil");
+        postQuestion.insert("this is first question for testing which should be trimmed", "Anil");
+        postQuestion.insert("this is second question", "Anil");
     }
 
     @After
@@ -42,8 +42,8 @@ public class ShowQuestionsTest {
         int questionsPerPage = 2, pageNumber = 1;
         List<Question> result = questions.show(pageNumber, questionsPerPage);
         List<String> actual = new ArrayList<String>();
-        for (Question question : result) {
-            actual.add(question.getQuestion());
+        for (Question resultedQuestion : result) {
+            actual.add(resultedQuestion.getQuestion());
         }
         List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
         assertTrue(expected.equals(actual));
@@ -60,5 +60,12 @@ public class ShowQuestionsTest {
     public void shouldReturnFullQuestionIfQuestionIsLessThan50Characters() {
         String question = "Don't trim me";
         assertThat(questions.truncateQuestionToCharacterLimit(question), IsEqual.equalTo(question));
+    }
+
+    @Test
+    public void shouldReturnFullQuestionIfQuestionContainsTags() {
+        String question = "Don't trim me <html> <tr> <p> </tr></html> yahoo";
+        String expected = "Don't trim me <html> <tr> <p> </tr></html> yahoo";
+        assertThat(questions.truncateQuestionToCharacterLimit(question), IsEqual.equalTo(expected));
     }
 }
