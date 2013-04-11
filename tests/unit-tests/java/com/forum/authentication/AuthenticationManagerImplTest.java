@@ -30,12 +30,12 @@ public class AuthenticationManagerImplTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
         authenticationManager = (AuthenticationManagerImpl) context.getBean("verify");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        template.execute("insert into login(username,password) values('temp','5f4dcc3b5aa765d61d8327deb882cf99');");
+        template.execute("insert into userDetails(username,password) values('temp','5f4dcc3b5aa765d61d8327deb882cf99');");
     }
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from login where username='temp' OR username='SOMEUSER' ; ");
+        template.execute("delete from userDetails where username='temp' OR username='SOMEUSER' ; ");
     }
 
     @Test(expected = BadCredentialsException.class)
@@ -55,7 +55,7 @@ public class AuthenticationManagerImplTest {
 
     @Test
     public void shouldCheckIfAuthenticationIsSuccessfulIfUserNameIsInDifferentCase() {
-        template.execute("insert into login(username,password) values('SOMEUSER','5f4dcc3b5aa765d61d8327deb882cf99');");
+        template.execute("insert into userDetails(username,password) values('SOMEUSER','5f4dcc3b5aa765d61d8327deb882cf99');");
         ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         authentication = new UsernamePasswordAuthenticationToken("sOmeUser", "password", authorities);

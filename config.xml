@@ -32,6 +32,13 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+
+    <bean id="userRepository" class="com.forum.repository.UserRepository">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
     <bean id="showQuestions" class="com.forum.repository.ShowQuestions">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="dataSource" ref="dataSource"/>
