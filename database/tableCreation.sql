@@ -7,7 +7,7 @@ create table answers(ans_id serial,q_id int references questions(q_id),answer va
 DROP TABLE IF EXISTS login;
 create table Login(username varchar(50),password varchar(50),loginFailCount INT,sessionStartTime DATE,PRIMARY KEY (username));
 
-DROP TABLE IF EXISTS answers;
+        DROP TABLE IF EXISTS answers;
 create table answers(ans_id serial,q_id int,answer varchar,post_date timestamp,user_name varchar);
 
 DROP TEXT SEARCH DICTIONARY if exists english_stem_nostop cascade;
