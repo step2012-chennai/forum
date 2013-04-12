@@ -10,6 +10,7 @@
     <center>
     <body bgcolor="white">
        <form id="loginForm" style="padding-top: 200px;" name="loginForm" action="j_spring_security_check" method = "post">
+        <div style="color:#FF0000">${error}</div>
         <div style="border:1px solid #b4b28c; background:#C0C0C0; width:350px; height:200px">
              <div style="height:70px; padding-top:40px">
                  <label>Username:</label>
