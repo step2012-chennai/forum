@@ -74,4 +74,8 @@ public class BasicTextSearch {
         int maxPages = (totalNumberOfQuestions % questionsPerPage == 0) ? totalNumberOfQuestions / questionsPerPage : totalNumberOfQuestions / questionsPerPage + 1;
         return (pageNumber >= maxPages || totalNumberOfQuestions <= questionsPerPage) ? "disabled" : "enabled";
     }
+
+    public String getMessage(int size) {
+        return size == 0? "No matching questions found" : "Search Result";
+    }
 }

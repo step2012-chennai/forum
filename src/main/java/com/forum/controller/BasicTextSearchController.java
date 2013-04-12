@@ -38,12 +38,8 @@ public class BasicTextSearchController {
         searchResult.addObject("pageNumber", pageNumber + 1);
         searchResult.addObject("question", question);
         searchResult.addObject("searchedQuestion", searchedQuestion);
-        searchResult.addObject("message",getMessage(search.size()));
+        searchResult.addObject("message",basicTextSearch.getMessage(search.size()));
 
         return searchResult;
-    }
-
-    private String getMessage(int size) {
-        return size == 0? "No matching questions found" : "Search Result";
     }
 }

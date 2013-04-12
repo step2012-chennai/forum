@@ -83,4 +83,16 @@ public class BasicTextSearchTest {
         expected.add("what is java 1.4");
         assertThat(basicTextSearch.getQuestionsPerPage(1, 2, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
     }
+
+    @Test
+    public void shouldGiveMessageWhenSearchResultIsEmpty(){
+        String expected = "No matching questions found";
+        assertThat(basicTextSearch.getMessage(basicTextSearch.getQuestionsPerPage(1, 2, "abc").size()),IsEqual.equalTo(expected));
+    }
+
+    @Test
+    public void shouldGiveLabelWhenSearchResultHasQuestions(){
+        String expected = "Search Result";
+        assertThat(basicTextSearch.getMessage(basicTextSearch.getQuestionsPerPage(1, 2, "what").size()),IsEqual.equalTo(expected));
+    }
 }

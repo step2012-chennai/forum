@@ -62,35 +62,4 @@ public class BasicTextSearchControllerTest extends BaseController {
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("searchResult"));
     }
-
-    @Test
-    public void shouldGiveMessageWhenSearchResultIsEmpty() throws Exception {
-        question = "abc";
-        mockHttpServletRequest.setParameter("basicSearch", question);
-        mockHttpServletRequest.setParameter("pageNumber", "1");
-        mockHttpServletRequest.addHeader("referer", "getQuestionsPerPage");
-
-        mockBasicTextSearch = (BasicTextSearch) createMock(basicTextSearchController, "basicTextSearch", BasicTextSearch.class);
-        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
-        List<Question> searchResult = new ArrayList<Question>();
-        assertThat((String)modelAndView.getModel().get("message"),IsEqual.equalTo("No matching questions found"));
-    }
-
-    @Test
-    public void shouldGiveLabelWhenSearchResultHasQuestions() throws Exception {
-        question = "what is";
-        mockHttpServletRequest.setParameter("basicSearch", question);
-        mockHttpServletRequest.setParameter("pageNumber", "1");
-        mockHttpServletRequest.addHeader("referer", "getQuestionsPerPage");
-
-        List<Question> searchResult = new ArrayList<Question>();
-        searchResult.add(new Question("1", "what is java", "12", "user"));
-        mockBasicTextSearch = (BasicTextSearch) createMock(basicTextSearchController, "basicTextSearch", BasicTextSearch.class);
-
-        when(mockBasicTextSearch.getQuestionsPerPage(PAGE_NUMBER, QUESTIONS_PER_PAGE, question)).thenReturn(searchResult);
-
-        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
-
-        assertThat((String)modelAndView.getModel().get("message"),IsEqual.equalTo("Search Result"));
-    }
 }
