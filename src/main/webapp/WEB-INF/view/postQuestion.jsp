@@ -6,19 +6,11 @@
 </head>
 <body class="postQuestion" background-color:#ffffff>
     <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
-    <script type="text/javascript" src="./static/javascript/postQuestion.js"></script>
-     <div class="user-name" > Logged in as<a href="activityWall"> ${userName}</a>  | <a href="#">Logout</a></div>
-    <script type="text/javascript">
-    	tinyMCE.init({
-    		mode : "textareas",
-    		theme : "advanced",
-    		plugins : "spellchecker",
-    		invalid_elements: "a",
-    		theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,spellchecker",
-    	 	theme_advanced_toolbar_location : "top",
-    	 	spellchecker_languages : "+English=en",
-    	});
-    </script> <br><br>
+    <script type="text/javascript" src="./static/javascript/textboxEvents.js"></script>
+    <div class="user-name" >
+    Logged in as<a href="activityWall">${userName}</a>  | <a href="#">Logout</a>
+    </div>
+    <br><br>
 
     <div style="padding-left:240px"><font size=5>Post your question :</font></center></div>
     <form id="postQuestion" method="post" action = "postedQuestion">
