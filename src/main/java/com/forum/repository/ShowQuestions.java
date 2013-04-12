@@ -14,7 +14,6 @@ import java.util.List;
 @Repository
 public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
-    private static final int CHARACTER_LIMIT_FOR_HOMEPAGE = 100;
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?";
 
@@ -49,7 +48,6 @@ public class ShowQuestions {
 
     public List<Question> getQuestions() {
         SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY post_date DESC");
-
         List<Question> questionsList = new ArrayList<Question>();
         while (questions.next()) {
             questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4)));

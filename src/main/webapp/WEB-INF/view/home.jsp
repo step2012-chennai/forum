@@ -5,8 +5,6 @@
     <title>Welcome</title>
 </head>
 <body class="home" >
-   	<%@include file="autoRefresh.jsp" %>
-
     <div id="loginAndRegistration">
         <ul>
             <li><a href="login">&nbsp Login &nbsp</li>        </a>
@@ -18,20 +16,30 @@
     <div id="logoSpace">
     </div>
 
-    <div id="fiveRecentQuestions">
-
-        <%@page import="com.forum.repository.Question, java.util.List"%>
-                <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>
-                        <a href= "question_details?questionId=<%=question.getId()%>" >
-                            <% out.println(question.getQuestion()); %>
-                        </a>
-                    <div class="question-posted-time">
-                        <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime());%>
-                    </div>
-                <%}%>
+    <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
+        <H3>Top Five Seekers</H3>
+        <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader"%>
+        <ul>
+           <% List<Leader> seekers = (List<Leader>) request.getAttribute("seekerList");
+           for (Leader seeker : seekers ){
+                    %><li><% out.println(seeker.getUserName()); %></li><%
+                }
+           %>
+        </ul>
     </div>
 
-    <div id="fiveRecentAdvices">
+    <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right">
+        <H3>Top Five Advisors</H3>
+             <ul>
+               <% List<Leader> advisers = (List<Leader>) request.getAttribute("adviserList");
+                          for (Leader adviser : advisers ){
+                                   %><li><% out.println(adviser.getUserName()); %></li><%
+                               }
+                          %>
+              </ul>
+
+            </ul>
+    </div>
 
     </div>
 </body>

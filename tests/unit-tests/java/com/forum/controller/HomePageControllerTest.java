@@ -1,7 +1,12 @@
 package com.forum.controller;
 
+<<<<<<< HEAD
 import com.forum.domain.Question;
 import com.forum.repository.ShowQuestions;
+=======
+import com.forum.domain.Leader;
+import com.forum.repository.ShowLeaders;
+>>>>>>> jaideep,bipilesh | leaderboard done
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class HomePageControllerTest extends BaseController {
-    private ShowQuestions mockShowQuestions;
+    private ShowLeaders mockShowLeaders;
     public static final int QUESTIONS_PER_PAGE = 5;
     private HomePageController homePageController;
     @Before
@@ -22,22 +27,37 @@ public class HomePageControllerTest extends BaseController {
         mockHttpServletRequest.setRequestURI("/home");
         mockHttpServletRequest.setMethod("GET");
         homePageController = new HomePageController();
-        mockShowQuestions = (ShowQuestions) createMock(homePageController, "showQuestions", ShowQuestions.class);
+        mockShowLeaders = (ShowLeaders) createMock(homePageController, "showLeaders", ShowLeaders.class);
     }
 
     @Test
-    public void shouldDirectToHomePage() throws Exception {
-        ArrayList<Question> questions = getQuestionsForHomePage();
-        when(mockShowQuestions.show(1, QUESTIONS_PER_PAGE)).thenReturn(questions);
+    public void shouldAddSeekerListToModelAndView() throws Exception {
+        ArrayList<Leader> seeker = getLeaders();
+        when(mockShowLeaders.showTopFiveSeekers()).thenReturn(seeker);
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, homePageController);
-        verify(mockShowQuestions).show(1, QUESTIONS_PER_PAGE);
-        assertThat((ArrayList<Question>) modelAndView.getModel().get("questionList"), IsEqual.equalTo(questions));
+        verify(mockShowLeaders).showTopFiveSeekers();
+        assertThat((ArrayList<Leader>) modelAndView.getModel().get("seekerList"), IsEqual.equalTo(seeker));
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("home"));
     }
 
-    private ArrayList<Question> getQuestionsForHomePage() {
-        ArrayList<Question> questions = new ArrayList<Question>();
-        questions.add(new Question("1", "what is nano", "12", "Anil"));
-        return questions;
+    @Test
+    public void shouldAddAdviserListToModelAndView() throws Exception {
+        ArrayList<Leader> adviser = getLeaders();
+        when(mockShowLeaders.showTopFiveAdvisers()).thenReturn(adviser);
+        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, homePageController);
+        verify(mockShowLeaders).showTopFiveAdvisers();
+        assertThat((ArrayList<Leader>) modelAndView.getModel().get("adviserList"), IsEqual.equalTo(adviser));
+        assertThat(modelAndView.getViewName(), IsEqual.equalTo("home"));
+    }
+
+    @Test
+    public void printData(){
+        homePageController.home();
+    }
+
+    private ArrayList<Leader> getLeaders() {
+        ArrayList<Leader> leaders = new ArrayList<Leader>();
+        leaders.add(new Leader("bp"));
+        return leaders;
     }
 }
