@@ -4,9 +4,9 @@
     <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Post question</title>
 </head>
-<body>
+<body class="postQuestion" background-color:#ffffff>
     <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
-    <script type="text/javascript" src="./static/javascript/reset.js"></script>
+    <script type="text/javascript" src="./static/javascript/postQuestion.js"></script>
      <div class="user-name" > Logged in as<a href="activityWall"> ${userName}</a>  | <a href="#">Logout</a></div>
     <script type="text/javascript">
     	tinyMCE.init({
@@ -26,14 +26,18 @@
         <div style="color:#FF0000" >${error} </div>
     		<div>
     			<textarea id="elm1" name="textareas" rows="12" cols="20" style="width: 80%"/>
-    		${askedQuestion}
-    			</textarea>   </center>
+    		        ${askedQuestion}
+    			</textarea>
     		</div><br>
 
-    		<div style="padding-left:635px">
-    		<form action="activityWall">
-    		<input type="submit" id="post" value="Post Question"></form>
-    		<input type="button" id="reset" onclick="clearTextbox()" value="Reset">
+    		<div>
+              <input type="text" size= 50 id="createTag" name="createTag" title="use single word without spaces or use comma separated words to create multiple tags " style = "color:#888;"
+                value="create tag (optional)" onfocus="onFocus(this)" onblur="onBlur(this)" />
+                &nbsp &nbsp &nbsp &nbsp&nbsp
+                   <form action="activityWall">
+                       <input type="submit" id="post" value="Post Question">
+                   </form>
+               <input type="button" id="reset" onclick="clearTextbox()" value="Reset">
     		</div>
     	</div>
    </form>

@@ -24,7 +24,6 @@ public class BasicTextSearchTest {
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
         basicTextSearch = (BasicTextSearch) context.getBean("search");
-
         jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
         jdbcTemplate.execute("DROP TABLE IF EXISTS answers;");
         jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
