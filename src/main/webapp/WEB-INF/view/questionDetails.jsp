@@ -30,9 +30,9 @@
               <div style="padding-left:5px"><font size=5>Post your Advice In the Text Box:</font></center></div>
                       <form id="postAdvice" method="post" action = "postedAdvice?questionId=<%= q_id %>">
                       	<div style="padding-left:5px">
-                          <div style="color:#FF0000" > ${error} </div>
+                          <div class="error-color"> ${error} </div>
                       		<div>
-                      			<textarea id="elm1" name="textareas" rows="5" cols="12" style="width: 40%"/>
+                      			<textarea id="elm1" name="textareas" rows="5" cols="12" style="width: 60%"/>
                       		${GivenAnswer}
                       			</textarea>   </center>
                       		</div><br>

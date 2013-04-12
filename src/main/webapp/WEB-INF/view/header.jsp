@@ -28,7 +28,7 @@
 		 if(question1 == null)question1="";
 		 %>
 				<table border="0">
-				<td><input type="text" id="basicSearch" name="basicSearch"></input></td>
+				<td><input type="text" id="basicSearch" name="basicSearch" value="${searchedQuestion}"></input></td>
 				<td><input id="search" type="submit" value="search"></input></td>
 				</table>
 		</form>

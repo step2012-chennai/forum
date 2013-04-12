@@ -1,5 +1,5 @@
 activity-wall{
-	style="width: 960px; height: 81px; border="0" align="center"
+	style="width: 960px; height: 81px; border="0" align="center";
 }
 body{
      background-color:#fffff;
@@ -70,3 +70,6 @@ a.button-anchor:hover{
     width:500;
 }
 
+.error-color{
+color:#FF0000;
+}

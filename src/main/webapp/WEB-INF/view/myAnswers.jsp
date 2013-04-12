@@ -4,7 +4,7 @@
     <title>My Answers</title>
 </head>
 
-<body background-color:#fffff>
+<body>
 	<%@include file="header.jsp" %>
 	<div class="recent-questions-panel">
         <div class="list-heading">
