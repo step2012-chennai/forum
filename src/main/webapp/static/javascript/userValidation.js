@@ -5,10 +5,10 @@ function validateUserName()
     {
        if (xmlhttp.readyState==4 && xmlhttp.status==200)
        {
-            document.getElementById("userName").innerHTML=xmlhttp.responseText;
-            alert(document.getElementById("userName").value);
+            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
        }
     }
-    xmlhttp.open("GET","validate",true);
+    var userName=document.getElementById("user").value;
+    xmlhttp.open("GET","validateUserName?user="+userName,true);
     xmlhttp.send();
 }

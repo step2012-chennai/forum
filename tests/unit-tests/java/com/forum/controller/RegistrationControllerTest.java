@@ -23,11 +23,23 @@ public class RegistrationControllerTest extends BaseController{
     public void shouldValidateTheUserNameAlreadyExist() throws Exception {
         registrationController=new RegistrationController();
         mockHttpServletRequest.setRequestURI("/validate");
-        mockHttpServletRequest.setParameter("userName", "user");
+        mockHttpServletRequest.setParameter("user", "user");
         mockHttpServletRequest.setMethod("GET");
         userRepository = (UserRepository) createMock(registrationController, "userRepository", UserRepository.class);
         when(userRepository.isUserNameExists("user")).thenReturn(true);
         ModelAndView modelAndView=handlerAdapter.handle(mockHttpServletRequest,mockHttpServletResponse,registrationController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("Already available"));
+    }
+
+    @Test
+    public void shouldReturnCorrectIfUserNameNotExist() throws Exception {
+        registrationController=new RegistrationController();
+        mockHttpServletRequest.setRequestURI("/validate");
+        mockHttpServletRequest.setParameter("user", "wrongUser");
+        mockHttpServletRequest.setMethod("GET");
+        userRepository = (UserRepository) createMock(registrationController, "userRepository", UserRepository.class);
+        when(userRepository.isUserNameExists("user")).thenReturn(true);
+        ModelAndView modelAndView=handlerAdapter.handle(mockHttpServletRequest,mockHttpServletResponse,registrationController);
+        assertThat(modelAndView.getViewName(), IsEqual.equalTo("correct"));
     }
 }

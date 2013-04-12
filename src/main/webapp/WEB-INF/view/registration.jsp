@@ -7,8 +7,7 @@
      <script type="text/javascript" src="./static/javascript/userValidation.js"></script>
         Name : <input type="text" id="name"/>
         <br/>
-        User Name : <input type="text" id="userName" onChange="validateUserName()"/>
-        <div id="myDiv"><h2></h2></div>
+        User Name : <input type="text" id="user" onChange="validateUserName()"/>  <label id="myDiv"></label>
         <br/>
         Date Of Birth : <input type="date" id="userName"/>
         <br/>
