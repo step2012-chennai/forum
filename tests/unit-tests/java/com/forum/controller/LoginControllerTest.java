@@ -25,6 +25,14 @@ public class LoginControllerTest {
     }
 
     @Test
+    public void shouldReturnLoginViewWhenTheUrlIslogin() throws Exception {
+        mockHttpServletRequest.setRequestURI("/login");
+        mockHttpServletRequest.setMethod("GET");
+        ModelAndView modelAndView=handlerAdapter.handle(mockHttpServletRequest,mockHttpServletResponse,new LoginController());
+        assertThat(modelAndView.getViewName(), IsEqual.equalTo("login"));
+    }
+
+    @Test
     public void shouldRedirectToLoginPageIfLoginFail() throws Exception {
         mockHttpServletRequest.setRequestURI("/loginfail");
         mockHttpServletRequest.setMethod("GET");

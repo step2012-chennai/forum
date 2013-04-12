@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registration</title>
+    <title>Registration</title>
     </head>
     <body>
+     <script type="text/javascript" src="./static/javascript/userValidation.js"></script>
         Name : <input type="text" id="name"/>
         <br/>
-        User Name : <input type="text" id="userName"/>
+        User Name : <input type="text" id="userName" onChange="validateUserName()"/>
+        <div id="myDiv"><h2></h2></div>
         <br/>
         Date Of Birth : <input type="date" id="userName"/>
         <br/>
@@ -19,5 +21,6 @@
         Password : <input type="password" id="userName"/>
         <br/>
         Confirm Password : <input type="password" id="userName"/>
+
     </body>
 </html>
