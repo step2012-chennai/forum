@@ -118,6 +118,10 @@ height:100;
     float: left;
   }
 
+#register #myDiv{
+color:red;
+padding-left:250px;
+}
 
 #register{
     position: absolute;
