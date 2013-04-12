@@ -7,9 +7,8 @@
          <div class="recent-questions-panel">
                  <%@page import="com.forum.repository.Question, java.util.List"%>
                  <%List<Question> questions = (List<Question>) request.getAttribute("searchList");
-                    if(questions.size() == 0)
-                        %> <h3>No matching questions found</h3>
-                 <% for (Question question : questions ) { %>
+                     %> <div class="list-heading">${message}</div><%
+                     for (Question question : questions ) { %>
                          <a href= "question_details?questionId=<%=question.getId()%>" >
                              <% out.println(question.getQuestion()); %>
                          </a>

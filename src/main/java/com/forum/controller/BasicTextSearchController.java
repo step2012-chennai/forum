@@ -31,12 +31,19 @@ public class BasicTextSearchController {
         ModelAndView searchResult = new ModelAndView("searchResult");
         int pageNumber = Integer.parseInt(pageNum);
         List<Question> search = basicTextSearch.getQuestionsPerPage(pageNumber, QUESTIONS_PER_PAGE, question);
+
         searchResult.addObject("nextButton", basicTextSearch.nextButtonStatus(pageNumber, QUESTIONS_PER_PAGE, question));
         searchResult.addObject("prevButton", ButtonStatus.previousButtonStatus(pageNumber));
         searchResult.addObject("searchList", search);
         searchResult.addObject("pageNumber", pageNumber + 1);
         searchResult.addObject("question", question);
         searchResult.addObject("searchedQuestion", searchedQuestion);
+        searchResult.addObject("message",getMessage(search.size()));
+
         return searchResult;
+    }
+
+    private String getMessage(int size) {
+        return size == 0? "No matching questions found" : "Search Result";
     }
 }
