@@ -23,7 +23,7 @@ public class BasicTextSearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchResult(@RequestParam(value = "basicSearch", defaultValue = "") String question, HttpServletRequest request, @RequestParam(value = "pageNumber", defaultValue = "1") String pageNum) {
-
+        String searchedQuestion = question;
         if (question.equals("")) {
             return new ModelAndView(new RedirectView(request.getHeader("referer")));
         }
@@ -36,7 +36,7 @@ public class BasicTextSearchController {
         searchResult.addObject("searchList", search);
         searchResult.addObject("pageNumber", pageNumber + 1);
         searchResult.addObject("question", question);
-
+        searchResult.addObject("searchedQuestion", searchedQuestion);
         return searchResult;
     }
 }
