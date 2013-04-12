@@ -46,7 +46,7 @@ public class BasicTextSearch {
         SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name," +
                 " ts_rank(question_tsvector, plainto_tsquery('english_nostop','" + searchText + "'), 1 ) AS rank" +
                 " FROM questions WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
-                " @@ to_tsquery('english_nostop','" + searchText + "') order by rank desc;");
+                " @@ to_tsquery('english_nostop','" + searchText + "') order by rank, post_date desc;");
 
         while (result.next()) {
             searchedQuestions.add(new Question(result.getString(1), result.getString(2), result.getString(3), result.getString(4)));
