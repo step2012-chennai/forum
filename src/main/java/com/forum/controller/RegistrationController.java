@@ -22,8 +22,7 @@ public class RegistrationController {
     @RequestMapping(value = "/validateUserName",method = RequestMethod.GET)
     public  @ResponseBody String ValidateUserName(@RequestParam(value = "user") String username){
         String result="correct";
-        if(userRepository.isUserNameExists(username))
-        {
+        if(userRepository.isUserNameExists(username)){
             result="Already available";
         }
         return result;

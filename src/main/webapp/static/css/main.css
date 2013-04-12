@@ -106,6 +106,26 @@ height:100;
 
 }
 
+#register label{
+      display: inline-block;
+      float: left;
+      clear: left;
+      width: 250px;
+      text-align: left;
+  }
+#register #text {
+    display: inline-block;
+    float: left;
+  }
+
+
+#register{
+    position: absolute;
+    margin: -100px 0 0 -200px;
+    top: 40%;
+    left: 45%;
+}
+
 .error-color{
 color:#FF0000;
 }
