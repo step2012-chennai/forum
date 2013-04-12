@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class BasicTextSearchTestCase {
+public class BasicTextSearchTest {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 
@@ -27,8 +27,6 @@ public class BasicTextSearchTestCase {
         selenium.type("j_password", "password");
         selenium.click("submit");
         Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
-        Thread.sleep(1000);
     }
 
     @After
@@ -38,29 +36,33 @@ public class BasicTextSearchTestCase {
 
     @Test
     public void verifyTheTargetHitsCorrectUrl() throws InterruptedException {
-        assertTrue(selenium.isTextPresent("Recent Questions"));
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
     }
 
     @Test
-    public void verifyThatAbleToSearchRevelantTextInTextBox() throws InterruptedException {
-        selenium.type("basicSearch","What is");
+    public void shouldBeOnTheSamePageWhenUserClicksOnSearchButtonWithEmptySearchBox() throws InterruptedException {
+        selenium.click("search");
+        Thread.sleep(2000);
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
+    }
+
+    @Test
+    public void shouldDisplayNoMatchingQuestionsFoundWhenNoMatchingKeywordFound() throws InterruptedException {
+        selenium.type("basicSearch","lklakds");
+        Thread.sleep(2000);
+        selenium.click("search");
+        Thread.sleep(2000);
+        assertTrue(selenium.isTextPresent("No matching questions found"));
+    }
+
+
+    @Test
+    public void verifyThatUserShouldBeAbleToSearchForATextWhenTextIsPresentInDatabase() throws InterruptedException {
+        selenium.type("basicSearch","java");
         Thread.sleep(1000);
         selenium.click("search");
         Thread.sleep(2000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/search?basicSearch=What+is"));
-        Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Recent Questions"));
-    }
-
-    @Test
-    public void verifyThatAbleToSearchIrrevelantTextInTextBox() throws InterruptedException {
-        selenium.type("basicSearch","rome");
-        Thread.sleep(1000);
-        selenium.click("search");
-        Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/search?basicSearch=rome"));
-        Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Recent Questions"));
+        assertTrue(selenium.isTextPresent("Search Result"));
     }
 
 }

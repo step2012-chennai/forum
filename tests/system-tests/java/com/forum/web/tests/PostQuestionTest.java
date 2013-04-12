@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class PostQuestionTestCase {
+public class PostQuestionTest {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 
@@ -37,8 +37,8 @@ public class PostQuestionTestCase {
     @Test
     public void verifyTheTargetHitsCorrectUrl() throws InterruptedException {
         assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/postQuestion"));
-        Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("Post your question "));
+        Thread.sleep(2000);
+        assertTrue(selenium.isTextPresent("Post your question :"));
     }
 
     @Test

@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginTestCase {
+public class LoginTest {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 

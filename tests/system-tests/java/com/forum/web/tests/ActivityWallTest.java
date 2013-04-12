@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class ActivityWallTestCase {
+public class ActivityWallTest {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 
@@ -26,7 +26,7 @@ public class ActivityWallTestCase {
         selenium.type("j_username", "user");
         selenium.type("j_password", "password");
         selenium.click("submit");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
 
     @After

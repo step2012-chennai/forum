@@ -10,7 +10,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertTrue;
 
-public class QuestionRepositoryTestCase {
+public class QuestionRepositoryTest {
     private Selenium selenium;
     private SeleniumServer seleniumServer;
 
@@ -39,25 +39,19 @@ public class QuestionRepositoryTestCase {
         assertTrue(selenium.isTextPresent("Recent Questions"));
     }
 
-    @Test
-    public void verifyTheURLOfTheFirstQuestionInActivityWall() throws InterruptedException {
-        selenium.click("css=p");
-        Thread.sleep(1000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/question_details?questionId=1"));
-    }
 
     @Test
     public void verifyTheClickedQuestionFromTheActivityWallInQuestionDetailPage() throws InterruptedException {
         String firstQuestion = selenium.getText("css=p");
         selenium.click("css=p");
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         assertTrue(selenium.isTextPresent(firstQuestion));
     }
 
     @Test
     public void verifyThatNoOfAdvicesIsPresentInQuestionDetailPage() throws InterruptedException {
         selenium.click("css=p");
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         assertTrue(selenium.isTextPresent("No of Advice:"));
     }
 }
