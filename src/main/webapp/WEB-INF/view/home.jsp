@@ -5,6 +5,8 @@
     <title>Welcome</title>
 </head>
 <body class="home" >
+   	<%@include file="autoRefresh.jsp" %>
+
     <div id="loginAndRegistration">
         <ul>
             <li><a href="login">&nbsp Login &nbsp</li>        </a>
@@ -13,9 +15,24 @@
         </ul>
     </div>
 
-    <div id="title">
-        <span>Welcome Home</span>
+    <div id="logoSpace">
     </div>
 
+    <div id="fiveRecentQuestions">
+
+        <%@page import="com.forum.repository.Question, java.util.List"%>
+                <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>
+                        <a href= "question_details?questionId=<%=question.getId()%>" >
+                            <% out.println(question.getQuestion()); %>
+                        </a>
+                    <div class="question-posted-time">
+                        <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime());%>
+                    </div>
+                <%}%>
+    </div>
+
+    <div id="fiveRecentAdvices">
+
+    </div>
 </body>
 </html>

@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
+    private static final int CHARACTER_LIMIT_FOR_HOMEPAGE = 100;
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?";
 
