@@ -62,11 +62,11 @@ a.button-anchor:hover{
    color: blueviolet;
 }
 
-#heading ul li{
+#loginAndRegistration ul li{
     float:right;
 }
 
-#heading ul li a{
+#loginAndRegistration ul li a{
 background-color:#E6E6FA;
 color:white;
 font-family:Lucida Console  ;

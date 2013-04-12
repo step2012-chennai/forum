@@ -112,8 +112,7 @@
     <target name="make-jars" depends="fetch-libs,copy-files-to-class-path">
         <make-jar srcdir="${src.dir}" jarfile="${ant.project.name}.jar" classpath="common-classpath"/>
         <make-jar srcdir="${unit.test.dir}" jarfile="${ant.project.name}-unit-tests.jar" classpath="common-classpath"/>
-        <make-jar srcdir="${integration.test.dir}" jarfile="${ant.project.name}-int-tests.jar"
-                  classpath="common-classpath"/>
+        <make-jar srcdir="${integration.test.dir}" jarfile="${ant.project.name}-int-tests.jar" classpath="common-classpath"/>
         <make-jar srcdir="${system.test.dir}" jarfile="${ant.project.name}-sys-tests.jar" classpath="system-classpath"/>
     </target>
 

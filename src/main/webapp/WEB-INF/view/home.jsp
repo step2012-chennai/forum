@@ -5,15 +5,17 @@
     <title>Welcome</title>
 </head>
 <body class="home" >
-<div id="heading">
-<ul>
-<li><a href="login">Login</li>        </a>
-<li> &nbsp &nbsp &nbsp</li>
-<li><a href="home">Registration</li> </a>
-</ul>
-</div>
-<div id="title">
-    <span>Welcome Home</span>
-</div>
+    <div id="loginAndRegistration">
+        <ul>
+            <li><a href="login">&nbsp Login &nbsp</li>        </a>
+            <li> &nbsp &nbsp </li>
+            <li><a href="home">&nbsp Registration &nbsp</li> </a>
+        </ul>
+    </div>
+
+    <div id="title">
+        <span>Welcome Home</span>
+    </div>
+
 </body>
 </html>
