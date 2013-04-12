@@ -1,21 +1,21 @@
-package com.forum.repository;
+package com.forum.domain;
 
-import java.lang.String;
+import java.sql.Timestamp;
 
 public class Advice {
-    private final String id;
+    private String id;
     private String advice;
-    private final String time;
+    private Timestamp time;
     private String userName;
 
-    public Advice(String id, String advice, String time, String userName) {
+    public Advice(String id, String advice, Timestamp time, String userName) {
         this.id = id;
         this.advice = advice;
         this.time = time;
         this.userName = userName;
     }
 
-    public String getTime() {
+    public Timestamp getTime() {
         return time;
     }
 

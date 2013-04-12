@@ -20,7 +20,8 @@ public class PostQuestionTest {
 
     @After
     public void tearDown() throws Exception {
-        template.execute("delete from questions;");
+        template.execute("delete from answers where q_id =(select MAX(q_id) from answers);");
+        template.execute("delete from questions where q_id =(select MAX(q_id) from questions)");
     }
 
     @Before

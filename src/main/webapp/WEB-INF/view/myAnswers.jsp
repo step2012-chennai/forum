@@ -10,7 +10,7 @@
         <div class="list-heading">
            My Answers
         </div>
-        <%@page import="com.forum.repository.*, java.util.List"%>
+        <%@page import="com.forum.domain.Question, java.util.List"%>
         <% for (Question question : (List<Question>) request.getAttribute("questions") ) { %>
                 <a href= "question_details?questionId=<%=question.getId()%>" >
                     <% out.println(question.getQuestion()); %>

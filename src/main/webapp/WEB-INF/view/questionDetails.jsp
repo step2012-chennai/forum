@@ -45,7 +45,7 @@
                      </form>
            <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
         </div>
-        <%@page import="com.forum.repository.Question,com.forum.repository.Advice, java.util.List"%>
+        <%@page import="com.forum.domain.Question,com.forum.domain.Advice, java.util.List"%>
                   <font color="blue">
                  <%int i=1;
                  for(Advice answer : (List<Advice>)request.getAttribute("answers")) { %>

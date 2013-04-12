@@ -13,7 +13,7 @@
         <div class="list-heading">
             Recent Questions
         </div>
-        <%@page import="com.forum.repository.Question, java.util.List"%>
+        <%@page import="com.forum.domain.Question, java.util.List"%>
         <% for (Question question : (List<Question>) request.getAttribute("questionList") ) { %>
                 <a href= "question_details?questionId=<%=question.getId()%>" >
                     <% out.println(question.getQuestion()); %>

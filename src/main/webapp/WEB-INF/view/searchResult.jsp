@@ -5,7 +5,7 @@
   <body>
   <%@include file="header.jsp" %>
          <div class="recent-questions-panel">
-                 <%@page import="com.forum.repository.Question, java.util.List"%>
+                 <%@page import="com.forum.domain.Question, java.util.List"%>
                  <%List<Question> questions = (List<Question>) request.getAttribute("searchList");
                      %> <div class="list-heading">${message}</div><%
                      for (Question question : questions ) { %>

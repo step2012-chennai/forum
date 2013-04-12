@@ -1,7 +1,7 @@
 package com.forum.controller;
 
 import com.forum.repository.BasicTextSearch;
-import com.forum.repository.Question;
+import com.forum.domain.Question;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;

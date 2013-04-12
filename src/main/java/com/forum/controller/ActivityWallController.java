@@ -1,12 +1,9 @@
 package com.forum.controller;
 
- import com.forum.repository.Question;
+ import com.forum.domain.Question;
 import com.forum.repository.ShowQuestions;
-import org.seleniumhq.jetty7.security.UserAuthentication;
-import org.seleniumhq.jetty7.server.Authentication;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,5 +1,6 @@
 package com.forum.repository;
 
+import com.forum.domain.Question;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,4 +1,4 @@
-package com.forum.repository;
+package com.forum.domain;
 
 public class Question {
     private String id;

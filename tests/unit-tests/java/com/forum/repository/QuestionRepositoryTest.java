@@ -1,5 +1,6 @@
 package com.forum.repository;
 
+import com.forum.domain.Question;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
@@ -17,9 +18,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class QuestionRepositoryTest {
-    ApplicationContext context;
-    QuestionRepository questionRepository;
-    JdbcTemplate template;
+    private ApplicationContext context;
+    private QuestionRepository questionRepository;
+    private JdbcTemplate template;
 
     @After
     public void tearDown() throws Exception {
