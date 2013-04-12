@@ -100,9 +100,9 @@ public class PostAdviceTest {
     @Test
     public void verifyThatAdviceMoreThan20CharactersInTextAreaIsPostedInActivityWall() throws InterruptedException {
         selenium.click("css=p");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         selenium.runScript("tinymce.get('elm1').setContent('Is this Advice POSTED ??')");
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         selenium.click("post");
         Thread.sleep(5000);
         assertTrue(selenium.isTextPresent("Is this Advice POSTED ??"));
