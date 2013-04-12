@@ -1,6 +1,6 @@
 package com.forum.controller;
 
-import com.forum.repository.Question;
+import com.forum.domain.Question;
 import com.forum.repository.ShowQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
