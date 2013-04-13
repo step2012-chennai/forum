@@ -13,6 +13,7 @@
         <intercept-url pattern="/static/**"  access="ROLE_ANONYMOUS,ROLE_USER"/>
         <intercept-url pattern="/login"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/registration"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/register"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validateUserName"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validatePassword"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
