@@ -252,7 +252,9 @@
 
     <target name="report-cobertura">
         <cobertura-report datafile="${instrument.dir}/cobertura.ser"
-                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java"/>
+                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java" format="html"/>
+        <cobertura-report datafile="${instrument.dir}/cobertura.ser"
+                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java" format="xml"/>
     </target>
 
     <target name="clean-cobertura">
