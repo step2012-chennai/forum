@@ -38,16 +38,6 @@ public class BasicTextSearchControllerTest extends BaseController {
     }
 
     @Test
-    public void shouldRedirectToTheSamePageWhenSearchDataIsEmpty() throws Exception {
-        question = "";
-        mockHttpServletRequest.setParameter("basicSearch", question);
-        mockHttpServletRequest.setParameter("pageNumber", "1");
-        mockHttpServletRequest.addHeader("referer", "getQuestionsPerPage");
-        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
-        assertThat(((RedirectView) modelAndView.getView()).getUrl(), IsEqual.equalTo("getQuestionsPerPage"));
-    }
-
-    @Test
     public void shouldRedirectToSearchResultPage() throws Exception {
         question = "what is";
         mockHttpServletRequest.setParameter("basicSearch", question);
