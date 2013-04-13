@@ -94,12 +94,12 @@
         <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true"/>
     </target>
 
-    <target name="build" depends="clean, make-war" description="Create WAR file."/>
-
-    <target name="precommit" depends="clean, init, make-jars, create-tables, coverage, cpd, pmd, insert-data"
+    <target name="build" depends="clean, init, make-jars, create-tables, coverage, insert-data"
             description="Run this before committing changes."/>
 
-    <target name="ci" depends="precommit, make-war" description="Target run by CI server"/>
+    <target name="precommit" depends="build, dev-pmd, dev-cpd" description="Target run by CI server"/>
+
+    <target name="ci" depends="build, make-war, ci-pmd, ci-cpd" description="Target run by CI server"/>
 
     <target name="clean" description="Delete output directory.">
         <delete dir="${build.dir}"/>
@@ -262,23 +262,46 @@
         <delete dir="${build.coverage.dir}" failonerror="false"/>
     </target>
 
-    <target name="pmd">
+    <target name="dev-pmd">
         <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="common-classpath"/>
         <pmd>
             <ruleset>java-empty</ruleset>
             <ruleset>java-braces</ruleset>
             <ruleset>java-imports</ruleset>
             <ruleset>java-unusedcode</ruleset>
-            <formatter type="text" toConsole="true" tofile="${report.dir}/pmd.txt"/>
+            <formatter type="text" toConsole="true"/>
             <fileset dir="${src.dir}/java">
                 <include name="**/*.java"/>
             </fileset>
         </pmd>
     </target>
 
-    <target name="cpd">
+    <target name="dev-cpd">
         <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="common-classpath"/>
-        <cpd minimumTokenCount="20" format="text" outputfile="${report.dir}/cpd.txt">
+        <cpd minimumTokenCount="20" format="text">
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </cpd>
+    </target>
+
+    <target name="ci-pmd">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="common-classpath"/>
+        <pmd>
+            <ruleset>java-empty</ruleset>
+            <ruleset>java-braces</ruleset>
+            <ruleset>java-imports</ruleset>
+            <ruleset>java-unusedcode</ruleset>
+            <formatter type="xml" toConsole="true" tofile="${report.dir}/pmd.xml"/>
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+    </target>
+
+    <target name="ci-cpd">
+        <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="common-classpath"/>
+        <cpd minimumTokenCount="20" format="xml" outputfile="${report.dir}/cpd.xml">
             <fileset dir="${src.dir}/java">
                 <include name="**/*.java"/>
             </fileset>
