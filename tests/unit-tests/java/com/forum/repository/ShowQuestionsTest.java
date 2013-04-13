@@ -28,8 +28,8 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        postQuestion.insert("this is first question for testing which should be trimmed", "Anil");
-        postQuestion.insert("this is second question", "Anil");
+        postQuestion.insert("java", "this is first question for testing which should be trimmed", "Anil");
+        postQuestion.insert("java", "this is second question", "Anil");
     }
 
     @After

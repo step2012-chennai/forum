@@ -41,18 +41,18 @@ public class QuestionRepository {
     public Question getQuestionById(int questionId) {
         SqlRowSet question = jdbcTemplate.queryForRowSet("select * from questions where q_id=" + questionId);
         question.next();
-        return new Question(question.getString(1), question.getString(2), question.getString(3), question.getString(4));
+        return new Question(question.getString(1), question.getString(2), question.getString(3), question.getString(4),question.getString(5));
     }
 
     public List<Question> getQuestions(List questionIds) {
         List<Question> questions = new ArrayList<Question>();
         if (questionIds.equals(new ArrayList())) return questions;
-        String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name from questions q" +
-                " join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id, q.question, q.user_name order by post_date DESC";
+        String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name,q.tag from questions q" +
+                " join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id, q.question, q.user_name,q.tag order by post_date DESC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(query);
         while (results.next()) {
             questions.add(new Question(results.getString("q_id"), results.getString("question"),
-                    results.getString("post_date"), results.getString("user_name")));
+                    results.getString("post_date"), results.getString("user_name"),results.getString("tag")));
         }
         return questions;
     }

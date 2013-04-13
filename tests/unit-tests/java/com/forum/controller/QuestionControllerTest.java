@@ -43,7 +43,7 @@ public class QuestionControllerTest extends BaseController {
         mockHttpServletRequest.setParameter("questionId", "10");
         ArrayList<Advice> questionDetails = getQuestions();
         when(mockAdviceService.getAdvices(10)).thenReturn(questionDetails);
-        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", userName));
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", userName,"java"));
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         verify(mockQuestionRepository).getQuestionById(10);
@@ -54,9 +54,9 @@ public class QuestionControllerTest extends BaseController {
     @Test
     public void shouldGiveTheQuestionOfLastInsertedQuestion() throws Exception {
         mockHttpServletRequest.setParameter("questionId", "10");
-        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", "Anil"));
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", "Anil","java"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
-        Question expected = new Question("1", "what is nano", "12", "Anil");
+        Question expected = new Question("1", "what is nano", "12", "Anil","java");
         verify(mockQuestionRepository).getQuestionById(10);
         assertThat((String) modelAndView.getModel().get("question"), IsEqual.equalTo(expected.getQuestion()));
     }
@@ -66,7 +66,7 @@ public class QuestionControllerTest extends BaseController {
         ArrayList<Advice> questionDetails = getQuestions();
         mockHttpServletRequest.setParameter("questionId", "10");
         when(mockAdviceService.getAdvices(10)).thenReturn(questionDetails);
-        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", "Anil"));
+        when(mockQuestionRepository.getQuestionById(10)).thenReturn(new Question("1", "what is nano", "12", "Anil","java"));
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, questionController);
         verify(mockAdviceService).getAdvices(10);
         verify(mockQuestionRepository).getQuestionById(10);

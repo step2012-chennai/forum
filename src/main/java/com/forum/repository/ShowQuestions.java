@@ -50,7 +50,7 @@ public class ShowQuestions {
         SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY post_date DESC");
         List<Question> questionsList = new ArrayList<Question>();
         while (questions.next()) {
-            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4)));
+            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4),questions.getString(6)));
         }
         return questionsList;
     }

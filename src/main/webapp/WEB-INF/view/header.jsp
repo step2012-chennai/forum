@@ -21,10 +21,10 @@
 		<table class="activity-wall">
 			<body onMouseOver="getSearchButtonStatus()">
     			<td>
-				    <a href="postQuestion" class="header-navigator-panel"><center><label for="Ask_Question" > Ask Question</label></a>
+				    <a href="postQuestion" class="header-navigator-panel"><center><label id="question" for="Ask_Question" > Ask Question</label></a>
 				</td>
 				<td>
-    				<a href="questions_advised" class="header-navigator-panel"><center><label for="Answer"> My Answer</font></label></a>
+    				<a href="questions_advised" class="header-navigator-panel"><center><label id="answer" for="Answer"> My Answer</font></label></a>
 				</td>
 				<td>
 				    <center><label for="Tags" class="header-navigator-panel" onclick="alert('tag link!')">Tag Cloud</label>

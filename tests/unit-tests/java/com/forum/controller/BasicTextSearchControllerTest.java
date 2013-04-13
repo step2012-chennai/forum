@@ -47,7 +47,7 @@ public class BasicTextSearchControllerTest extends BaseController {
         mockBasicTextSearch = (BasicTextSearch) createMock(basicTextSearchController, "basicTextSearch", BasicTextSearch.class);
 
         List<Question> searchResult = new ArrayList<Question>();
-        searchResult.add(new Question("1", "what is java", "12", "user"));
+        searchResult.add(new Question("1", "what is java", "12", "user","java"));
         when(mockBasicTextSearch.getQuestionsPerPage(PAGE_NUMBER, QUESTIONS_PER_PAGE, question)).thenReturn(searchResult);
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("searchResult"));
