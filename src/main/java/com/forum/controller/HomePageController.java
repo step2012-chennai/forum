@@ -17,6 +17,7 @@ public class HomePageController {
         ModelAndView homePage=new ModelAndView("home");
         homePage.addObject("adviserList",showLeaders.showTopFiveAdvisers());
         homePage.addObject("seekerList", showLeaders.showTopFiveSeekers());
+        homePage.addObject("recentQuestion",showLeaders.showRecentlyAdvisedQuestions());
         return homePage;
     }
 }

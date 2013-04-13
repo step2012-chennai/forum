@@ -6,15 +6,15 @@ public class Question {
     private String userName;
     private String time;
 
-    public String getUserName() {
-        return userName;
-    }
-
     public Question(String id, String question, String time, String userName) {
         this.id = id;
         this.question = question;
         this.time = time;
         this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getId() {
