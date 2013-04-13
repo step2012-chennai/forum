@@ -50,8 +50,9 @@ public class PostQuestionController {
                 mv.addObject("pageNumber", 1);
             }else{
                 mv = new ModelAndView("postQuestion");
-                mv.addObject("error", "tag should be separated by comma and should not contains spaces");
+                mv.addObject("error", "Use single word tags and should not contains spaces");
                 mv.addObject("askedQuestion", textarea);
+                mv.addObject("tag", tag);
             }
 
         } else {
