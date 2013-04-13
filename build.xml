@@ -96,7 +96,7 @@
 
     <target name="build" depends="clean, make-war" description="Create WAR file."/>
 
-    <target name="precommit" depends="cpd, pmd, clean, init, make-jars, create-tables, coverage, insert-data"
+    <target name="precommit" depends="clean, init, make-jars, create-tables, coverage, cpd, pmd, insert-data"
             description="Run this before committing changes."/>
 
     <target name="ci" depends="precommit, make-war" description="Target run by CI server"/>
