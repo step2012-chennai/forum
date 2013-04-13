@@ -1,19 +1,12 @@
 package com.forum.controller;
 
-<<<<<<< HEAD
-import com.forum.domain.Question;
-import com.forum.repository.ShowQuestions;
-=======
 import com.forum.domain.Leader;
 import com.forum.repository.ShowLeaders;
->>>>>>> jaideep,bipilesh | leaderboard done
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
