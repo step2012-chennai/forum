@@ -26,6 +26,9 @@
 
             <label>Confirm Password:</label> <input id="confirmPassword" type="password"  onChange="validatePassword()"/> <label id="myDiv1"></label><br/><br/>
             <div class="input">
+            <div class="termsAndConditions">
+                <%@include file="termsAndCondition.jsp" %>
+            </div>
             <form action="register">
                 <input type="submit" value="Register">
             </form>
