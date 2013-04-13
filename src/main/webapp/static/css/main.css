@@ -122,12 +122,13 @@ width: 700px ;
       display: inline-block;
       float: left;
       clear: left;
-      width: 250px;
+      width: 230px;
       text-align: left;
   }
 #register #text {
     display: inline-block;
     float: left;
+    width: 200px;
   }
 
 #register #myDiv{
@@ -154,7 +155,7 @@ color:#FF0000;
 #container {
 	position: fixed;
 	width: 520px;
-	height: 400px;
+	height: 420px;
 	top: 40%;
 	left: 45%;
 	margin-top: -140px;
@@ -163,6 +164,13 @@ color:#FF0000;
 	border-radius: 3px;
 	border: 1px solid #ccc;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+.location{
+    padding-left: 230px;
+}
+.input{
+    padding-bottom: 10px;
 }
 
 
