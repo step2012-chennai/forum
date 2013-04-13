@@ -40,13 +40,6 @@ public class BasicTextSearchTest {
     }
 
     @Test
-    public void shouldBeOnTheSamePageWhenUserClicksOnSearchButtonWithEmptySearchBox() throws InterruptedException {
-        selenium.click("search");
-        Thread.sleep(2000);
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
-    }
-
-    @Test
     public void shouldDisplayNoMatchingQuestionsFoundWhenNoMatchingKeywordFound() throws InterruptedException {
         selenium.type("basicSearch","lklakds");
         Thread.sleep(2000);

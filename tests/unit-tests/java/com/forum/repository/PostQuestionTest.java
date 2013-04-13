@@ -33,7 +33,7 @@ public class PostQuestionTest {
     @Test
     public void shouldAddQuestionToDatabase() {
         postQuestion = (PostQuestion) context.getBean("post");
-        postQuestion.insert("What is your name?","Anil");
+        postQuestion.insert("java", "What is your name?","Anil");
         SqlRowSet sqlRowSet = template.queryForRowSet("select question from questions where q_id =(select MAX(q_id) from questions);");
         sqlRowSet.next();
         assertThat(sqlRowSet.getString("question"), IsEqual.equalTo("What is your name?"));

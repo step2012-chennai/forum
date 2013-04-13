@@ -15,7 +15,7 @@ import java.util.List;
 public class ShowQuestions {
     private static final int BEGIN_INDEX = 0;
     private static final int CHARACTER_LIMIT = 50;
-    private static final String TRAILING_CHARACTERS = "...?";
+    private static final String TRAILING_CHARACTERS = "...?</p>";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -50,14 +50,14 @@ public class ShowQuestions {
         SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY post_date DESC");
         List<Question> questionsList = new ArrayList<Question>();
         while (questions.next()) {
-            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4)));
+            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4),questions.getString(6)));
         }
         return questionsList;
     }
 
     String truncateQuestionToCharacterLimit(String question) {
         String questionToTruncate = Jsoup.parse(question).text();
-        return (questionToTruncate.length() <= CHARACTER_LIMIT) ? question : questionToTruncate.substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
+        return (questionToTruncate.length() <= CHARACTER_LIMIT) ? question : questionToTruncate.concat("<p>").substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
     }
 
     public String nextButtonStatus(int pageNumber, int questionsPerPage) {

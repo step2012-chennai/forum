@@ -28,8 +28,8 @@ public class ShowQuestionsTest {
         questions = (ShowQuestions) context.getBean("showQuestions");
         postQuestion = (PostQuestion) context.getBean("post");
         template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        postQuestion.insert("this is first question for testing which should be trimmed", "Anil");
-        postQuestion.insert("this is second question", "Anil");
+        postQuestion.insert("java", "this is first question for testing which should be trimmed", "Anil");
+        postQuestion.insert("java", "this is second question", "Anil");
     }
 
     @After
@@ -46,14 +46,14 @@ public class ShowQuestionsTest {
         for (Question resultedQuestion : result) {
             actual.add(resultedQuestion.getQuestion());
         }
-        List<String> expected = Arrays.asList("this is first question for testing which should be...?", "this is second question");
+        List<String> expected = Arrays.asList("this is first question for testing which should be...?</p>", "this is second question");
         assertTrue(expected.equals(actual));
     }
 
     @Test
     public void shouldReturnFirst50CharactersOfAQuestionAlongWithThreeTrailingDotsAndQuestionMark() {
         String string = "It should return a new String till the specified Characters";
-        String expected = "It should return a new String till the specified C...?";
+        String expected = "It should return a new String till the specified C...?</p>";
         assertThat(questions.truncateQuestionToCharacterLimit(string), IsEqual.equalTo(expected));
     }
 

@@ -1,5 +1,6 @@
 package com.forum.controller;
 
+import com.forum.domain.TagValidator;
 import com.forum.repository.PostQuestion;
 import com.forum.repository.QuestionValidation;
 import org.hamcrest.core.IsEqual;
@@ -21,7 +22,7 @@ public class PostQuestionControllerTest extends BaseController {
     private QuestionValidation mockQuestionValidation;
     private PostQuestion mockPostQuestion;
     private SecurityContext mockSecurityContext;
-
+    private TagValidator mockTagValidator;
     @Before
     public void setUp() {
         postQuestionController = new PostQuestionController();
@@ -30,9 +31,11 @@ public class PostQuestionControllerTest extends BaseController {
         mockHttpServletRequest.setMethod("POST");
         mockHttpServletRequest.setParameter("textareas", question);
         mockHttpServletRequest.setParameter("userName", userName);
+        mockHttpServletRequest.setParameter("createTag","java");
         mockQuestionValidation = (QuestionValidation) createMock(postQuestionController, "questionValidation", QuestionValidation.class);
         mockPostQuestion = (PostQuestion) createMock(postQuestionController, "post", PostQuestion.class);
         mockSecurityContext = (SecurityContext) createMock(postQuestionController, "context", SecurityContext.class);
+        mockTagValidator = (TagValidator) createMock(postQuestionController, "tagValidator", TagValidator.class);
         SecurityContextHolder.setContext(mockSecurityContext);
         when(mockSecurityContext.getAuthentication()).thenReturn(new UsernamePasswordAuthenticationToken(userName, "password"));
     }
@@ -40,26 +43,27 @@ public class PostQuestionControllerTest extends BaseController {
     @Test
     public void shouldInsertGivenValidQuestion() throws Exception {
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(true);
-
-        doNothing().when(mockPostQuestion).insert(question, userName);
+        when(mockTagValidator.isValid("java")).thenReturn(true);
+        when(mockTagValidator.format("java")).thenReturn("java");
+        doNothing().when(mockPostQuestion).insert("java", question, userName);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion).insert(question, userName);
+        verify(mockPostQuestion).insert("java", question, userName);
         verify(mockSecurityContext).getAuthentication();
         assertThat(modelAndView.getModel().get("pageNumber").toString(), IsEqual.equalTo("1"));
         assertThat(((RedirectView) modelAndView.getView()).getUrl(), IsEqual.equalTo("activityWall"));
     }
 
     @Test
-    public void shouldAddErrorWhenValidationFails() throws Exception {
+    public void shouldNotInsertInvalidQuestion() throws Exception {
         when(mockQuestionValidation.isQuestionValid(question)).thenReturn(false);
 
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
 
         verify(mockQuestionValidation).isQuestionValid(question);
-        verify(mockPostQuestion, never()).insert(question, userName);
+        verify(mockPostQuestion, never()).insert("java", question, userName);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("postQuestion"));
         assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("Question length must be of at least 20 characters, and should not contain all spaces"));
     }
@@ -75,5 +79,17 @@ public class PostQuestionControllerTest extends BaseController {
 
         verify(postQuestionControllerSpy).getUserName();
         assertThat(mockHttpServletRequest.getSession().getAttribute("userName").toString(), IsEqual.equalTo(usernamePasswordAuthenticationToken.toString()));
+    }
+    @Test
+    public void shouldNotPostQuestionForInvalidTag() throws Exception {
+        when(mockQuestionValidation.isQuestionValid(question)).thenReturn(true);
+        when(mockTagValidator.isValid("java java")).thenReturn(false);
+        when(mockTagValidator.format("java java")).thenReturn("java java");
+        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, postQuestionController);
+
+        verify(mockQuestionValidation).isQuestionValid(question);
+        verify(mockPostQuestion, never()).insert("java", question, userName);
+        assertThat(modelAndView.getViewName(), IsEqual.equalTo("postQuestion"));
+        assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("Use single word tags and should not contains spaces"));
     }
 }

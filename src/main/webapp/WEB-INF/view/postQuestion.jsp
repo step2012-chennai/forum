@@ -6,6 +6,8 @@
 </head>
 <body class="postQuestion" background-color:#ffffff>
     <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
+     <script type="text/javascript" src="./static/javascript/tiny_mce_init.js"></script>
+    <script type="text/javascript" src="./static/javascript/reset.js"></script>
     <script type="text/javascript" src="./static/javascript/textboxEvents.js"></script>
     <div class="user-name" >
     Logged in as<a href="activityWall">${userName}</a>  | <a href="#">Logout</a>
@@ -23,13 +25,13 @@
     		</div><br>
 
     		<div>
-              <input type="text" size= 50 id="createTag" name="createTag" title="use single word without spaces or use comma separated words to create multiple tags " style = "color:#888;"
-                value="create tag (optional)" onfocus="onFocus(this)" onblur="onBlur(this)" />
+              <input type="text" size= 50 id="tag" name="createTag" title="use single word without spaces or use comma separated words to create multiple tags "
+               value="${tag}"/>
                 &nbsp &nbsp &nbsp &nbsp&nbsp
                    <form action="activityWall">
                        <input type="submit" id="post" value="Post Question">
                    </form>
-               <input type="button" id="reset" onclick="clearTextbox()" value="Reset">
+               <input type="reset" id="reset" onclick="clearTextbox()" value="Reset">
     		</div>
     	</div>
    </form>

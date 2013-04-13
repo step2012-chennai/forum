@@ -94,12 +94,12 @@
         <retrieve pattern="lib/[conf]/[type]/[artifact]-[revision].[ext]" sync="true"/>
     </target>
 
-    <target name="build" depends="clean, make-war" description="Create WAR file."/>
-
-    <target name="precommit" depends="clean, init, make-jars, create-tables, coverage, insert-data"
+    <target name="build" depends="clean, init, make-jars, create-tables, coverage, insert-data"
             description="Run this before committing changes."/>
 
-    <target name="ci" depends="precommit, make-war" description="Target run by CI server"/>
+    <target name="precommit" depends="build, dev-pmd, dev-cpd" description="Target run by CI server"/>
+
+    <target name="ci" depends="build, make-war, ci-pmd, ci-cpd" description="Target run by CI server"/>
 
     <target name="clean" description="Delete output directory.">
         <delete dir="${build.dir}"/>
@@ -196,6 +196,14 @@
               failonerror="true"/>
     </target>
 
+    <target name="debug-jetty" depends="make-jars" description="Debug application in Jetty.">
+        <java classname="com.forum.jetty.WebServer" classpathref="system-classpath" fork="true" failonerror="true">
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+            <jvmarg value="-Xdebug"/>
+        </java>
+    </target>
+
+
     <target name="package-src" description="Create zip of the source code for distribution.">
         <mkdir dir="${dist.dir}"/>
         <zip basedir="${basedir}" destfile="${dist.dir}/${ant.project.name}-src.zip"/>
@@ -244,12 +252,61 @@
 
     <target name="report-cobertura">
         <cobertura-report datafile="${instrument.dir}/cobertura.ser"
-                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java"/>
+                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java" format="html"/>
+        <cobertura-report datafile="${instrument.dir}/cobertura.ser"
+                          destdir="${build.coverage.dir}" srcdir="${src.dir}/java" format="xml"/>
     </target>
 
     <target name="clean-cobertura">
         <delete dir="${instrument.dir}" failonerror="false"/>
         <delete dir="${build.coverage.dir}" failonerror="false"/>
     </target>
+
+    <target name="dev-pmd">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="common-classpath"/>
+        <pmd>
+            <ruleset>java-empty</ruleset>
+            <ruleset>java-braces</ruleset>
+            <ruleset>java-imports</ruleset>
+            <ruleset>java-unusedcode</ruleset>
+            <formatter type="text" toConsole="true"/>
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+    </target>
+
+    <target name="dev-cpd">
+        <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="common-classpath"/>
+        <cpd minimumTokenCount="20" format="text">
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </cpd>
+    </target>
+
+    <target name="ci-pmd">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="common-classpath"/>
+        <pmd>
+            <ruleset>java-empty</ruleset>
+            <ruleset>java-braces</ruleset>
+            <ruleset>java-imports</ruleset>
+            <ruleset>java-unusedcode</ruleset>
+            <formatter type="xml" toConsole="true" tofile="${report.dir}/pmd.xml"/>
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+    </target>
+
+    <target name="ci-cpd">
+        <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="common-classpath"/>
+        <cpd minimumTokenCount="20" format="xml" outputfile="${report.dir}/cpd.xml">
+            <fileset dir="${src.dir}/java">
+                <include name="**/*.java"/>
+            </fileset>
+        </cpd>
+    </target>
+
     <!-- end of target for cobertura -->
 </project>

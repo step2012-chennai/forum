@@ -42,12 +42,13 @@ public class QuestionRepositoryTest {
         sqlRowSet.next();
         assertThat(sqlRowSet.getString("question"), IsEqual.equalTo("What is your name?"));
     }
+
     @Test
-    public void shouldFetchQuestionForGivenQuestionId(){
+    public void shouldFetchQuestionForGivenQuestionId() {
         questionRepository.insert("what is nano");
         int questionId = template.queryForInt("select MAX(q_id) from questions");
-        Question question= questionRepository.getQuestionById(questionId);
-        Question expected=new Question("1","what is nano","12","Anil");
+        Question question = questionRepository.getQuestionById(questionId);
+        Question expected = new Question("1", "what is nano", "12", "Anil", "java");
         assertThat(question.getQuestion(), IsEqual.equalTo(expected.getQuestion()));
     }
 
@@ -60,10 +61,10 @@ public class QuestionRepositoryTest {
         int questionId2 = template.queryForInt("select q_id from questions where question='What is java?' ");
         questionIds.add(questionId1);
         questionIds.add(questionId2);
-        template.execute("insert into answers(q_id,answer,post_date,user_name) values('"+questionId1+"','latest answer',CURRENT_TIMESTAMP(0),'user')");
-        template.execute("insert into answers(q_id,answer,post_date,user_name) values('"+(questionId2)+"','previously answered','2013-04-09 19:34:56','user')");
-        Question expectedQuestion1 = new Question("id1", "What is java?", null, "user");
-        Question expectedQuestion2 = new Question("id2", "How to connect with postgresql in java ?", null, "user");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values('" + questionId1 + "','latest answer',CURRENT_TIMESTAMP(0),'user')");
+        template.execute("insert into answers(q_id,answer,post_date,user_name) values('" + (questionId2) + "','previously answered','2013-04-09 19:34:56','user')");
+        Question expectedQuestion1 = new Question("id1", "What is java?", null, "user", "java");
+        Question expectedQuestion2 = new Question("id2", "How to connect with postgresql in java ?", null, "user", "java");
         List<Question> actualQuestions = questionRepository.getQuestions(questionIds);
         List<Question> expectedQuestions = new ArrayList<Question>();
         expectedQuestions.add(expectedQuestion1);

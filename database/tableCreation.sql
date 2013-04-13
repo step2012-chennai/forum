@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS questions;
-create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector);
+create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector,tag text);
 
 create table answers(ans_id serial,q_id int references questions(q_id),answer varchar,post_date timestamp,user_name varchar);
 

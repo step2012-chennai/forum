@@ -38,16 +38,6 @@ public class BasicTextSearchControllerTest extends BaseController {
     }
 
     @Test
-    public void shouldRedirectToTheSamePageWhenSearchDataIsEmpty() throws Exception {
-        question = "";
-        mockHttpServletRequest.setParameter("basicSearch", question);
-        mockHttpServletRequest.setParameter("pageNumber", "1");
-        mockHttpServletRequest.addHeader("referer", "getQuestionsPerPage");
-        ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
-        assertThat(((RedirectView) modelAndView.getView()).getUrl(), IsEqual.equalTo("getQuestionsPerPage"));
-    }
-
-    @Test
     public void shouldRedirectToSearchResultPage() throws Exception {
         question = "what is";
         mockHttpServletRequest.setParameter("basicSearch", question);
@@ -57,7 +47,7 @@ public class BasicTextSearchControllerTest extends BaseController {
         mockBasicTextSearch = (BasicTextSearch) createMock(basicTextSearchController, "basicTextSearch", BasicTextSearch.class);
 
         List<Question> searchResult = new ArrayList<Question>();
-        searchResult.add(new Question("1", "what is java", "12", "user"));
+        searchResult.add(new Question("1", "what is java", "12", "user","java"));
         when(mockBasicTextSearch.getQuestionsPerPage(PAGE_NUMBER, QUESTIONS_PER_PAGE, question)).thenReturn(searchResult);
         ModelAndView modelAndView = handlerAdapter.handle(mockHttpServletRequest, mockHttpServletResponse, basicTextSearchController);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("searchResult"));
