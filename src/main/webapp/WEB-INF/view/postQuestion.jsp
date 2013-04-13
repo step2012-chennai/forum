@@ -25,8 +25,8 @@
     		</div><br>
 
     		<div>
-              <input type="text" size= 50 id="tag" name="createTag" title="use single word without spaces or use comma separated words to create multiple tags " style = "color:#888;"
-                value="create tag (optional)" onfocus="onFocus(this)" onblur="onBlur(this)" />
+              <input type="text" size= 50 id="tag" name="createTag" title="use single word without spaces or use comma separated words to create multiple tags "
+               value="${tag}"/>
                 &nbsp &nbsp &nbsp &nbsp&nbsp
                    <form action="activityWall">
                        <input type="submit" id="post" value="Post Question">

@@ -90,6 +90,6 @@ public class PostQuestionControllerTest extends BaseController {
         verify(mockQuestionValidation).isQuestionValid(question);
         verify(mockPostQuestion, never()).insert("java", question, userName);
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("postQuestion"));
-        assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("tag should be separated by comma and should not contains spaces"));
+        assertThat(modelAndView.getModel().get("error").toString(), IsEqual.equalTo("Use single word tags and should not contains spaces"));
     }
 }
