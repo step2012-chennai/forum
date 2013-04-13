@@ -7,12 +7,16 @@ public class Question {
     private String time;
     private String tags;
 
+<<<<<<< HEAD
     public String getTags() {
         return tags;
     }
 
     public Question(String id, String question, String time, String userName,String tags) {
         this.tags = tags;
+=======
+    public Question(String id, String question, String time, String userName) {
+>>>>>>> jaideep,bipilesh|complete recent question in homepage tests
         this.id = id;
         this.question = question;
         this.time = time;

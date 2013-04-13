@@ -18,7 +18,7 @@
 
     <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
         <H3>Top Five Seekers</H3>
-        <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader"%>
+        <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader, com.forum.domain.Question" %>
         <ul>
            <% List<Leader> seekers = (List<Leader>) request.getAttribute("seekerList");
            for (Leader seeker : seekers ){
@@ -40,6 +40,18 @@
 
             </ul>
     </div>
+    <div id="recentlyAdvisedQuestion">
+    <H1>Recently Advised Question</H1>
+            <ul>
+            <% List<Question> questions=(List<Question>)     request.getAttribute("recentQuestion");  %>
+            <%
+                for (Question question : questions ){
+                    %><li><% out.println(question.getUserName()); %></li><%
+                    %><li><% out.println(question.getQuestion()); %></li><%
+                    %><li><% out.println(question.getTime()); %></li><%
+                }
+            %>
+            </ul>
 
     </div>
 </body>
