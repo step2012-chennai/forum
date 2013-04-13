@@ -196,6 +196,14 @@
               failonerror="true"/>
     </target>
 
+    <target name="debug-jetty" depends="make-jars" description="Debug application in Jetty.">
+        <java classname="com.forum.jetty.WebServer" classpathref="system-classpath" fork="true" failonerror="true">
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+            <jvmarg value="-Xdebug"/>
+        </java>
+    </target>
+
+
     <target name="package-src" description="Create zip of the source code for distribution.">
         <mkdir dir="${dist.dir}"/>
         <zip basedir="${basedir}" destfile="${dist.dir}/${ant.project.name}-src.zip"/>
