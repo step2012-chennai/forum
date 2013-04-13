@@ -5,7 +5,16 @@ public class Question {
     private String question;
     private String userName;
     private String time;
+    private String tags;
 
+    public String getTags() {
+        return tags;
+    }
+
+    public Question(String id, String question, String time, String userName,String tags) {
+        this(id,question,time,userName);
+        this.tags = tags;
+    }
     public Question(String id, String question, String time, String userName) {
         this.id = id;
         this.question = question;
