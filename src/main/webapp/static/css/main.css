@@ -143,10 +143,26 @@ padding-left:250px;
 #register{
     position: absolute;
     margin: -100px 0 0 -200px;
-    top: 40%;
+    top: 30%;
     left: 45%;
 }
 
 .error-color{
 color:#FF0000;
 }
+
+#container {
+	position: fixed;
+	width: 520px;
+	height: 400px;
+	top: 40%;
+	left: 45%;
+	margin-top: -140px;
+	margin-left: -170px;
+	background: #D8D8D8;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+

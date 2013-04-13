@@ -4,8 +4,9 @@
     <title>Registration</title>
         <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     </head>
-    <body>
+    <body bgcolor="#f0f0f0">
      <script type="text/javascript" src="./static/javascript/userValidation.js"></script>
+     <div id="container">
     <div id="register">
     <form action="signIn" method="post">
         <label>Name:</label> <input type="text" name="name" id="name"/>
@@ -17,7 +18,7 @@
         <br/><br/>
         <label>Gender:</label> <input type="radio" name="gender" value="male"/>Male<input type="radio" name="gender" value="female"/>Female
         <br/><br/>
-        <label>Email:</label> <input id="emailId" type="text"/>
+        <label>Email:</label> <input id="emailId" type="email"/>
         <br/><br/>
         <label>Password:</label> <input id="password" type="password" />
         <br/><br/>
@@ -26,6 +27,7 @@
         <input type="submit" value="Sign in">
         <input type="reset" value = "reset">
     </form>
+    </div>
     </div>
     </body>
 </html>
