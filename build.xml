@@ -267,7 +267,7 @@
             <ruleset>java-braces</ruleset>
             <ruleset>java-imports</ruleset>
             <ruleset>java-unusedcode</ruleset>
-            <formatter type="xml" toConsole="true" tofile="${report.dir}/pmd.xml"/>
+            <formatter type="text" toConsole="true" tofile="${report.dir}/pmd.txt"/>
             <fileset dir="${src.dir}/java">
                 <include name="**/*.java"/>
             </fileset>
@@ -276,7 +276,7 @@
 
     <target name="cpd">
         <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="common-classpath"/>
-        <cpd minimumTokenCount="20" format="xml" outputfile="${report.dir}/cpd.xml">
+        <cpd minimumTokenCount="20" format="text" outputfile="${report.dir}/cpd.txt">
             <fileset dir="${src.dir}/java">
                 <include name="**/*.java"/>
             </fileset>
