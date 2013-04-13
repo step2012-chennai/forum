@@ -27,4 +27,13 @@ public class RegistrationController {
         }
         return result;
     }
+
+    @RequestMapping(value = "/validatePassword",method = RequestMethod.GET)
+    public  @ResponseBody String validatePassword(@RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword){
+        String result=null;
+        if(!(password.equals(confirmPassword))){
+            result="Password Mismatch";
+        }
+        return result;
+    }
 }

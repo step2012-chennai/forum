@@ -21,7 +21,7 @@
         <br/><br/>
         <label>Password:</label> <input id="password" type="password" />
         <br/><br/>
-        <label>Confirm Password:</label> <input id="confirmPassword" type="password"/>
+        <label>Confirm Password:</label> <input id="confirmPassword" type="password"  onChange="validatePassword()"/> <label id="myDiv1"></label>
         <br/><br/>
         <input type="submit" value="Sign in">
         <input type="reset" value = "reset">

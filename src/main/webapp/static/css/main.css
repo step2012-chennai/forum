@@ -123,6 +123,11 @@ color:red;
 padding-left:250px;
 }
 
+#register #myDiv1{
+color:red;
+padding-left:250px;
+}
+
 #register{
     position: absolute;
     margin: -100px 0 0 -200px;

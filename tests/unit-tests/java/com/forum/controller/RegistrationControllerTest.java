@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class RegistrationControllerTest extends BaseController{
@@ -42,6 +43,18 @@ public class RegistrationControllerTest extends BaseController{
         when(userRepository.isUserNameExists("user")).thenReturn(true);
         when(userRepository.isUserNameExists("user")).thenReturn(true);
         assertThat(registrationController.ValidateUserName("user"), IsEqual.equalTo("Already available"));
+    }
+
+    @Test
+    public void shouldGiveAppropriateMessageForMismatchPassword() throws Exception {
+        registrationController=new RegistrationController();
+        mockHttpServletRequest.setRequestURI("/validatePassword");
+        mockHttpServletRequest.setParameter("user", "wrongUser");
+        mockHttpServletRequest.setParameter("password", "password");
+        mockHttpServletRequest.setParameter("confirmPassword", "password");
+        mockHttpServletRequest.setMethod("GET");
+        userRepository = (UserRepository) createMock(registrationController, "userRepository", UserRepository.class);
+        assertTrue(registrationController.validatePassword("password","password1").equals("Password Mismatch"));
 
     }
 }
