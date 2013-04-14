@@ -30,7 +30,7 @@
 
     <div id="headingSpaceForLogoSpace"></div>
         <div id="spaceForTags"></div>
-    <div id="topFiveSeekers" style="height: 100px; width: 350px; float: right">
+    <div id="topFiveSeekers" style="height: 100px; width: 350px; float: right ">
         <H3>Top Five Seekers</H3>
         <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader, com.forum.domain.Question" %>
         <ul>
@@ -63,8 +63,10 @@
             <%
                 for (Question question : questions ){
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
-                <div class="question-posted-time-for-home-page"><br>
-                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>
+                <div class="question-posted-time-for-home-page">
+                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>&nbsp&nbsp&nbsp&nbsp
+                     <%String str = question.getTags();%>
+                      <lable><b> <%out.println(str);%> </b></lable>
                 </div>
                 <hr width="50%" align="left">
                 <%}%>
