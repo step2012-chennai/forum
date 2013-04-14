@@ -15,7 +15,7 @@
     <body onLoad="loadFaceBox()">
         <a href="#info" rel="facebox[.bolder]">terms and conditions</a>
 
-        <div id="info" style="visibility: hidden">
+        <div id="info" style="visibility: hidden; display:none">
             <input type="button" value="Print" onClick="PrintElem('#info')">
             <center>
                 <h2>

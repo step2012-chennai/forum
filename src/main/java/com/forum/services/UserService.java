@@ -13,8 +13,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void register(String userName, String name, String password, String dob, String location, String gender) {
-        userRepository.register(userName, name, password, dob, location, gender);
+    public void register(String userName, String location, String email, String name, String dob, String gender, String password) {
+        userRepository.register(userName, name, password, dob, location, gender, email);
     }
 
     public boolean isUserNameExists(String username) {

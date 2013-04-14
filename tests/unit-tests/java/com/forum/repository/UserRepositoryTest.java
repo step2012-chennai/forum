@@ -35,10 +35,10 @@ public class UserRepositoryTest extends IntegrationTestBase {
         assertFalse(userRepository.isUserNameExists("veerappan"));
     }
 
-//    @Test
-//    public void shouldStoreTheUserDetailsInDataBase() throws ParseException {
-//        userRepository.register("sachin", "Sachin", "password","24-04-1974","mumbai","male");
-//        assertTrue(userRepository.isUserNameExists("sachin"));
-//        template.execute("delete from userDetails where username='sachin'");
-//    }
+    @Test
+    public void shouldStoreTheUserDetailsInDataBase() {
+        userRepository.register("sachin", "Sachin", "password","24-04-1974","mumbai","male","email id");
+        assertTrue(userRepository.isUserNameExists("sachin"));
+        template.execute("delete from userDetails where username='sachin'");
+    }
 }

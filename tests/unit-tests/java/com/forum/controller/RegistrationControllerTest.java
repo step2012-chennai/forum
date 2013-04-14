@@ -55,6 +55,5 @@ public class RegistrationControllerTest extends BaseController{
         mockHttpServletRequest.setMethod("GET");
         userService = (UserService) createMock(registrationController, "userService", UserService.class);
         assertTrue(registrationController.validatePassword("password","password1").equals("Password Mismatch"));
-
     }
 }

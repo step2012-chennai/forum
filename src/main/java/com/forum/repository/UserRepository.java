@@ -1,5 +1,6 @@
 package com.forum.repository;
 
+import com.forum.authentication.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,9 @@ public class UserRepository {
         return (count==1);
     }
 
-    public void register(String userName, String name, String password, String dob, String location, String gender) {
-        jdbcTemplate.execute("insert into userDetails(username,location,name,dob,gender,password) values('"+ userName + "','" + location  + "','" + name + "','" + dob + "','" + gender + "','" + password + "')");
+    public void register(String userName, String name, String password, String dob, String location, String gender, String email) {
+        Encryption encryption = new Encryption();
+        password = encryption.encryptUsingMd5(password);
+        jdbcTemplate.execute("insert into userDetails(username,email,location,name,dob,gender,password) values('"+ userName + "','"  + email  + "','" + location  + "','" + name + "','" + dob + "','" + gender + "','" + password + "')");
     }
 }

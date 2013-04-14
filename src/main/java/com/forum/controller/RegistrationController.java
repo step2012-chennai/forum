@@ -57,7 +57,7 @@ public class RegistrationController {
             }
         }
 
-        userService.register(userInfo.get(0), userInfo.get(3), userInfo.get(4), userInfo.get(3), userInfo.get(1), userInfo.get(5));
+        userService.register(userInfo.get(0), userInfo.get(1), userInfo.get(2), userInfo.get(3), userInfo.get(4), userInfo.get(5), userInfo.get(6));
 
         return new ModelAndView(new RedirectView("login"));
     }
