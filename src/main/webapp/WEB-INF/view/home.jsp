@@ -12,7 +12,7 @@
         <ul>
             <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
             <li>&nbsp</li>
-            <li><a id="homeRegistration" href="home">&nbsp Registration &nbsp</a></li>
+            <li><a id="homeRegistration" href="registration">&nbsp Registration &nbsp</a></li>
         </ul>
     </div>
 </sec:authorize>
@@ -27,6 +27,7 @@
 
 
     <%@include file="homeHeader.jsp" %>
+    <%@include file="autoRefresh.jsp" %>
 
     <div id="headingSpaceForLogoSpace"></div>
         <div id="spaceForTags"></div>
