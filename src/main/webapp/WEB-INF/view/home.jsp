@@ -26,20 +26,20 @@
                 }
            %>
         </ul>
+        <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right">
+                <H3>Top Five Advisors</H3>
+                     <ul>
+                       <% List<Leader> advisers = (List<Leader>) request.getAttribute("adviserList");
+                                  for (Leader adviser : advisers ){
+                                           %><li><% out.println(adviser.getUserName()); %></li><%
+                                       }
+                                  %>
+                      </ul>
+
+                    </ul>
+            </div>
     </div>
 
-    <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right">
-        <H3>Top Five Advisors</H3>
-             <ul>
-               <% List<Leader> advisers = (List<Leader>) request.getAttribute("adviserList");
-                          for (Leader adviser : advisers ){
-                                   %><li><% out.println(adviser.getUserName()); %></li><%
-                               }
-                          %>
-              </ul>
-
-            </ul>
-    </div>
     <div class="recent-questions-panel">
             <div class="list-heading">
         Recently Advised Question
