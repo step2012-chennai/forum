@@ -46,12 +46,15 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/questions_advised", method = RequestMethod.GET)
-    public ModelAndView getAdvisedQuestions() {
+    public ModelAndView getAdvisedQuestions(HttpServletRequest request) {
 
         context = SecurityContextHolder.getContext();
         Object userName = context.getAuthentication().getPrincipal();
         List<Question> questions = questionRepository.getQuestions(adviceService.getQuestionIdAnsweredBy(userName.toString()));
         ModelAndView myAnswers = new ModelAndView("myAnswers");
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userName", userName);
+
         myAnswers.addObject("questions", questions);
         return myAnswers;
     }

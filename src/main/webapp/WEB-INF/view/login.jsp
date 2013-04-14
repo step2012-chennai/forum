@@ -20,8 +20,9 @@
                  <label>Password:&nbsp</label>
                  <input type='password' name='j_password' />
              </div>
-             <div style="padding-left:265px">
-                 <input name="submit" type="submit" value="Login">
+                <div style="padding-left:145px">
+                <a href="registration">Sign Up</a>
+                <input name="submit" type="submit" value="Login">
              </div>
         </div>
        </form>
