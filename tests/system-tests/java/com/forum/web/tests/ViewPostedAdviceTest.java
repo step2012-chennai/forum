@@ -88,7 +88,7 @@ public class ViewPostedAdviceTest {
     private void postAdviceForRecentPostedQuestion() throws InterruptedException {
         selenium.click(recentQuestionId);
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('advice for first question')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('advice for first question')");
         Thread.sleep(2000);
         selenium.click("post");
         Thread.sleep(2000);
@@ -97,7 +97,7 @@ public class ViewPostedAdviceTest {
     private void postQuestion() throws InterruptedException {
         selenium.click("question");
         selenium.waitForPageToLoad("4000");
-        selenium.runScript("tinymce.get('elm1').setContent('this is first question for testing')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('this is first question for testing')");
         Thread.sleep(2000);
         selenium.click("post");
         Thread.sleep(4000);

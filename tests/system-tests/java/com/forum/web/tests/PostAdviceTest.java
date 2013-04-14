@@ -64,11 +64,11 @@ public class PostAdviceTest {
     public void verifyThatWhenResetButtonIsClickedTheAdviceTextBoxIsEmpty() throws InterruptedException {
         selenium.click("css=p");
         selenium.waitForPageToLoad("6000");
-        selenium.runScript("tinymce.get('elm1').setContent('click reset button')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('click reset button')");
         Thread.sleep(3000);
         selenium.click("reset");
         Thread.sleep(1000);
-        selenium.selectFrame("elm1_ifr");
+        selenium.selectFrame("askAdviceTextarea_ifr");
         Thread.sleep(1000);
         assertFalse(selenium.isTextPresent("click reset button"));
         assertTrue(selenium.isTextPresent(""));
@@ -79,7 +79,7 @@ public class PostAdviceTest {
     public void verifyTheErrorMessageIfTextIsLessThan20CharactersInTextArea() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(1000);
-        selenium.runScript("tinymce.get('elm1').setContent('What?')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('What?')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
@@ -90,7 +90,7 @@ public class PostAdviceTest {
     public void verifyTheErrorMessageIfTextContainsAllSpacesInTextArea() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(1000);
-        selenium.runScript("tinymce.get('elm1').setContent('                                                     ')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('                                                     ')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(3000);
@@ -101,7 +101,7 @@ public class PostAdviceTest {
     public void verifyThatAdviceMoreThan20CharactersInTextAreaIsPostedInViewDetailsOfQuestion() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(5000);
-        selenium.runScript("tinymce.get('elm1').setContent('Is this Advice POSTED ??')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('Is this Advice POSTED ??')");
         Thread.sleep(5000);
         selenium.click("post");
         Thread.sleep(5000);
