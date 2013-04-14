@@ -172,14 +172,18 @@ list-style: none;
     width: 200px;
   }
 
-#register #myDiv{
+#register #sameUserErrorMessage{
 color:red;
 padding-left:250px;
 }
 
-#register #myDiv1{
+#register #passwordMismatchMessage{
 color:red;
 padding-left:250px;
+}
+
+#register #termsErrorMessage{
+color:red;
 }
 
 #register{

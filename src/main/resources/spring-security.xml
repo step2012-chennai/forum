@@ -16,6 +16,7 @@
         <intercept-url pattern="/register"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validateUserName"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validatePassword"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/validateTermsAndCondition"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login login-page="/login" default-target-url="/activityWall" authentication-failure-handler-ref="loginFailureHandler" />

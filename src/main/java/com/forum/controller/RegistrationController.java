@@ -38,6 +38,15 @@ public class RegistrationController {
         return result;
     }
 
+    @RequestMapping(value = "/validateTermsAndCondition",method = RequestMethod.GET)
+    public  @ResponseBody String ValidateTerms(@RequestParam(value = "check") String check){
+        String result="";
+        if(check.equals("false")){
+            result="Accept Terms and Conditions to proceed";
+        }
+        return result;
+    }
+
     @RequestMapping(value = "/validatePassword",method = RequestMethod.GET)
     public  @ResponseBody String validatePassword(@RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword){
         String result=null;

@@ -12,7 +12,7 @@
         <ul>
             <li><a href="login">&nbsp Login &nbsp</a></li>
             <li>&nbsp</li>
-            <li><a href="home">&nbsp Registration &nbsp</a></li>
+            <li><a href="registration">&nbsp Registration &nbsp</a></li>
         </ul>
     </div>
 </sec:authorize>

@@ -56,4 +56,13 @@ public class RegistrationControllerTest extends BaseController{
         userService = (UserService) createMock(registrationController, "userService", UserService.class);
         assertTrue(registrationController.validatePassword("password","password1").equals("Password Mismatch"));
     }
+
+    @Test
+    public void shouldGiveAppropriateMessageForTermsAndCondition() throws Exception {
+        registrationController=new RegistrationController(userService);
+        mockHttpServletRequest.setRequestURI("/validateTermsAndCondition");
+        mockHttpServletRequest.setParameter("check", "false");
+        mockHttpServletRequest.setMethod("GET");
+        assertTrue(registrationController.ValidateTerms("false").equals("Accept Terms and Conditions to proceed"));
+    }
 }

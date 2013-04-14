@@ -3,7 +3,7 @@ function validateUserName()
     xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function() {
        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+            document.getElementById("sameUserErrorMessage").innerHTML=xmlhttp.responseText;
        }
     }
     var userName=document.getElementById("user").value;
@@ -15,7 +15,7 @@ function validatePassword(){
     xmlhttp=new XMLHttpRequest();
        xmlhttp.onreadystatechange=function() {
           if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                document.getElementById("myDiv1").innerHTML=xmlhttp.responseText;
+                document.getElementById("passwordMismatchMessage").innerHTML=xmlhttp.responseText;
           }
        }
        var password=document.getElementById("password").value;
@@ -24,17 +24,16 @@ function validatePassword(){
        xmlhttp.send();
 }
 
-function validateUserName()
-{
-    xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function() {
-       if (xmlhttp.readyState==4 && xmlhttp.status==200){
-            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-       }
-    }
-    var userName=document.getElementById("user").value;
-    xmlhttp.open("GET","validateUserName?user="+userName,true);
-    xmlhttp.send();
+function validateTermsAndCondition(){
+     xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+           if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                document.getElementById("termsErrorMessage").innerHTML=xmlhttp.responseText;
+           }
+        }
+        var check=document.getElementById("check").checked;
+        xmlhttp.open("GET","validateTermsAndCondition?check="+check,true);
+        xmlhttp.send();
 }
 
 function getRegisterButtonStatus(){
@@ -44,8 +43,7 @@ function getRegisterButtonStatus(){
             document.getElementById("genderId").value.length == 0 ||
             document.getElementById("emailId").value.length == 0 ||
             document.getElementById("password").value.length == 0 ||
-            document.getElementById("check").checked == false ||
-            document.getElementById("myDiv").innerHTML != "correct" ||
+            document.getElementById("sameUserErrorMessage").innerHTML != "correct" ||
             document.getElementById("confirmPassword").value.length == 0 ||
             document.getElementById("confirmPassword").value != document.getElementById("password").value){
         document.getElementById("registerId").disabled = true;
@@ -53,5 +51,14 @@ function getRegisterButtonStatus(){
     else{
         document.getElementById("registerId").disabled = false;
     }
+}
+
+
+function checkTermsAndCondition(){
+    validateTermsAndCondition();
+    if(document.getElementById("check").checked != true){
+        return false;
+    }
+    return true;
 }
 
