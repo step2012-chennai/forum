@@ -50,7 +50,7 @@ public class PostQuestionTest {
 
     @Test
     public void verifyTheErrorMessageIfTextIsLessThan20CharactersInTextArea() throws InterruptedException {
-        selenium.runScript("tinymce.get('elm1').setContent('What?')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('What?')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
@@ -59,7 +59,7 @@ public class PostQuestionTest {
 
     @Test
     public void verifyTheErrorMessageIfTextContainsAllSpacesInTextArea() throws InterruptedException {
-        selenium.runScript("tinymce.get('elm1').setContent('                                                     ')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('                                                     ')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
@@ -68,7 +68,7 @@ public class PostQuestionTest {
 
     @Test
     public void verifyThatQuestionMoreThan20CharactersInTextAreaIsPostedInActivityWall() throws InterruptedException {
-        selenium.runScript("tinymce.get('elm1').setContent('Is this Question POSTED ??')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('Is this Question POSTED ??')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);

@@ -59,6 +59,7 @@ public class PostQuestionController {
             mv = new ModelAndView("postQuestion");
             mv.addObject("error", "Question length must be of at least 20 characters, and should not contain all spaces");
             mv.addObject("askedQuestion", textarea);
+            mv.addObject("tag", tag);
         }
         return mv;
     }

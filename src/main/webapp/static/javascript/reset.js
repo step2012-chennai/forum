@@ -1,3 +1,4 @@
 function clearTextbox(){
-    tinymce.get('elm1').setContent('');
+    tinymce.get('askAdviceTextarea').setContent('');
+    document.getElementById('tag').value='';
 }

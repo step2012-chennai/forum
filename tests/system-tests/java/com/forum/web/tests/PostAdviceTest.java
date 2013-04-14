@@ -2,7 +2,6 @@ package com.forum.web.tests;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
-import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +9,6 @@ import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class PostAdviceTest {
@@ -64,7 +62,7 @@ public class PostAdviceTest {
     public void verifyThatWhenResetButtonIsClickedTheAdviceTextBoxIsEmpty() throws InterruptedException {
         selenium.click("css=p");
         selenium.waitForPageToLoad("6000");
-        selenium.runScript("tinymce.get('elm1').setContent('click reset button')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('click reset button')");
         Thread.sleep(3000);
         selenium.click("reset");
         Thread.sleep(1000);
@@ -79,7 +77,7 @@ public class PostAdviceTest {
     public void verifyTheErrorMessageIfTextIsLessThan20CharactersInTextArea() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(1000);
-        selenium.runScript("tinymce.get('elm1').setContent('What?')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('What?')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(1000);
@@ -90,7 +88,7 @@ public class PostAdviceTest {
     public void verifyTheErrorMessageIfTextContainsAllSpacesInTextArea() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(1000);
-        selenium.runScript("tinymce.get('elm1').setContent('                                                     ')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('                                                     ')");
         Thread.sleep(1000);
         selenium.click("post");
         Thread.sleep(3000);
@@ -101,7 +99,7 @@ public class PostAdviceTest {
     public void verifyThatAdviceMoreThan20CharactersInTextAreaIsPostedInViewDetailsOfQuestion() throws InterruptedException {
         selenium.click("css=p");
         Thread.sleep(5000);
-        selenium.runScript("tinymce.get('elm1').setContent('Is this Advice POSTED ??')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('Is this Advice POSTED ??')");
         Thread.sleep(5000);
         selenium.click("post");
         Thread.sleep(5000);

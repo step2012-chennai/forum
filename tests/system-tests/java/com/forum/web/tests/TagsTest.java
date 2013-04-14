@@ -37,7 +37,7 @@ public class TagsTest {
     @Test
     public void shouldAddTagToQuestion() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('what is java how to learn java easily')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('what is java how to learn java easily')");
         Thread.sleep(1000);
         selenium.type("tag", "java");
         selenium.click("post");
@@ -48,7 +48,7 @@ public class TagsTest {
     @Test
     public void shouldAddedMultipleTagsWithCommaSeparater() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('what is java how to learn java easily')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('what is java how to learn java easily')");
         Thread.sleep(1000);
         selenium.type("tag", "java,c,vb");
         selenium.click("post");
@@ -59,7 +59,7 @@ public class TagsTest {
     @Test
     public void shouldGiveMessageWhenMultipleTagsWithOutCommaSeparater() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('what is java how to learn java easily')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('what is java how to learn java easily')");
         Thread.sleep(1000);
         selenium.type("tag", "java c vb");
         selenium.click("post");
@@ -70,7 +70,7 @@ public class TagsTest {
     @Test
     public void shouldDisplayMessageWhenOnlyCommaSeparatorIsGiven() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('This Question Contains Only Comma's as Tags" +
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('This Question Contains Only Comma's as Tags" +
                 "'s')");
         Thread.sleep(1000);
         selenium.type("tag", ",,,");

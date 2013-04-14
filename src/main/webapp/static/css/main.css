@@ -29,6 +29,12 @@ ul, li{
     padding-right:200px;
     padding-top:10px;
 }
+
+.post-questions-panel{
+    padding-left:15em;
+    padding-right:13em;
+    padding-top:1em;
+}
 .question-posted-time{
     color: #666666;
     font-size: 75%;
