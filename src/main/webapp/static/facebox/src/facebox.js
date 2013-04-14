@@ -83,7 +83,7 @@
 
   $.extend($.facebox, {
     settings: {
-      opacity      : 0.2,
+      opacity      : 0.8,
       overlay      : true,
       loadingImage : './static/facebox/src/loading.gif',
       closeImage   : './static/facebox/src/closelabel.png',
@@ -109,7 +109,7 @@
 
       $('#facebox').css({
         top:	getPageScroll()[1] + (getPageHeight() / 10),
-        left:	$(window).width() / 2 - 205
+        left:	$(window).width() / 2 - 900
       }).show()
 
       $(document).bind('keydown.facebox', function(e) {

@@ -14,17 +14,12 @@ import java.util.List;
 
 @Repository
 public class AdviceRepository {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public AdviceRepository(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Advice save(Advice advice) {

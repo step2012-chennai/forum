@@ -2,25 +2,38 @@ package com.forum.controller;
 
 import com.forum.domain.Leader;
 import com.forum.repository.ShowLeaders;
+import com.forum.repository.UserRepository;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.sql.DataSource;
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class HomePageControllerTest extends BaseController {
+public class HomePageControllerTest extends BaseController   {
     private ShowLeaders mockShowLeaders;
-    public static final int QUESTIONS_PER_PAGE = 5;
     private HomePageController homePageController;
+    ApplicationContext context;
+    UserRepository userRepository;
+    @Autowired
+    private DataSource dataSource;
+    JdbcTemplate jdbcTemplate;
+    ShowLeaders showLeaders;
     @Before
     public void setUp() throws Exception {
         mockHttpServletRequest.setRequestURI("/home");
         mockHttpServletRequest.setMethod("GET");
         homePageController = new HomePageController();
         mockShowLeaders = (ShowLeaders) createMock(homePageController, "showLeaders", ShowLeaders.class);
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Test
@@ -43,10 +56,7 @@ public class HomePageControllerTest extends BaseController {
         assertThat(modelAndView.getViewName(), IsEqual.equalTo("home"));
     }
 
-    @Test
-    public void printData(){
-        homePageController.home();
-    }
+
 
     private ArrayList<Leader> getLeaders() {
         ArrayList<Leader> leaders = new ArrayList<Leader>();
@@ -54,3 +64,4 @@ public class HomePageControllerTest extends BaseController {
         return leaders;
     }
 }
+

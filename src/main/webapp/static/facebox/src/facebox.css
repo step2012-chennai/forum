@@ -6,7 +6,6 @@
   text-align: left;
 }
 
-
 #facebox .popup{
   position:relative;
   border:3px solid rgba(0,0,0,0);
@@ -20,7 +19,7 @@
 
 #facebox .content {
   display:table;
-  width: 750;
+  width: 1000px;
   padding: 10px;
   background: #fff;
   -webkit-border-radius:4px;
@@ -75,6 +74,6 @@
 }
 
 .facebox_overlayBG {
-  background-color: black;
+  background-color: #000;
   z-index: 99;
 }

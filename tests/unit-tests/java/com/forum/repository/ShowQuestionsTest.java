@@ -1,12 +1,12 @@
 package com.forum.repository;
 
+import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Question;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -17,17 +17,18 @@ import java.util.List;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class ShowQuestionsTest {
-    private ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
+public class ShowQuestionsTest extends IntegrationTestBase{
+    @Autowired
     private ShowQuestions questions;
+    @Autowired
     private PostQuestion postQuestion;
     private JdbcTemplate template;
+    @Autowired
+    DataSource dataSource;
 
     @Before
     public void setup() {
-        questions = (ShowQuestions) context.getBean("showQuestions");
-        postQuestion = (PostQuestion) context.getBean("post");
-        template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        template = new JdbcTemplate(dataSource);
         postQuestion.insert("java", "this is first question for testing which should be trimmed", "Anil");
         postQuestion.insert("java", "this is second question", "Anil");
     }

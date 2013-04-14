@@ -3,8 +3,7 @@ package com.forum.authentication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,17 +18,20 @@ import java.util.ArrayList;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class AuthenticationManagerImplTest {
+public class AuthenticationManagerImplTest extends IntegrationTestBase {
 
     private AuthenticationProvider authenticationManager;
     private Authentication authentication;
-    JdbcTemplate template;
+
+    @Autowired
+    private DataSource dataSource;
+
+    private JdbcTemplate template;
 
     @Before
     public void setUp() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
-        authenticationManager = (AuthenticationManagerImpl) context.getBean("verify");
-        template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        authenticationManager = new AuthenticationManagerImpl(dataSource);
+        template = new JdbcTemplate(dataSource);
         template.execute("insert into userDetails(username,password) values('temp','5f4dcc3b5aa765d61d8327deb882cf99');");
     }
 

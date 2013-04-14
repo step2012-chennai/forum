@@ -21,7 +21,7 @@
                 <div style="padding-left:5px">
                 <div class="error-color"> ${error} </div>
                 <div>
-                <textarea id="elm1" name="textareas" rows="5" cols="12" style="width: 60%"/>
+                <textarea id="askAdviceTextarea" name="textareas" rows="5" cols="12" style="width: 60%"/>
                 ${GivenAnswer}
                 </textarea>   </center>
                 </div><br>

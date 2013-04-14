@@ -1,12 +1,12 @@
 package com.forum.repository;
 
+import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Advice;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -20,11 +20,13 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 
-public class AdviceRepositoryTest {
-    private ApplicationContext context;
+public class AdviceRepositoryTest extends IntegrationTestBase {
+
+    @Autowired
     private AdviceRepository adviceRepository;
-    private Advice advice;
     private JdbcTemplate template;
+    @Autowired
+    private DataSource dataSource;
     private int questionId;
     private int maxVal;
 
@@ -36,9 +38,7 @@ public class AdviceRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        context = new ClassPathXmlApplicationContext("file:./config.xml");
-        template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        adviceRepository = (AdviceRepository) context.getBean("postAdvice");
+        template = new JdbcTemplate(dataSource);
         template.execute("insert into questions(question,post_date,user_name) values('How to connect with postgresql in java ?','2013-04-09 19:33:56','Bipilesh')");
         template.execute("insert into questions(question,post_date,user_name) values('What is java?','2013-04-09 19:32:56','Sandeep')");
         maxVal = template.queryForInt("select max(q_id) from questions");
@@ -48,7 +48,7 @@ public class AdviceRepositoryTest {
 
     @Test
     public void shouldSaveAdviceInDataBase() {
-        advice = adviceRepository.save(new Advice(String.valueOf(maxVal), "save this answer in answers table", new Timestamp(new Date().getTime()), "user"));
+        Advice advice = adviceRepository.save(new Advice(String.valueOf(maxVal), "save this answer in answers table", new Timestamp(new Date().getTime()), "user"));
         assertTrue(advice.getId().equals(String.valueOf(maxVal)));
     }
 

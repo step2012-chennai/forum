@@ -16,17 +16,12 @@ import java.util.List;
 @Repository
 public class QuestionRepository {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public QuestionRepository(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void insert(String question) {

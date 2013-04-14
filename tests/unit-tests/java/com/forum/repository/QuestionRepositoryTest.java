@@ -1,12 +1,12 @@
 package com.forum.repository;
 
+import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Question;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -17,22 +17,23 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-public class QuestionRepositoryTest {
-    private ApplicationContext context;
+public class QuestionRepositoryTest extends IntegrationTestBase{
+    @Autowired
     private QuestionRepository questionRepository;
+    @Autowired
+    private DataSource dataSource;
+
     private JdbcTemplate template;
+
+    @Before
+    public void setUp() throws Exception {
+        template = new JdbcTemplate(dataSource);
+    }
 
     @After
     public void tearDown() throws Exception {
         template.execute("delete from answers;");
         template.execute("delete from questions;");
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        context = new ClassPathXmlApplicationContext("file:./config.xml");
-        template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        questionRepository = (QuestionRepository) context.getBean("repository");
     }
 
     @Test

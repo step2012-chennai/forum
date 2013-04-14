@@ -1,13 +1,12 @@
 package com.forum.repository;
 
+import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Question;
 import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -16,16 +15,16 @@ import java.util.List;
 
 import static org.junit.Assert.assertThat;
 
-public class BasicTextSearchTest {
+public class BasicTextSearchTest extends IntegrationTestBase {
     @Autowired
     private BasicTextSearch basicTextSearch;
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private DataSource dataSource;
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("file:./config.xml");
-        basicTextSearch = (BasicTextSearch) context.getBean("search");
-        jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.execute("DROP TABLE IF EXISTS answers;");
         jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
                 "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector,tag text);\n");

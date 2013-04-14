@@ -17,19 +17,15 @@ public class ShowQuestions {
     private static final int CHARACTER_LIMIT = 50;
     private static final String TRAILING_CHARACTERS = "...?</p>";
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    @Autowired
+    public ShowQuestions(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     public List<Question> show(int pageNumber, int questionsPerPage) {
         int endIndex = pageNumber * questionsPerPage;

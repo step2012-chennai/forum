@@ -11,17 +11,12 @@ import java.util.Date;
 
 @Repository
 public class PostQuestion {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public PostQuestion(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void insert(String tag, String question, String userName) {
@@ -30,9 +25,6 @@ public class PostQuestion {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
-        if(tag==null){
-            tag=" ";
-        }
-        jdbcTemplate.execute("insert into Questions(question,post_date,user_name,tag) values('" + question + "','"+ dateformat +"','"+userName+"','"+tag+"')");
+        jdbcTemplate.execute("insert into Questions(question,post_date,user_name,tag) values('" + question + "','" + dateformat + "','" + userName + "','" + tag + "')");
     }
 }
