@@ -63,10 +63,10 @@
             <%
                 for (Question question : questions ){
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
-                <div class="question-posted-time-for-home-page"><br>
-                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>
+                <div class="question-posted-time-for-home-page">
+                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>&nbsp&nbsp&nbsp&nbsp
                      <%String str = question.getTags();%>
-                                    <lable><b> <%out.println(str);%> </b></lable>
+                      <lable><b> <%out.println(str);%> </b></lable>
                 </div>
                 <hr width="50%" align="left">
                 <%}%>
