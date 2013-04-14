@@ -27,6 +27,7 @@
 
 
     <%@include file="homeHeader.jsp" %>
+    <%@include file="autoRefresh.jsp" %>
 
     <div id="headingSpaceForLogoSpace"></div>
         <div id="spaceForTags"></div>
