@@ -2,6 +2,7 @@ package com.forum.repository;
 
 import com.forum.domain.Leader;
 import com.forum.domain.Question;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -15,6 +16,9 @@ import java.util.List;
 public class ShowLeaders {
     private JdbcTemplate jdbcTemplate;
     private DataSource  dataSource;
+    private static final int CHARACTER_LIMIT = 100;
+    private static final int BEGIN_INDEX = 0;
+    private static final String TRAILING_CHARACTERS = "...?</p>";
 
     @Autowired
     public ShowLeaders(JdbcTemplate jdbcTemplate, DataSource dataSource) {
@@ -45,9 +49,14 @@ public class ShowLeaders {
                 "JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)=current_date GROUP BY q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
         List<Question> advices = new ArrayList<Question>();
         while (advice.next()) {
-            Question question=  new Question(advice.getString(1),advice.getString(2),advice.getString(3),advice.getString(4));
+            Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4));
             advices.add(question);
         }
         return advices;
+    }
+
+    String truncateQuestionToCharacterLimit(String question) {
+        String questionToTruncate = Jsoup.parse(question).text();
+        return (questionToTruncate.length() <= CHARACTER_LIMIT) ? question : questionToTruncate.concat("<p>").substring(BEGIN_INDEX, CHARACTER_LIMIT).concat(TRAILING_CHARACTERS);
     }
 }

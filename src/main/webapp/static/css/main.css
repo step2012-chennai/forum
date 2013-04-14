@@ -35,6 +35,11 @@ ul, li{
     border-bottom: 1px solid #EAEAEA;
 }
 
+.question-posted-time-for-home-page{
+    color: #666666;
+    font-size: 75%;
+}
+
 .answer{
     border-bottom: 1px solid #EAEAEA;
 }
@@ -88,6 +93,7 @@ font-size:200%;
     font-size:150%;
     color:#888888;
 }
+
 
 .header-navigator-panel{
     font-size:150%;

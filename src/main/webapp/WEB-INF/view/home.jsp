@@ -40,19 +40,21 @@
 
             </ul>
     </div>
-    <div id="recentlyAdvisedQuestion">
-    <H1>Recently Advised Question</H1>
-            <ul>
+    <div class="recent-questions-panel">
+            <div class="list-heading">
+        Recently Advised Question
+             </div>
+             <br>
             <% List<Question> questions=(List<Question>)     request.getAttribute("recentQuestion");  %>
             <%
                 for (Question question : questions ){
-                    %><li><% out.println(question.getUserName()); %></li><%
-                    %><li><% out.println(question.getQuestion()); %></li><%
-                    %><li><% out.println(question.getTime()); %></li><%
-                }
-            %>
-            </ul>
+                    %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
 
+                <div class="question-posted-time-for-home-page"><br>
+                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>
+                </div>
+                <hr width="50%" align="left">
+                <%}%>
     </div>
 </body>
 </html>
