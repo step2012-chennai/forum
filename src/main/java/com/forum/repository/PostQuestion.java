@@ -11,17 +11,12 @@ import java.util.Date;
 
 @Repository
 public class PostQuestion {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public PostQuestion(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void insert(String tag, String question, String userName) {

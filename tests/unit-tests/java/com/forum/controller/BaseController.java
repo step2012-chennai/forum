@@ -1,5 +1,6 @@
 package com.forum.controller;
 
+import com.forum.authentication.IntegrationTestBase;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -11,10 +12,9 @@ import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAda
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
-        "file:./src/main/resources/applicationContext.xml",
         "file:./src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
 
-public class BaseController {
+public class BaseController extends IntegrationTestBase {
     MockHttpServletRequest mockHttpServletRequest;
     MockHttpServletResponse mockHttpServletResponse;
     AnnotationMethodHandlerAdapter handlerAdapter;

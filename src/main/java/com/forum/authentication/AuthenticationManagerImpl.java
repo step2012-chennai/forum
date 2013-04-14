@@ -15,18 +15,13 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 @Repository
 public class AuthenticationManagerImpl implements AuthenticationProvider {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     private DataSource dataSource;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public AuthenticationManagerImpl(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     private Encryption encryption = new Encryption();

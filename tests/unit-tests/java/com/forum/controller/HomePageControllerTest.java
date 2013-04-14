@@ -6,8 +6,8 @@ import com.forum.repository.UserRepository;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,11 +18,13 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class HomePageControllerTest extends BaseController {
+public class HomePageControllerTest extends BaseController   {
     private ShowLeaders mockShowLeaders;
     private HomePageController homePageController;
     ApplicationContext context;
     UserRepository userRepository;
+    @Autowired
+    private DataSource dataSource;
     JdbcTemplate jdbcTemplate;
     ShowLeaders showLeaders;
     @Before
@@ -31,8 +33,7 @@ public class HomePageControllerTest extends BaseController {
         mockHttpServletRequest.setMethod("GET");
         homePageController = new HomePageController();
         mockShowLeaders = (ShowLeaders) createMock(homePageController, "showLeaders", ShowLeaders.class);
-        context = new ClassPathXmlApplicationContext("file:./config.xml");
-        jdbcTemplate = new JdbcTemplate((DataSource) context.getBean("dataSource"));
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Test

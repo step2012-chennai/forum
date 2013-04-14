@@ -13,18 +13,13 @@ import java.util.List;
 @Repository
 public class BasicTextSearch {
     private static final String FETCH_QUESTIONS_QUERY = "select question from questions order by q_id desc";
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Autowired
     private DataSource dataSource;
     private List<Question> searchedQuestions;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    public BasicTextSearch(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public List<Question> getQuestionsPerPage(int pageNumber, int questionsPerPage, String searchText) {

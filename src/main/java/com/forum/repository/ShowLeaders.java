@@ -21,9 +21,8 @@ public class ShowLeaders {
     private static final String TRAILING_CHARACTERS = "...?</p>";
 
     @Autowired
-    public ShowLeaders(JdbcTemplate jdbcTemplate, DataSource dataSource) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.dataSource = dataSource;
+    public ShowLeaders(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public List<Leader> showTopFiveSeekers(){

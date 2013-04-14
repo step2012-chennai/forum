@@ -16,7 +16,7 @@
 <body>
     <div id="logoSpace"><img src="./static/css/knowitall_header.jpg" width="160" height="60" border=2 >  </img></div>
 	    <center>
-        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></div>
+        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a id="logout" href="<c:url value="/j_spring_security_logout" />" > Logout</a></div>
 		<br>
 		<table class="activity-wall">
 			<body onMouseOver="getSearchButtonStatus()">

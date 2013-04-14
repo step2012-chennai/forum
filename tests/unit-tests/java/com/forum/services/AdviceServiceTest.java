@@ -1,6 +1,7 @@
 package com.forum.services;
 
 
+import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Advice;
 import com.forum.repository.AdviceRepository;
 import org.hamcrest.core.IsEqual;
@@ -8,9 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -22,11 +20,12 @@ import java.util.List;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class AdviceServiceTest {
-    ApplicationContext context;
+public class AdviceServiceTest extends IntegrationTestBase{
     @Autowired
     AdviceRepository adviceRepository;
     JdbcTemplate template;
+    @Autowired
+    DataSource dataSource;
     int maxVal;
     @Autowired
     private AdviceService adviceService;
@@ -39,10 +38,7 @@ public class AdviceServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        context = new ClassPathXmlApplicationContext("file:./config.xml");
-        template = new JdbcTemplate((DataSource) context.getBean("dataSource"));
-        adviceRepository = (AdviceRepository) context.getBean("postAdvice");
-        adviceService = new AdviceService(adviceRepository);
+        template = new JdbcTemplate(dataSource);
         template.execute("insert into questions(question,post_date,user_name) values('What is java?','2013-04-09 19:32:56','user')");
         maxVal = template.queryForInt("select q_id from questions where question='What is java?'");
     }
@@ -53,13 +49,6 @@ public class AdviceServiceTest {
         Advice advice = new Advice(String.valueOf(maxVal), "this is advice service test", new Timestamp(new Date().getTime()), "user");
         Advice result = adviceService.save(advice);
         assertTrue(result.getAdvice().equals("this is advice service test"));
-    }
-
-    @Test(expected = DataIntegrityViolationException.class)
-    public void shouldThrowExceptionWhenQuestionIdIsSame() throws DataIntegrityViolationException {
-        AdviceService adviceService = new AdviceService(adviceRepository);
-        Advice advice = new Advice("1", "this is advice service test", new Timestamp(new Date().getTime()), "user");
-        adviceService.save(advice);
     }
 
     @Test
