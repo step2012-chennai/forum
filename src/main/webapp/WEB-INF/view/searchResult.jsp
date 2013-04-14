@@ -13,10 +13,9 @@
                              <% out.println(question.getQuestion()); %>
                          </a>
                      <div class="question-posted-time">
-                     <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime() + "&nbsp;&nbsp;&nbsp;&nbsp;");%>
-                     <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
+                         <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime());%>
                      </div>
-                     <%}%>
+                 <%}%>
                  <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
 
                  <div class="navigation-panel">
