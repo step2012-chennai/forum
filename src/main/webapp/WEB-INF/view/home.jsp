@@ -10,9 +10,9 @@
 <sec:authorize access="isAnonymous()">
 <div id="loginAndRegistration">
         <ul>
-            <li><a href="login">&nbsp Login &nbsp</a></li>
+            <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
             <li>&nbsp</li>
-            <li><a href="home">&nbsp Registration &nbsp</a></li>
+            <li><a id="homeRegistration" href="home">&nbsp Registration &nbsp</a></li>
         </ul>
     </div>
 </sec:authorize>
@@ -30,7 +30,7 @@
 
     <div id="headingSpaceForLogoSpace"></div>
         <div id="spaceForTags"></div>
-    <div id="topFiveSeekers" style="height: 100px; width: 350px; float: right">
+    <div id="topFiveSeekers" style="height: 100px; width: 350px; float: right ">
         <H3>Top Five Seekers</H3>
         <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader, com.forum.domain.Question" %>
         <ul>
@@ -65,6 +65,8 @@
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
                 <div class="question-posted-time-for-home-page"><br>
                     <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>
+                     <%String str = question.getTags();%>
+                                    <lable><b> <%out.println(str);%> </b></lable>
                 </div>
                 <hr width="50%" align="left">
                 <%}%>

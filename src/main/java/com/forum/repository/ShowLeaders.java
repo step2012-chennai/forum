@@ -59,16 +59,16 @@ public class ShowLeaders {
     }
 
     public List<Question> showRecentlyAdvisedQuestions(){
-        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)=current_date GROUP BY q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
+        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name,q.tag from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)=current_date GROUP BY q.tag,q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
         List<Question> advices = new ArrayList<Question>();
         while (advice.next()) {
-            Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4));
+            Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4),advice.getString(5));
             advices.add(question);
         }
         if(advices.size()<5){
-            advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)<current_date GROUP BY q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
+            advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name,q.tag from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)<current_date GROUP BY q.tag,q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
             while(advices.size()!=5 && advice.next()){
-                Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4));
+                Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4),advice.getString(5));
                 advices.add(question);
             }
         }
