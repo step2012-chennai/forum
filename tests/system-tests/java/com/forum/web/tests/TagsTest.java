@@ -48,7 +48,7 @@ public class TagsTest {
     @Test
     public void shouldAddedMultipleTagsWithCommaSeparater() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('what is java how to learn java easily')");
+        selenium.runScript("tinymce.get('elm1').setContent('this question should contain only commas as tags')");
         Thread.sleep(1000);
         selenium.type("tag", "java,c,vb");
         selenium.click("post");
@@ -64,19 +64,18 @@ public class TagsTest {
         selenium.type("tag", "java c vb");
         selenium.click("post");
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("tag should be separated by comma and should not contains spaces"));
+        assertTrue(selenium.isTextPresent("Use single word tags and should not contains spaces"));
     }
 
     @Test
     public void shouldDisplayMessageWhenOnlyCommaSeparatorIsGiven() throws InterruptedException {
         Thread.sleep(2000);
-        selenium.runScript("tinymce.get('elm1').setContent('This Question Contains Only Comma's as Tags" +
-                "'s')");
+        selenium.runScript("tinymce.get('askAdviceTextarea').setContent('This Question Contains Only Commas as a Tags')");
         Thread.sleep(1000);
         selenium.type("tag", ",,,");
         selenium.click("post");
         Thread.sleep(1000);
-        assertTrue(selenium.isTextPresent("tag should be separated by comma and should not contains spaces"));
+        assertTrue(selenium.isTextPresent("Use single word tags and should not contains spaces"));
     }
 
 }

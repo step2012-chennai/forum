@@ -44,10 +44,9 @@ public class BasicTextSearchTest {
         selenium.type("basicSearch","lklakds");
         Thread.sleep(2000);
         selenium.click("search");
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         assertTrue(selenium.isTextPresent("No matching questions found"));
     }
-
 
     @Test
     public void verifyThatUserShouldBeAbleToSearchForATextWhenTextIsPresentInDatabase() throws InterruptedException {
@@ -58,4 +57,12 @@ public class BasicTextSearchTest {
         assertTrue(selenium.isTextPresent("Search Result"));
     }
 
+    @Test
+    public void shouldRemainInSamePageWhenTextIsEmpty() throws InterruptedException {
+        selenium.type("basicSearch","");
+        Thread.sleep(2000);
+        selenium.click("search");
+        Thread.sleep(4000);
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/activityWall"));
+    }
 }
