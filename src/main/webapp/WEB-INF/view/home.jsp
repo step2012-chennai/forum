@@ -10,9 +10,9 @@
 <sec:authorize access="isAnonymous()">
 <div id="loginAndRegistration">
         <ul>
-            <li><a href="login">&nbsp Login &nbsp</li>        </a>
+            <li><a href="login">&nbsp Login &nbsp</a></li>
             <li>&nbsp</li>
-            <li><a href="home">&nbsp Registration &nbsp</li> </a>
+            <li><a href="home">&nbsp Registration &nbsp</a></li>
         </ul>
     </div>
 </sec:authorize>
@@ -21,7 +21,7 @@
 <div id="loginAndRegistration">
     <ul>
         <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></div></li>
-    </ul    >
+    </ul>
 </div>
 </sec:authorize>
 
@@ -29,33 +29,32 @@
     <%@include file="homeHeader.jsp" %>
 
     <div id="headingSpaceForLogoSpace"></div>
-
-    <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
+        <div id="spaceForTags"></div>
+    <div id="topFiveSeekers" style="height: 100px; width: 350px; float: right">
         <H3>Top Five Seekers</H3>
         <%@page import="com.forum.repository.ShowLeaders, java.util.List, com.forum.domain.Leader, com.forum.domain.Question" %>
         <ul>
            <% List<Leader> seekers = (List<Leader>) request.getAttribute("seekerList");
            for (Leader seeker : seekers ){
-                    %><li><% out.println(seeker.getUserName()); %></li><%
+                    %><li><i><% out.println(seeker.getUserName()); %></i></li><%
                 }
            %>
         </ul>
         <div id="spaceForTags"></div>
-        <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right" style=";">
+        <div id="topFiveAdvisers" style="height: 100px; width: 350px; float: right" style=";">
                 <H3>Top Five Advisors</H3>
                      <ul>
                        <% List<Leader> advisers = (List<Leader>) request.getAttribute("adviserList");
                                   for (Leader adviser : advisers ){
-                                           %><li><% out.println(adviser.getUserName()); %></li><%
+                                           %><li><i><% out.println(adviser.getUserName()); %></li></i><%
                                        }
                                   %>
                       </ul>
-
                     </ul>
             </div>
     </div>
 
-    <div class="recent-questions-panel">
+    <div class="recent-questions-panel-for-home-page">
             <div class="list-heading">
         Recently Advised Question
              </div>
@@ -64,7 +63,6 @@
             <%
                 for (Question question : questions ){
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
-
                 <div class="question-posted-time-for-home-page"><br>
                     <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>
                 </div>

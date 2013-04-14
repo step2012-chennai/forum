@@ -24,10 +24,27 @@ ul, li{
 	background:green;
 }
 
+.list-heading{
+font-size:150%;
+color:#888888;
+}
+
 .recent-questions-panel{
     padding-left:200px;
     padding-right:200px;
     padding-top:10px;
+}
+.recent-questions-panel-for-home-page{
+   padding-left:200px;
+   padding-right:200px;
+   padding-top:40px;
+   padding-bottom:40px;
+   border:1px solid #b4b28c;
+    -moz-border-radius: 20px;
+    	-webkit-box-shadow: 10px 10px 15px #afaf97;
+    	-moz-box-shadow: 10px 10px 15px #afaf97;
+    	box-shadow: 10px 10px 15px #afaf97;
+    	background:#F6f4f0;
 }
 
 .post-questions-panel{
@@ -135,7 +152,11 @@ width: 700px ;
 }
 
 #topFiveSeekers H3{
-color:blue;
+color:#888888;
+}
+
+#topFiveSeekers ul li{
+list-style: none;
 }
 
 #register label{
