@@ -1,7 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Activity Wall</title>
     <link rel="stylesheet" type="text/css" href="./static/css/main.css"/>
 </head>
 
@@ -21,7 +21,7 @@
             <div class="question-posted-time">
                 <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime() + "&nbsp;&nbsp;&nbsp;&nbsp;");%>
                 <%String str = question.getTags();%>
-                <lable><b> <%out.println(str);%> </b></lable>
+                <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
             </div>
         <%}%>
         <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
