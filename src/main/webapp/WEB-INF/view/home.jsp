@@ -9,6 +9,7 @@
 
 <body class="home" >
 <sec:authorize access="isAnonymous()">
+<div id="logoSpaceForHome"><div id="alignImage"><a><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 ></img></a></div></div>
 <div id="loginAndRegistration">
         <ul>
             <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
@@ -18,11 +19,12 @@
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">
+<div id="logoSpaceForHome"><div id="alignImage"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 ></img></a></div></div>
 <div id="loginAndRegistration">
     <ul>
         <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
         <li>&nbsp</li>
-        <li><b>Logged in as </b>${userName}</center></div></li>
+        <li><font color="grey">Logged in as </font><b>${userName}</b></center></div></li>
     </ul>
 </div>
 </sec:authorize>

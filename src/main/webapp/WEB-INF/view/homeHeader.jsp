@@ -15,7 +15,6 @@
 
 <body>
 
-    <div id="logoSpaceForHome"><div id="alignImage"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 ></img></a></div></div>
 
 
 	    <center>
