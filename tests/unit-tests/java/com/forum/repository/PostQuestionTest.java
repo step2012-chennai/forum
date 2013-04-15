@@ -42,7 +42,6 @@ public class PostQuestionTest extends IntegrationTestBase {
     public void shouldNotCreateNewTagIfTagIsAlreadyPresent() {
         postQuestion.insert("java", "What is your name?","Anil");
         postQuestion.insert("java", "What is your name?","jaideep");
-        System.out.println(template.queryForInt("select count(*) from tags;"));
         assertThat(template.queryForInt("select count(*) from tags where tag_name='java';"), IsEqual.equalTo(1));
     }
     @Test

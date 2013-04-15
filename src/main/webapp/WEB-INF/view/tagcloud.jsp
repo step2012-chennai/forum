@@ -11,10 +11,10 @@
   window.onload = function() {
     try {
       TagCanvas.weightGradient = gradient;
-      TagCanvas.maxSpeed=0.00;
+      TagCanvas.maxSpeed=0.002;
       TagCanvas.weight=true;
-      TagCanvas.weightMode='size';
-      TagCanvas.textColour = 'blue';
+      TagCanvas.weightMode='color';
+      TagCanvas.textColour = '#250517';
       TagCanvas.textHeight = 25.0;
       TagCanvas.textFont = 'sans-serif'
       TagCanvas.outlineColour = '#00FF00';
@@ -25,7 +25,7 @@
       TagCanvas.depth = 0.50;
       TagCanvas.weightSize = 5;
       TagCanvas.shuffleTags =true;
-      TagCanvas.stretchX =1.7;
+      TagCanvas.stretchX =1.5;
       TagCanvas.Start('myCanvas');
     } catch(e) {
       document.getElementById('myCanvasContainer').style.display = 'none';
@@ -33,7 +33,7 @@
   };
  </script>
     <div id="myCanvasContainer" align="center" >
-  <canvas width="1300" height="800" id="myCanvas">
+  <canvas width="1200" height="800" id="myCanvas">
 
    <p>Anything in here will be replaced on browsers that support the canvas element</p>
    <div id="wrapper">

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class TagRepository {
@@ -21,10 +20,10 @@ public class TagRepository {
     }
 
     public List<String> get() {
-        SqlRowSet tag = jdbcTemplate.queryForRowSet("select tag from questions where tag <>' ' group by tag;");
+        SqlRowSet tag = jdbcTemplate.queryForRowSet("select tag_name from tags;");
         List<String> advices = new ArrayList<String>();
         while (tag.next()) {
-            advices.add(tag.getString(1));
+            advices.add(tag.getString("tag_name"));
         }
         return advices;
     }

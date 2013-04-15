@@ -18,7 +18,7 @@ insert into userDetails(username,password) values('seeker','15b421d36a6cc2028ff1
 insert into userDetails(username,password) values('advisor','90855e629cbebcc7db5dfc4d79dafa06');
 
 
-    insert into questions(question,post_date,user_name,tag)   values
+insert into questions(question,post_date,user_name,tag)   values
                 ('<p>What is java ?</p>',CURRENT_TIMESTAMP(0),'Sandeep','java'),
                 ('<p>How to connect with postgresql in java ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh','travel'),
                 ('<p>Where is thought works in chennai ?</p>',CURRENT_TIMESTAMP(0),'Anil','English'),
@@ -63,6 +63,19 @@ insert into userDetails(username,password) values('advisor','90855e629cbebcc7db5
                 ('<p>Can you play tennis / golf / football / etc.?</p>',CURRENT_TIMESTAMP(0),'Sandeep',' ');
 
 -- for details of Question
+
+insert into tags(tag_name) values('java'),('programming'),('tajmahal'),('study'),('step'),('forum'),('project'),('entertainment'),('history'),('geography'),('presentation'),
+                ('javascript'),('food'),('travel'),('books'),('electronics'),('laptops'),('computers'),('fashion'),('coding'),('ruby'),('python'),('Android'),('groovy'),
+                ('smartphones'),('html'),('CSS'),('JSP'),('Apachae'),('tomcat'),('linux'),('Operating System'),('goodCode'),('TDD'),('Agile'),('WATERFALL'),('UX'),('UI'),
+                ('Project'),('Forum'),('TeamOuting'),('C'),('C++'),('C#'),('.Net'),('VisualBasic'),('Ajax'),('ShellScript'),('Prakash'),('Developers'),('ThoughtWorks'),('Chennai'),
+                ('India'),('IPM'),('RTFM'),('Acceptance Criteria'),('Story Board'),('Story Card'),('Project Analysis'),('STEP-Interns'),('MarinaBeach'),('Ascendas');
+
+insert into Questions_tags(q_id,t_id) values(1,1),(2,1),(3,2),(3,2),(4,1),(5,3),(6,3),(7,4),(8,5),(10,6),(11,7),(12,8),
+                (13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(19,1),(20,15),(21,14),(22,19),(23,11),(24,19),(25,18),(26,17),(27,22),(28,21),(29,20),(30,19),(12,17),(21,16),(10,14),(24,11),(25,10);
+
+
+
+
 
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-2) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');

@@ -30,11 +30,8 @@ public class PostQuestion {
 
         jdbcTemplate.execute("insert into Questions(question,post_date,user_name) values('" + question + "','" + dateformat + "','" + userName + "')");
         for (String t : sr) {
-            System.out.println("]"+t+"[");
-            System.out.println("|"+t+"|"+"check it fast "+!"".equals(t));
             if(getTagId(t) == null ){
                 if(!"".equals(t))  {
-                    System.out.println("me andar aa gaya");
                     SqlRowSet r = jdbcTemplate.queryForRowSet("select MAX(q_id) as latestQuestionID from Questions;");
                     r.next();
                     jdbcTemplate.execute("insert into tags(tag_name) values('" + t + "')");
