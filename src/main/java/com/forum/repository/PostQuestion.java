@@ -25,6 +25,6 @@ public class PostQuestion {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String dateformat = dateFormat.format(date);
-        jdbcTemplate.execute("insert into Questions(question,post_date,user_name,tag) values('" + question + "','" + dateformat + "','" + userName + "','" + tag + "')");
+        jdbcTemplate.execute("insert into Questions(question,post_date,user_name,tag) values('" + question + "','" + dateformat + "','" + userName + "','" + (tag).toLowerCase() + "')");
     }
 }
