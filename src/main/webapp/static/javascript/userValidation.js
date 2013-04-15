@@ -57,6 +57,7 @@ function getRegisterButtonStatus(){
             document.getElementById("emailId").value.length == 0 ||
             document.getElementById("password").value.length == 0 ||
             document.getElementById("sameUserErrorMessage").innerHTML != "" ||
+            document.getElementById("dateErrorMessage").innerHTML != "" ||
             document.getElementById("confirmPassword").value.length == 0 ||
             document.getElementById("confirmPassword").value != document.getElementById("password").value){
         document.getElementById("registerId").disabled = true;
