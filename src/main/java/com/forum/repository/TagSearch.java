@@ -37,7 +37,7 @@ public class TagSearch {
 
     private List<Question> fetchTag(String searchTag) {
         List<Question> searchedTag= new ArrayList<Question>();
-        SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name,tag FROM questions WHERE tag='" + searchTag + "' order by post_date desc;");
+        SqlRowSet result = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name,t.tag_name from questions q join questions_tags qt on q.q_id=qt.q_id join tags t on t.t_id=qt.t_id where t.tag_name='"+searchTag+"';");
 
         while (result.next()) {
             searchedTag.add(new Question(result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5)));

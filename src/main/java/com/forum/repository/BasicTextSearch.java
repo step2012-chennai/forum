@@ -42,7 +42,7 @@ public class BasicTextSearch {
     private List<Question> fetchQuestions(String searchText) {
         SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q.q_id,q.question,q.post_date,q.user_name,array_to_string(array_agg(t.tag_name), ' ') as tags," +
                 " ts_rank(question_tsvector, plainto_tsquery('english_nostop','" + searchText + "'), 1 ) AS rank" +
-                " FROM questions q join questions_tags qt on q.q_id = qt.q_id join tags t on t.t_id=qt.t_id WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
+                " FROM questions q left outer join questions_tags qt on q.q_id = qt.q_id left outer join tags t on t.t_id=qt.t_id WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
                 " @@ to_tsquery('english_nostop','" + searchText + "') group by q.q_id,q.question,q.post_date,q.user_name,q.question_tsvector order by rank");
 
         while (result.next()) {

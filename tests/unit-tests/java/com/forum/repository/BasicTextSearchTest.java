@@ -25,21 +25,10 @@ public class BasicTextSearchTest extends IntegrationTestBase {
     @Before
     public void setUp() throws Exception {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("DROP TABLE IF EXISTS answers;");
-        jdbcTemplate.execute("DROP TABLE IF EXISTS questions;\n" +
-                "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector,tag text);\n");
-        jdbcTemplate.execute("create table answers(ans_id serial,q_id int references questions(q_id),answer varchar,post_date timestamp,user_name varchar);");
-        jdbcTemplate.execute("INSERT INTO questions (q_id,question) VALUES" +
-                "('11','Stop words are words that are very common')," +
-                "('22','Stop words are words that are very');");
-        jdbcTemplate.execute("INSERT INTO questions(question,user_name) VALUES" +
-                "('what is java 1.3','vikhyath')," +
-                "('what is java 1.3','vikhyath');");
     }
 
     @After
     public void tearDown() throws Exception {
-        jdbcTemplate.execute("delete from questions");
     }
 
     @Test
@@ -50,20 +39,21 @@ public class BasicTextSearchTest extends IntegrationTestBase {
 
     @Test
     public void shouldGiveSearchResultsWhenGivenSearchKeywordIsPresentInTheDataBase() {
-        String searchKeyword = "Stop words are words that are very common";
-        assertThat(basicTextSearch.searchAll(searchKeyword).size(), IsEqual.equalTo(2));
+        String searchKeyword = "android";
+        assertThat(basicTextSearch.searchAll(searchKeyword).size(), IsEqual.equalTo(1));
     }
 
     @Test
     public void shouldGiveSearchResultInTheOrderOfMaximumMatch() {
-        String searchKeyword = "Stop words are words that are very common";
+        String searchKeyword = "servlet postgresql java";
         List<String> expected = new ArrayList<String>();
-        expected.add("Stop words are words that are very common");
-        expected.add("Stop words are words that are very");
+        expected.add("<p>What is java ?</p>");
+        expected.add("<p>What is servlet ?</p>");
+        expected.add("<p>How to connect with postgresql in java ?</p>");
         List<Question> source = basicTextSearch.searchAll(searchKeyword);
         int i = 0;
         for (Question question : source) {
-            assertThat(question.getQuestion(), IsEqual.equalTo(expected.get(i)));
+            assertThat(source.get(i).getQuestion(),IsEqual.equalTo(expected.get(i)));
             i++;
         }
     }
@@ -77,11 +67,19 @@ public class BasicTextSearchTest extends IntegrationTestBase {
 
     @Test
     public void shouldReturnTenQuestionPerPage() {
-        String searchKeyWord1 = "what is java";
+        String searchKeyWord1 = "play with android did good job with servlet";
         List<String> expected = new ArrayList<String>();
-        expected.add("what is java 1.3");
-        expected.add("what is java 1.4");
-        assertThat(basicTextSearch.getQuestionsPerPage(1, 2, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
+        expected.add("What is servlet ?");
+        expected.add("Whats your favourite play?");
+        expected.add("What did you do?");
+        expected.add("Where did you go?");
+        expected.add("Whats your good name?");
+        expected.add("How to create android application ?");
+        expected.add("How to connect with postgresql in java ?");
+        expected.add("What do you do? / Whats your job?");
+        expected.add("Can you play tennis / golf / football / etc.?");
+        expected.add("Have you got a car / job / house / etc.?");
+        assertThat(basicTextSearch.getQuestionsPerPage(1, 10, searchKeyWord1).size(), IsEqual.equalTo(expected.size()));
     }
 
     @Test

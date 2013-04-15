@@ -1,6 +1,7 @@
 package com.forum.controller;
 
 import com.forum.domain.Question;
+import com.forum.repository.TagSearch;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;

@@ -25,7 +25,7 @@
                 <%String str = question.getTags();%>
                 <%String[] t1 = str.split(" ");%>
                 <%for (String s : t1) { %>
-                <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(s);%> </b></lable></a>
+                <a href="tagsearch?tag=<%=s%>"><lable><b> <%out.println(s);%> </b></lable></a>
                 <%}%>
             </div>
         <%}%>
