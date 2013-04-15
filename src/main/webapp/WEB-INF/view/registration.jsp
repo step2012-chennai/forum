@@ -7,7 +7,6 @@
         <script type="text/javascript" src="./static/javascript/userValidation.js"></script>
     </head>
     <body onMouseOver="getRegisterButtonStatus()" onkeypress="getRegisterButtonStatus()" onchange="getRegisterButtonStatus()">
-    <center><img src="./static/css/knowitall_header.jpg" width="160" height="60" border=2 /></center>
     <div id="container">
        <div id="register">
            <form method="post" action="register" onsubmit="return checkTermsAndCondition()" >
@@ -34,6 +33,7 @@
                  <label id="termsErrorMessage" text-color="red"></label> <br><br>
                 <input id="registerId" type="submit" value="Register" onclick="checkTermsAndCondition()">
                 <input type="reset" value = "Clear" onclick="window.location.reload(true)">
+        <a style="left:padding=200px" href="home">home</a>
             </div>
             </form>
         </div>
