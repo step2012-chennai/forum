@@ -123,6 +123,7 @@ padding: 5px 10px;
 }
 
 #loginAndRegistration ul li a:hover{
+    padding: 4px 11px;
    text-decoration:none;
     cursor: pointer;
 }
@@ -150,6 +151,7 @@ padding: 5px 10px;
 }
 
 #userAndLogout ul li a:hover{
+    padding: 5px 10px;
    text-decoration:none;
     cursor: pointer;
 }

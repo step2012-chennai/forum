@@ -14,9 +14,6 @@
 </head>
 
 <body>
-
-
-
 	    <center>
 		<br>
 		<table class="activity-wall">
