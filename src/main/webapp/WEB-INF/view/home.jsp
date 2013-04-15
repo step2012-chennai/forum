@@ -12,7 +12,6 @@
 <div id="loginAndRegistration">
         <ul>
             <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
-            <li>&nbsp</li>
             <li><a id="homeRegistration" href="registration">&nbsp Registration &nbsp</a></li>
         </ul>
     </div>

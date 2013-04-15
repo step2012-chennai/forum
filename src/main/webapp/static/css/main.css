@@ -29,6 +29,11 @@ font-size:150%;
 color:#888888;
 }
 
+#alignImage{
+    padding-right:1000px;
+    padding-top:10px;
+}
+
 .recent-questions-panel{
     padding-left:200px;
     padding-right:200px;
@@ -156,6 +161,12 @@ padding: 5px 10px;
 
 #basicSearch{
     width:500;
+}
+
+#logoSpaceForHome{
+height:1;
+    padding-right:800px;
+    padding-top:10px;
 }
 
 #logoSpace{

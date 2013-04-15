@@ -31,11 +31,11 @@
                 </div>
                 </div>
             </form>
-           <font size="4" color="blue"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
+           <font size="4" color="grey"><%out.print("<h4>No of Advice: "+request.getAttribute("noOfAnswer") + "</h4>");%></font>
        </div>
 
        <%@page import="com.forum.domain.Question,com.forum.domain.Advice, java.util.List"%>
-       <font color="blue">
+       <font color="black">
             <% int i=1;
             for(Advice answer : (List<Advice>)request.getAttribute("answers")) { %>
             <div class="answer" color="blue">
