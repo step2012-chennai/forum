@@ -25,7 +25,7 @@
     				<a href="questions_advised" class="header-navigator-panel"><center><label id="answer" for="Answer"> My Answer</font></label></a>
 				</td>
 				<td>
-				    <center><label for="Tags" class="header-navigator-panel" onclick="alert('tag link!')">Tag Cloud</label>
+				    <a href="tagcloud" class="header-navigator-panel"><center><label id="tags" for="Tags" class="Tag_Cloud" >Tag Cloud</label></a>
 				</td>
 			</body>
 		</table>
