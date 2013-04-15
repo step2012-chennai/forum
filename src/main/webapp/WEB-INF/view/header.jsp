@@ -14,19 +14,20 @@
 </head>
 
 <body>
-    <div id="logoSpace"><a href="home"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 >  </img></a></div>
+        <div id="logoSpace"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 /></a></div>
 	    <center>
         <div id="userAndLogout">
             <ul>
                 <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
-                <li><b>Logged in as </b><a href="activityWall">${userName}</a></div></li>
+                <li>&nbsp</li>
+                <li>Logged in as <b>${userName}</b></div></li>
             </ul>
         </div>
         </div>
 		<br>
 		<table class="activity-wall">
 			<body onMouseOver="getSearchButtonStatus()">
-    			<td>
+    		    <td>
 				    <a href="postQuestion" class="header-navigator-panel"><center><label id="question" for="Ask_Question" > Ask Question</label></a>
 				</td>
 				<td>

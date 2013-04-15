@@ -113,7 +113,7 @@ padding: 5px 10px;
     text-shadow: 1px 1px #666;
 
 
-    border:px solid #FFFFFF; -webkit-border-radius: px; -moz-border-radius: px;border-radius: px;width:px;font-size:px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px;  text-align: center; color: #FFFFFF; background-color: #7d7e7d;
+    border:px solid #FFFFFF; -webkit-border-radius: px; -moz-border-radius: px;border-radius: px;width:px;font-size:px;font-family:arial, helvetica, sans-serif; padding: 0.25em 0.25em 0.25em 0.25em;  text-align: center; color: #FFFFFF; background-color: #7d7e7d;
      background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7e7d), to(#0e0e0e));
      background-image: -webkit-linear-gradient(top, #7d7e7d, #0e0e0e);
      background-image: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);

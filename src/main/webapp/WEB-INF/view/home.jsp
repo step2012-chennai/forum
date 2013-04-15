@@ -21,7 +21,8 @@
 <div id="loginAndRegistration">
     <ul>
         <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
-        <li>Logged in as <a href="activityWall">${userName}</a></center></div></li>
+        <li>&nbsp</li>
+        <li><b>Logged in as </b>${userName}</center></div></li>
     </ul>
 </div>
 </sec:authorize>
