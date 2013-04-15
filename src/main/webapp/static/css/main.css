@@ -64,7 +64,7 @@ color:#888888;
 }
 
 .question-posted-time-for-home-page{
-    color: #666666;
+    color:black;
     font-size: 75%;
 }
 
@@ -279,12 +279,4 @@ div#wrapper {
      background-color: #CCCCCC;
 }
 
-div#wrapper2 {
-     position:relative;
-     margin-left:auto;
-     margin-right:auto;
-     top: 20px;
-     width:1024px;
-     background-color: #CCCCCC;
-}
 
