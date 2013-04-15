@@ -38,7 +38,12 @@ public class RegistrationController {
     @ResponseBody
     String ValidateUserName(@RequestParam(value = "user") String username) {
         String result = "";
-        if (userService.isUserNameExists(username)) {
+        String user=username.trim();
+        if (user=="") {
+            result="Enter proper Data";
+        }
+        else if(userService.isUserNameExists(username))
+        {
             result = "Already taken";
         }
         return result;

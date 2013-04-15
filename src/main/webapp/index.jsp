@@ -7,6 +7,6 @@
 <title>Multi Action Controller Example Demo</title>
 </head>
 <body>
-<% response.sendRedirect("home"); %>
+<% response.sendRedirect("/home"); %>
 </body>
 </html>

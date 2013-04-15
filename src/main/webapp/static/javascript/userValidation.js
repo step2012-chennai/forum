@@ -50,7 +50,7 @@ function validateTermsAndCondition(){
 }
 
 function getRegisterButtonStatus(){
-    if(document.getElementById("user").value.length == 0 ||
+    if(document.getElementById("user").value== "" ||
             document.getElementById("name").value.length == 0 ||
             document.getElementById("DOB").value.length == 0 ||
             document.getElementById("genderId").value.length == 0 ||
@@ -68,8 +68,10 @@ function getRegisterButtonStatus(){
 }
 
 
+
 function checkTermsAndCondition(){
     validateTermsAndCondition();
+    getRegisterButtonStatus();
     if(document.getElementById("check").checked != true){
         return false;
     }

@@ -19,10 +19,9 @@ public class UserRepository {
     }
 
     public boolean isUserNameExists(String userName) {
-        int count = jdbcTemplate.queryForInt("select count(lower(username)) from userDetails where username = '" + userName.toLowerCase() + "'");
-        return (count==1);
+        int count = jdbcTemplate.queryForInt("select count(lower(username)) from userDetails where lower(username) = '" + userName.toLowerCase()+ "'");
+        return count==1;
     }
-
     public void register(String userName, String name,String gender, String dob, String location, String password , String email) {
         Encryption encryption = new Encryption();
         password = encryption.encryptUsingMd5(password);
