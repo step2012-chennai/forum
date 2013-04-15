@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<div id="wrapper">
         <div id="logoSpace"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 /></a></div>
 	    <center>
             <div id="userAndLogout">
@@ -48,5 +49,6 @@
 		</form>
 		</table>
     </center>
+    </div>
 </body>
 </html>

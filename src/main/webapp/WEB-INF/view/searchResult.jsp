@@ -4,7 +4,8 @@
     <title>Searched Questions</title>
   </head>
   <body>
-  <%@include file="header.jsp" %>
+  <div id="wrapper">
+  <%@include file="homeHeader.jsp" %>
          <div class="recent-questions-panel">
                  <%@page import="com.forum.domain.Question, java.util.List"%>
                  <%List<Question> questions = (List<Question>) request.getAttribute("searchList");
@@ -26,6 +27,7 @@
                      <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='search?basicSearch=${param['basicSearch']}&pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
                      </div>
                  </div>
+             </div>
              </div>
 
   </body>

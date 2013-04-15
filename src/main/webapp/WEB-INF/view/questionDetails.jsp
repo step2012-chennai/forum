@@ -5,10 +5,11 @@
       <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
    </head>
 <body>
+<div id="wrapper">
  <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
  <script type="text/javascript" src="./static/javascript/tiny_mce_init.js"></script>
  <script type="text/javascript" src="./static/javascript/reset.js"></script>
- <%@include file="header.jsp" %>
+ <%@include file="homeHeader.jsp" %>
 
  <div class="recent-questions-panel">
     <div>
@@ -46,6 +47,7 @@
             </div>
             <% i++; } %>
        </font>
+ </div>
  </div>
 </body>
 </html>

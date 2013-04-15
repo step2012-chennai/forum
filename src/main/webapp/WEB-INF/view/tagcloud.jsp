@@ -1,4 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@include file="homeHeader.jsp" %>
 <script src="./static/javascript/tagcanvas.js" type="text/javascript"></script>
  <script type="text/javascript">
   var gradient = {
@@ -30,22 +31,18 @@
       document.getElementById('myCanvasContainer').style.display = 'none';
     }
   };
-
-
-
-
  </script>
+    <div id="myCanvasContainer" align="center" >
+  <canvas width="1300" height="800" id="myCanvas">
 
-<%@include file="header.jsp" %>
-<div id="myCanvasContainer" >
- <canvas width="1300" height="700" id="myCanvas">
-
-  <p>Anything in here will be replaced on browsers that support the canvas element</p>
-  <ul>
-   <%@page import="java.util.List"%>
-           <% for (String tag : (List<String>) request.getAttribute("tags") ) { %>
-                       <li><a href="tagsearch?tag=<%=tag%>"><%=tag%></a></li>
-           <%}%>
-  </ul>
- </canvas>
-</div>
+   <p>Anything in here will be replaced on browsers that support the canvas element</p>
+   <div id="wrapper">
+   <ul>
+    <%@page import="java.util.List"%>
+            <% for (String tag : (List<String>) request.getAttribute("tags") ) { %>
+                        <li><a align="center" href="tagsearch?tag=<%=tag%>"><%out.println(tag);%></a></li>
+            <%}%>
+   </ul>
+   </div>
+  </canvas>
+ </div>

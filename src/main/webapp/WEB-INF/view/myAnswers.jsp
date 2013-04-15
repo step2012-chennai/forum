@@ -5,7 +5,8 @@
 </head>
 
 <body>
-	<%@include file="header.jsp" %>
+<div id="wrapper">
+	<%@include file="homeHeader.jsp" %>
 	<div class="recent-questions-panel">
         <div class="list-heading">
            My Answers
@@ -19,6 +20,7 @@
                 <% out.println(question.getUserName()+ "&nbsp&nbsp|&nbsp&nbsp" + question.getTime());%>
             </div>
         <%}%>
+    </div>
     </div>
 </body>
 </html>
