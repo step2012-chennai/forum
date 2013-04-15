@@ -17,9 +17,10 @@
 
 <body> <div id="wrapper">
 
-			    <div id="logoSpaceForHome"><div id="alignImage"><a><img src="./static/css/knowitall_header.jpg" width="110" height="60" border=2 ></img></a></div></div>
+
 
 <sec:authorize access="isAnonymous()">
+<div id="logoSpaceForHome"><div id="alignImage"><a><img src="./static/css/knowitall_header.jpg" width="110" height="60" border=2 ></img></a></div></div>
 <div id="loginAndRegistration">
         <ul>
             <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
@@ -29,6 +30,7 @@
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">
+<div id="logoSpaceForHome"><div id="alignImage"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="110" height="60" border=2 ></img></a></div></div>
 <div id="loginAndRegistration">
 
     <ul>

@@ -6,7 +6,8 @@
 </head>
 
 <body>
-	<%@include file="header.jsp" %>
+    <div id="wrapper">
+	<%@include file="homeHeader.jsp" %>
 	<%@include file="autoRefresh.jsp" %>
 
 	<div class="recent-questions-panel">
@@ -28,6 +29,7 @@
         <div class="navigation-panel">
             <input type="button" id="previous-button" value="Previous" onclick="javascript:window.location.href='activityWall?pageNumber=${param['pageNumber']-1}'" ${prevButton} ></input>
             <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='activityWall?pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
+        </div>
         </div>
     </div>
 </body>
