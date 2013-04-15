@@ -21,7 +21,7 @@
                  <input type='password' name='j_password' />
              </div>
                 <div style="padding-left:145px">
-                <a href="registration">Sign Up</a>
+                <a href="registration">Registration</a>
                 <input name="submit" type="submit" value="Login">
              </div>
         </div>
