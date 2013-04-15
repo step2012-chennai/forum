@@ -36,12 +36,15 @@ public class QuestionController {
     public ModelAndView questionDetails(@RequestParam("questionId") String questionId) {
         List<Advice> answers;
         ModelAndView questionDetail = new ModelAndView("questionDetails");
+        context = SecurityContextHolder.getContext();
+        Object userName = context.getAuthentication().getPrincipal();
         Question question = questionRepository.getQuestionById(Integer.parseInt(questionId));
         answers = adviceService.getAdvices(Integer.parseInt(questionId));
         questionDetail.addObject("question", question.getQuestion());
         questionDetail.addObject("question_user", question.getUserName());
         questionDetail.addObject("answers", answers);
         questionDetail.addObject("noOfAnswer", answers.size());
+        questionDetail.addObject("userName", userName);
         return questionDetail;
     }
 
