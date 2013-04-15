@@ -13,8 +13,8 @@ ul, li{
 .activity-wall td{
 	<center>
 	padding:1em;
-	width:300px;
-	height:80px;
+	width:225px;
+	height:40px;
 	border:1px solid #b4b28c;
 	border-radius:20px;
 	-moz-border-radius: 20px;
@@ -31,7 +31,8 @@ color:#888888;
 
 #alignImage{
     padding-right:1000px;
-    padding-top:10px;
+    padding-top:0px;
+    padding-left:6px;
 }
 
 .recent-questions-panel{
@@ -40,7 +41,7 @@ color:#888888;
     padding-top:10px;
 }
 .recent-questions-panel-for-home-page{
-   padding-left:200px;
+   padding-left:50px;
    padding-right:200px;
    padding-top:40px;
    padding-bottom:40px;
@@ -195,8 +196,8 @@ width: 700px ;
 #topFiveSeekers H3{
 padding: 20px;
 width: 700px ;
-  margin-left: auto ;
-  margin-right: auto ;
+  margin-left: 73px ;
+  margin-right:145px ;
 }
 
 #topFiveSeekers ul li{
@@ -253,7 +254,7 @@ color:#FF0000;
 	height: 420px;
 	top: 40%;
 	left: 45%;
-	margin-top: -140px;
+
 	margin-left: -170px;
 	background: #D8D8D8;
 	border-radius: 3px;
@@ -264,6 +265,26 @@ color:#FF0000;
 .location{
     padding-left: 230px;
 }
+
 .input{
     padding-bottom: 10px;
 }
+
+div#wrapper {
+     position:relative;
+     margin-left:auto;
+     margin-right:auto;
+     top: 20px;
+     width:1024px;
+     background-color: #CCCCCC;
+}
+
+div#wrapper2 {
+     position:relative;
+     margin-left:auto;
+     margin-right:auto;
+     top: 20px;
+     width:1024px;
+     background-color: #CCCCCC;
+}
+
