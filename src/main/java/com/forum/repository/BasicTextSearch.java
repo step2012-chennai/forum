@@ -40,13 +40,13 @@ public class BasicTextSearch {
     }
 
     private List<Question> fetchQuestions(String searchText) {
-        SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q_id,question,post_date,user_name,tag," +
+        SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT q.q_id,q.question,q.post_date,q.user_name,array_to_string(array_agg(t.tag_name), ' ') as tags," +
                 " ts_rank(question_tsvector, plainto_tsquery('english_nostop','" + searchText + "'), 1 ) AS rank" +
-                " FROM questions WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
-                " @@ to_tsquery('english_nostop','" + searchText + "') order by post_date,rank");
+                " FROM questions q join questions_tags qt on q.q_id = qt.q_id join tags t on t.t_id=qt.t_id WHERE to_tsvector('english_nostop', COALESCE(question,'') || ' ' || COALESCE(question,''))" +
+                " @@ to_tsquery('english_nostop','" + searchText + "') group by q.q_id,q.question,q.post_date,q.user_name,q.question_tsvector order by rank");
 
         while (result.next()) {
-            searchedQuestions.add(new Question(result.getString(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5)));
+            searchedQuestions.add(new Question(result.getString("q_id"), result.getString("question"), result.getString("post_date"), result.getString("user_name"),result.getString("tags")));
         }
 
         return searchedQuestions;

@@ -26,11 +26,11 @@ public class ShowQuestions {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
     public List<Question> show(int pageNumber, int questionsPerPage) {
         int endIndex = pageNumber * questionsPerPage;
         List<Question> resultQuestions = new ArrayList<Question>(questionsPerPage);
         List<Question> questions = getQuestions();
+
         for (int startIndex = (pageNumber - 1) * questionsPerPage; startIndex < endIndex; startIndex++) {
             if (startIndex < questions.size()) {
                 try {
@@ -43,10 +43,11 @@ public class ShowQuestions {
     }
 
     public List<Question> getQuestions() {
-        SqlRowSet questions = jdbcTemplate.queryForRowSet("select * from questions ORDER BY post_date DESC");
+        SqlRowSet questions = jdbcTemplate.queryForRowSet("select DISTINCT  q.q_id ,q.post_date,q.question,array_to_string(array_agg(t.tag_name), ' ') as tags from questions q LEFT OUTER JOIN questions_tags qt on q.q_id = qt.q_id LEFT OUTER JOIN tags t on t.t_id=qt.t_id group by q.q_id,q.post_date,q.question order by post_date desc;");
+        SqlRowSet QuestionUserNameAndDate = jdbcTemplate.queryForRowSet("select post_date,user_name from questions;");
         List<Question> questionsList = new ArrayList<Question>();
-        while (questions.next()) {
-            questionsList.add(new Question(questions.getString(1), truncateQuestionToCharacterLimit(questions.getString(2)), questions.getString(3), questions.getString(4),questions.getString(6)));
+        while (questions.next() && QuestionUserNameAndDate.next()) {
+            questionsList.add(new Question(questions.getString("q_id"), truncateQuestionToCharacterLimit(questions.getString("question")),QuestionUserNameAndDate.getString("post_date"),QuestionUserNameAndDate.getString("user_name"),questions.getString("tags") ));
         }
         return questionsList;
     }

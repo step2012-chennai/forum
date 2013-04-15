@@ -23,7 +23,10 @@
             <div class="question-posted-time">
                 <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime() + "&nbsp;&nbsp;&nbsp;&nbsp;");%>
                 <%String str = question.getTags();%>
-                <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
+                <%String[] t1 = str.split(" ");%>
+                <%for (String s : t1) { %>
+                <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(s);%> </b></lable></a>
+                <%}%>
             </div>
         <%}%>
         <% Integer currentPageNumber = ((Integer)request.getAttribute("pageNumber")); %>
