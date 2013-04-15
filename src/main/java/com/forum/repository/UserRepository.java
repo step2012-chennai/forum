@@ -23,9 +23,9 @@ public class UserRepository {
         return (count==1);
     }
 
-    public void register(String userName, String name, String password, String dob, String location, String gender, String email) {
+    public void register(String userName, String name,String gender, String dob, String location, String password , String email) {
         Encryption encryption = new Encryption();
         password = encryption.encryptUsingMd5(password);
-        jdbcTemplate.execute("insert into userDetails(username,email,location,name,dob,gender,password) values('"+ userName + "','"  + email  + "','" + location  + "','" + name + "','" + dob + "','" + gender + "','" + password + "')");
+        jdbcTemplate.execute("insert into userDetails(username,email,location,name,dob,password,gender) values('"+ userName + "','"  + email  + "','" + location  + "','" + name + "','" + dob + "','" + password + "','" + gender + "')");
     }
 }
