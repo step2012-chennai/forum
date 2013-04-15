@@ -8,9 +8,8 @@
 </head>
 
 <body class="home" >
-<div id="wrapper">
 <sec:authorize access="isAnonymous()">
-<div id="logoSpaceForHome"><div id="alignImage"><a><img src="./static/css/knowitall_header.jpg" width="150" height="90" border=1 ></img></a></div></div>
+<div id="logoSpaceForHome"><div id="alignImage"><a><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 ></img></a></div></div>
 <div id="loginAndRegistration">
         <ul>
             <li><a id="homeLogin" href="login">&nbsp Login &nbsp</a></li>
@@ -76,7 +75,6 @@
                 </div>
                 <hr width="50%" align="left" id="horizon">
                 <%}%>
-    </div>
     </div>
 </body>
 </html>

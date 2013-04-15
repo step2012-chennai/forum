@@ -13,8 +13,8 @@ ul, li{
 .activity-wall td{
 	<center>
 	padding:1em;
-	width:225px;
-	height:40px;
+	width:300px;
+	height:80px;
 	border:1px solid #b4b28c;
 	border-radius:20px;
 	-moz-border-radius: 20px;
@@ -31,8 +31,7 @@ color:#888888;
 
 #alignImage{
     padding-right:1000px;
-    padding-top:0px;
-    padding-left:6px;
+    padding-top:10px;
 }
 
 .recent-questions-panel{
@@ -41,7 +40,7 @@ color:#888888;
     padding-top:10px;
 }
 .recent-questions-panel-for-home-page{
-   padding-left:50px;
+   padding-left:200px;
    padding-right:200px;
    padding-top:40px;
    padding-bottom:40px;
@@ -64,7 +63,7 @@ color:#888888;
 }
 
 .question-posted-time-for-home-page{
-    color: black;
+    color: #666666;
     font-size: 75%;
 }
 
@@ -196,15 +195,13 @@ width: 700px ;
 #topFiveSeekers H3{
 padding: 20px;
 width: 700px ;
-  margin-left: 73px ;
-  margin-right:145px ;
+  margin-left: auto ;
+  margin-right: auto ;
 }
 
 #topFiveSeekers ul li{
 color:#888888;
 list-style: none;
-margin-left: 93px ;
-  margin-right: 4px;
 }
 
 #register label{
@@ -270,12 +267,3 @@ color:#FF0000;
 .input{
     padding-bottom: 10px;
 }
-
-div#wrapper {
-     position:relative;
-     margin-left:auto;
-     margin-right:auto;
-     top: 20px;
-     width:1024px;
-     background-color: #CCCCCC;
- }
