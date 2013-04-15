@@ -15,7 +15,8 @@
 
 <body>
 
-    <div id="logoSpace"><img src="./static/css/knowitall_header.jpg" width="160" height="60" border=2 >  </img></div>
+    <div id="logoSpace"><a href="home"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 ></img></a></div>
+
 
 	    <center>
 		<br>

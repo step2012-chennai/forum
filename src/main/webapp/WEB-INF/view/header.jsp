@@ -14,9 +14,15 @@
 </head>
 
 <body>
-    <div id="logoSpace"><img src="./static/css/knowitall_header.jpg" width="160" height="60" border=2 >  </img></div>
+    <div id="logoSpace"><a href="home"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 >  </img></a></div>
 	    <center>
-        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a id="logout" href="<c:url value="/j_spring_security_logout" />" > Logout</a></div>
+        <div id="userAndLogout">
+            <ul>
+                <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
+                <li><b>Logged in as </b><a href="activityWall">${userName}</a></div></li>
+            </ul>
+        </div>
+        </div>
 		<br>
 		<table class="activity-wall">
 			<body onMouseOver="getSearchButtonStatus()">

@@ -121,6 +121,34 @@ padding: 5px 10px;
    text-decoration:none;
     cursor: pointer;
 }
+
+
+#userAndLogout ul li{
+    float:right;
+}
+
+#userAndLogout ul li a{
+padding: 5px 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-shadow: 1px 1px #666;
+
+
+    border:px solid #FFFFFF; -webkit-border-radius: px; -moz-border-radius: px;border-radius: px;width:px;font-size:px;font-family:arial, helvetica, sans-serif; padding: 0.25em 0.25em 0.25em 0.25em;  text-align: center; color: #FFFFFF; background-color: #7d7e7d;
+     background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7e7d), to(#0e0e0e));
+     background-image: -webkit-linear-gradient(top, #7d7e7d, #0e0e0e);
+     background-image: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);
+     background-image: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
+     background-image: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
+     background-image: linear-gradient(to bottom, #7d7e7d, #0e0e0e);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7d7e7d, endColorstr=#0e0e0e);
+}
+
+#userAndLogout ul li a:hover{
+   text-decoration:none;
+    cursor: pointer;
+}
+
 .header-navigator-panel{
     font-size:150%;
     color:white;

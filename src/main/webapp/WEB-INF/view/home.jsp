@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Welcome</title>
 </head>
+
 <body class="home" >
 <sec:authorize access="isAnonymous()">
 <div id="loginAndRegistration">
@@ -20,7 +21,8 @@
 <sec:authorize access="isAuthenticated()">
 <div id="loginAndRegistration">
     <ul>
-        <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></div></li>
+        <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
+        <li>Logged in as <a href="activityWall">${userName}</a></center></div></li>
     </ul>
 </div>
 </sec:authorize>
