@@ -11,6 +11,19 @@ function validateUserName()
     xmlhttp.send();
 }
 
+function validateDate()
+{
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+       if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            document.getElementById("dateErrorMessage").innerHTML=xmlhttp.responseText;
+       }
+    }
+    var date=document.getElementById("DOB").value;
+    xmlhttp.open("GET","validateDate?date="+date,true);
+    xmlhttp.send();
+}
+
 function validatePassword(){
     xmlhttp=new XMLHttpRequest();
        xmlhttp.onreadystatechange=function() {

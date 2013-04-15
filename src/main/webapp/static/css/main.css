@@ -230,6 +230,11 @@ color:red;
 padding-left:250px;
 }
 
+#register #dateErrorMessage{
+color:red;
+padding-left:250px;
+}
+
 #register #termsErrorMessage{
 color:red;
 }

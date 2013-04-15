@@ -67,4 +67,32 @@ public class RegistrationControllerTest extends BaseController{
         mockHttpServletRequest.setMethod("GET");
         assertTrue(registrationController.ValidateTerms("false").equals("Accept Terms and Conditions to proceed"));
     }
+
+    @Test
+    public void shouldGiveAppropriateMessageForDateIsInvalid() throws Exception {
+        registrationController=new RegistrationController(userService);
+        mockHttpServletRequest.setRequestURI("/validateDate");
+        mockHttpServletRequest.setParameter("date", "2020-12-12");
+        mockHttpServletRequest.setMethod("GET");
+        assertTrue(registrationController.validateDate("2020-12-12").equals("Invalid date"));
+    }
+
+
+    @Test
+    public void shouldGiveAppropriateMessageForDateWhenDateIsValid() throws Exception {
+        registrationController=new RegistrationController(userService);
+        mockHttpServletRequest.setRequestURI("/validateDate");
+        mockHttpServletRequest.setParameter("date", "2000-12-12");
+        mockHttpServletRequest.setMethod("GET");
+        assertTrue(registrationController.validateDate("2000-12-12").equals(""));
+    }
+
+    @Test
+    public void shouldGiveAppropriateMessageForDateWhenDateIsLessThanLimitedYearsThanCurrentDate() throws Exception {
+        registrationController=new RegistrationController(userService);
+        mockHttpServletRequest.setRequestURI("/validateDate");
+        mockHttpServletRequest.setParameter("date", "1900-12-12");
+        mockHttpServletRequest.setMethod("GET");
+        assertTrue(registrationController.validateDate("1900-12-12").equals("Invalid date"));
+    }
 }

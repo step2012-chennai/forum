@@ -44,6 +44,20 @@ public class RegistrationController {
         return result;
     }
 
+    @RequestMapping(value = "/validateDate", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String validateDate(@RequestParam(value = "date") String date) throws ParseException {
+        String result = "";
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date specifiedDate=dateFormat.parse(date);
+        Date currentDate = new Date();
+        if(specifiedDate.after(currentDate) || (specifiedDate.getYear() <= currentDate.getYear() - 100)){
+            result="Invalid date";
+        }
+        return result;
+    }
+
     @RequestMapping(value = "/validateTermsAndCondition", method = RequestMethod.GET)
     public
     @ResponseBody

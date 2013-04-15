@@ -13,7 +13,7 @@
            <form method="post" action="register" onsubmit="return checkTermsAndCondition()">
            <div class="input"><label>Name:</label> <input type="text" name="name" id="name"/></div>
            <div class="input"><label>User Name:</label> <input type="text" id="user" name= "username" onKeyUp="validateUserName()"/><br/>  <label id="sameUserErrorMessage"></label></div>
-           <div class="input"><label>Date Of Birth:</label> <input name="dob" type="date" id="DOB"/></div>
+           <div class="input"><label>Date Of Birth:</label> <input name="dob" type="date" id="DOB" onChange="validateDate()"/><br> <label id="dateErrorMessage"></label></div>
            <label>Location:</label>
 
                  <div class="input">
