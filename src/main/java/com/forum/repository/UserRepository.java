@@ -19,7 +19,7 @@ public class UserRepository {
     }
 
     public boolean isUserNameExists(String userName) {
-        int count = jdbcTemplate.queryForInt("select count(username) from userDetails where username = '" + userName + "'");
+        int count = jdbcTemplate.queryForInt("select count(lower(username)) from userDetails where username = '" + userName.toLowerCase() + "'");
         return (count==1);
     }
 

@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -30,7 +32,7 @@ public class RegistrationControllerTest extends BaseController{
         mockHttpServletRequest.setMethod("GET");
         userService = (UserService) createMock(registrationController, "userService", UserService.class);
         when(userService.isUserNameExists("user")).thenReturn(true);
-        assertThat(registrationController.ValidateUserName("user"), IsEqual.equalTo("Already available"));
+        assertThat(registrationController.ValidateUserName("user"), IsEqual.equalTo("Already taken"));
     }
 
     @Test
@@ -42,7 +44,7 @@ public class RegistrationControllerTest extends BaseController{
         userService = (UserService) createMock(registrationController, "userService", UserService.class);
         when(userService.isUserNameExists("user")).thenReturn(true);
         when(userService.isUserNameExists("user")).thenReturn(true);
-        assertThat(registrationController.ValidateUserName("user"), IsEqual.equalTo("Already available"));
+        assertThat(registrationController.ValidateUserName("user"), IsEqual.equalTo("Already taken"));
     }
 
     @Test

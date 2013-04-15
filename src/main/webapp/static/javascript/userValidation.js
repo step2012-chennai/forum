@@ -43,7 +43,7 @@ function getRegisterButtonStatus(){
             document.getElementById("genderId").value.length == 0 ||
             document.getElementById("emailId").value.length == 0 ||
             document.getElementById("password").value.length == 0 ||
-            document.getElementById("sameUserErrorMessage").innerHTML != "correct" ||
+            document.getElementById("sameUserErrorMessage").innerHTML != "" ||
             document.getElementById("confirmPassword").value.length == 0 ||
             document.getElementById("confirmPassword").value != document.getElementById("password").value){
         document.getElementById("registerId").disabled = true;

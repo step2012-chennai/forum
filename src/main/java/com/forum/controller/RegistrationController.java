@@ -11,7 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,9 +37,9 @@ public class RegistrationController {
     public
     @ResponseBody
     String ValidateUserName(@RequestParam(value = "user") String username) {
-        String result = "correct";
+        String result = "";
         if (userService.isUserNameExists(username)) {
-            result = "Already available";
+            result = "Already taken";
         }
         return result;
     }
@@ -73,6 +77,6 @@ public class RegistrationController {
         }
 
         userService.register(userInfo.get(0), userInfo.get(1), userInfo.get(2), userInfo.get(3), userInfo.get(4), userInfo.get(7), userInfo.get(6));
-        return new ModelAndView(new RedirectView("login"));
+        return new ModelAndView(new RedirectView("home"));
     }
 }
