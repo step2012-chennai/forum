@@ -16,7 +16,7 @@
 <body>
         <div id="logoSpace"><a href="activityWall"><img src="./static/css/knowitall_header.jpg" width="170" height="100" border=2 /></a></div>
 	    <center>
-        <div id="userAndLogout">
+            <div id="userAndLogout">
             <ul>
                 <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
                 <li>&nbsp</li>
