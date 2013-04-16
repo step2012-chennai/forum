@@ -16,8 +16,7 @@ public class QuestionValidation {
         if (question == null || question.equals("")) return false;
         question = getPlainText(question);
         question = reduceBlanks(question);
-        if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
-        return true;
+        return !(question.equals("") || question.length() < MINIMUM_CHARACTERS);
     }
 
     private String getPlainText(String question) {

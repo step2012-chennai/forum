@@ -37,7 +37,7 @@
     <ul>
         <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></li>
         <li>&nbsp</li>
-        <li><font color="grey">Logged in as </font><b>${userName}</b></center></li>
+        <li><font color="white">Logged in as <b><i> ${userName}</b></font></i></center></li>
     </ul>
 </div>
 </sec:authorize>
