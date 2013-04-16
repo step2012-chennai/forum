@@ -32,6 +32,13 @@ public class ShowLeaders {
         while (allSeekersRow.next()) {
             seekers.add(new Leader(allSeekersRow.getString(1)));
         }
+
+        if(seekers.size()<5){
+            allSeekersRow = jdbcTemplate.queryForRowSet("SELECT user_name from questions where DATE(post_date)<current_date GROUP BY user_name ORDER BY COUNT(user_name) DESC limit 5;");
+            while(seekers.size()!=5 && allSeekersRow.next()){
+                seekers.add(new Leader(allSeekersRow.getString(1)));
+            }
+        }
         return seekers;
     }
 
@@ -41,6 +48,14 @@ public class ShowLeaders {
         while (allAdvisersRow.next()) {
             advices.add(new Leader(allAdvisersRow.getString(1)));
         }
+
+        if(advices.size()<5){
+            allAdvisersRow = jdbcTemplate.queryForRowSet("SELECT user_name from answers where DATE(post_date)<current_date GROUP BY user_name ORDER BY COUNT(user_name) DESC limit 5;");
+            while(advices.size()!=5 && allAdvisersRow.next()){
+                advices.add(new Leader(allAdvisersRow.getString(1)));
+            }
+        }
+
         return advices;
     }
 
