@@ -35,8 +35,6 @@ public class ShowQuestionsTest extends IntegrationTestBase{
 
     @After
     public void tearDown() {
-        template.execute("delete from answers;");
-        template.execute("delete from questions;");
     }
 
     @Test

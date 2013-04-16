@@ -22,7 +22,6 @@
       TagCanvas.wheelZoom = false;
       TagCanvas.minBrightness = 1.1;
       TagCanvas.outlineColour = 'red';
-      TagCanvas.depth = 0.50;
       TagCanvas.weightSize = 5;
       TagCanvas.shuffleTags =true;
       TagCanvas.stretchX =1.5;
