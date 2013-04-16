@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http auto-config='true'>
+    <http auto-config='true' >
         <!-- Order of intercept url is important for access permission-->
         <intercept-url pattern="/home"  access="ROLE_ANONYMOUS,ROLE_USER"/>
         <intercept-url pattern="/static/**"  access="ROLE_ANONYMOUS,ROLE_USER"/>
@@ -29,6 +29,8 @@
 
     <beans:bean id="loginFailureHandler" class="com.forum.authentication.LoginFailureHandler">
     </beans:bean>
+
+    <beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 
 </beans:beans>
 

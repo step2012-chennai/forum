@@ -1,23 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Welcome</title>
 </head>
-<body class="home" >
-    <%@include file="header.jsp" %>
-    <div id="headingSpaceForLogoSpace"></div>
-    <div id="loginAndRegistration">
+<body class="homePageBody" >
+
+<sec:authorize access="isAnonymous()">
+<div id="loginAndRegistration">
         <ul>
             <li><a href="login">&nbsp Login &nbsp</li>        </a>
             <li> &nbsp &nbsp </li>
             <li><a href="home">&nbsp Registration &nbsp</li> </a>
         </ul>
     </div>
+</sec:authorize>
 
-    <div id="logoSpace">
+<sec:authorize access="isAuthenticated()">
+<div id="loginAndRegistration">
+    <ul>
+        <li><a href="<c:url value="/j_spring_security_logout" />" >&nbsp  Logout &nbsp </a></div></li>
+    </ul    >
+</div>
+</sec:authorize>
 
-    </div>
+
+    <%@include file="homeHeader.jsp" %>
+
+    <div class="home">
+    <div id="headingSpaceForLogoSpace"></div>
 
     <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
         <H3>Top Five Seekers</H3>
