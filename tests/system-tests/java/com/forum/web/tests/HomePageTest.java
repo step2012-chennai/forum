@@ -23,7 +23,7 @@ public class HomePageTest {
         selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://10.10.5.126:8080/forum/");
         seleniumServer.start();
         selenium.start();
-        selenium.open("/");
+        selenium.open("home");
         Thread.sleep(2000);
     }
 
@@ -34,7 +34,7 @@ public class HomePageTest {
 
     @Test
      public void verifyHitsCorrectUrl(){
-        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum"));
+        assertTrue(selenium.getLocation().equals("http://10.10.5.126:8080/forum/home"));
     }
 
     @Test

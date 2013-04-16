@@ -18,7 +18,7 @@ public class HomePageController {
     private ShowLeaders showLeaders;
     private SecurityContext context;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request) {
         ModelAndView homePage=new ModelAndView("home");
         homePage.addObject("adviserList",showLeaders.showTopFiveAdvisers());
