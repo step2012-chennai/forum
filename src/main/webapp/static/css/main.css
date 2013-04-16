@@ -48,6 +48,12 @@ ul, li{
     padding-top:20px;
 }
 
+.home{
+margin-top: 20;
+margin-left: 120;
+margin-right:120;
+}
+
 a:link {
     text-decoration:none;
 }
@@ -94,7 +100,6 @@ font-size:140%;
     color:#888888;
 }
 
-
 .header-navigator-panel{
     font-size:150%;
     color:white;
@@ -104,11 +109,16 @@ font-size:140%;
     width:500;
 }
 
-
 #logoSpace{
-height:100;
+height:150;
+ padding-left:200px;
+    padding-right:200px;
+    padding-top:10px;
 }
 
+#spaceForTags{
+height:50;
+}
 
 
 #topFiveSeekers {
@@ -121,7 +131,11 @@ width: 700px ;
         -webkit-border-top-right-radius:5px;
         -webkit-border-top-left-radius:5px;
         border-top-left-radius:5px;
-        border-top-right-radius:5px;;
+        border-top-right-radius:5px;
+}
+
+#topFiveSeekers H3{
+color:blue;
 }
 
 #register label{
