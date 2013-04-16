@@ -33,6 +33,12 @@ public class ShowLeadersTest {
 
     @Before
     public void setup() {
+
+        jdbcTemplate.execute("DROP TABLE IF EXISTS answers;\n" +
+                "DROP TABLE IF EXISTS questions;\n" +
+                "create table questions(q_id SERIAL UNIQUE,question varchar,post_date timestamp,user_name varchar,question_tsvector tsvector,tag text);\n" +
+                "\n" +
+                "create table answers(ans_id serial,q_id int references questions(q_id),answer varchar,post_date timestamp,user_name varchar);\n");
         jdbcTemplate.execute("insert into questions(question,post_date,user_name)   values\n" +
                 "              ('<p>Whats your name?</p>',CURRENT_TIMESTAMP(0),'Sandeep'),\n" +
                 "              ('<p>Whats your pet name?</p>',CURRENT_TIMESTAMP(0),'Sandeep'),\n" +
@@ -43,7 +49,6 @@ public class ShowLeadersTest {
                 "insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');\n" +
                 "insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');\n" +
                 "insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 3',CURRENT_TIMESTAMP(0),'Ajit');");
-
     }
 
     @After
@@ -70,7 +75,6 @@ public class ShowLeadersTest {
         int questionsPerPage = 2, pageNumber = 1;
         List<Leader> resultLeaders= showLeaders.showTopFiveAdvisers();
         List< String > actual = new ArrayList<String>();
-
         for (Leader leader : resultLeaders) {
             actual.add(leader.getUserName());
         }
@@ -79,8 +83,7 @@ public class ShowLeadersTest {
     }
 
     @Test
-    public void shouldReturn2QuestionWhichHavingMostNumberOfAdvice() {
-
+    public void shouldReturn3QuestionWhichHavingMostNumberOfAdvice() {
         List<Question> questions= showLeaders.showRecentlyAdvisedQuestions();
         List< String > actual = new ArrayList<String>();
 

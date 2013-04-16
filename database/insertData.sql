@@ -77,22 +77,22 @@ insert into questions(question,post_date,user_name)   values('<p>How is it one c
 
 -- for details of Question
 
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 4',CURRENT_TIMESTAMP(0),'Prasath');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 11 question . 5',CURRENT_TIMESTAMP(0),'Gaurav');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions)-1,'answer for 10 question . 1',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-2) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-3) from questions),'answer for 11 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-6) from questions),'answer for 11 question . 4',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-2) from questions),'answer for 11 question . 5',CURRENT_TIMESTAMP(0),'Gaurav');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-4) from questions)-1,'answer for 10 question . 1',CURRENT_TIMESTAMP(0),'Ajit');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions)-1,'answer for 10 question . 2',CURRENT_TIMESTAMP(0),'Prasath');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 10 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-5) from questions),'answer for 10 question . 3',CURRENT_TIMESTAMP(0),'Ajit');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 10 question . 4',CURRENT_TIMESTAMP(0),'Gaurav');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 9 question . 1',CURRENT_TIMESTAMP(0),'Ajit');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 9 question . 2',CURRENT_TIMESTAMP(0),'Ravi');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 9 question . 3',CURRENT_TIMESTAMP(0),'Prasath');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 9 question . 4',CURRENT_TIMESTAMP(0),'Gaurav');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 9 question . 5',CURRENT_TIMESTAMP(0),'Ravi');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 8 question . 1',CURRENT_TIMESTAMP(0),'Prasath');
-insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 8 question . 2',CURRENT_TIMESTAMP(0),'Ajit');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 8 question . 1',CURRENT_TIMESTAMP(0),'Prasath');
+insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-3) from questions),'answer for 8 question . 2',CURRENT_TIMESTAMP(0),'Ajit');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 7 question . 1',CURRENT_TIMESTAMP(0),'Prasath');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 7 question . 2',CURRENT_TIMESTAMP(0),'Prakash');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id) from questions),'answer for 7 question . 3',CURRENT_TIMESTAMP(0),'Ravi');
