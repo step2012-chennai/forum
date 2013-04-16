@@ -67,8 +67,7 @@ insert into questions(question,post_date,user_name,tag)   values
 insert into tags(tag_name) values('java'),('programming'),('tajmahal'),('study'),('step'),('forum'),('project'),('entertainment'),('history'),('geography'),('presentation'),
                 ('javascript'),('food'),('travel'),('books'),('electronics'),('laptops'),('computers'),('fashion'),('coding'),('ruby'),('python'),('Android'),('groovy'),
                 ('smartphones'),('html'),('CSS'),('JSP'),('Apachae'),('tomcat'),('linux'),('Operating System'),('goodCode'),('TDD'),('Agile'),('WATERFALL'),('UX'),('UI'),
-                ('Project'),('Forum'),('TeamOuting'),('C'),('C++'),('C#'),('.Net'),('VisualBasic'),('Ajax'),('ShellScript'),('Prakash'),('Developers'),('ThoughtWorks'),('Chennai'),
-                ('India'),('IPM'),('RTFM'),('Acceptance Criteria'),('Story Board'),('Story Card'),('Project Analysis'),('STEP-Interns'),('MarinaBeach'),('Ascendas');
+                ('Project'),('Forum'),('TeamOuting'),('C'),('C++'),('C#'),('.Net'),('VisualBasic'),('Ajax'),('ShellScript'),('Prakash'),('Developers'),('ThoughtWorks'),('Chennai');
 
 
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');

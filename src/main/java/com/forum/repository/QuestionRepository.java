@@ -15,7 +15,8 @@ import java.util.List;
 
 @Repository
 public class QuestionRepository {
-
+    @Autowired
+    private ShowQuestions showQuestion;
     private JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
 
@@ -42,14 +43,14 @@ public class QuestionRepository {
     public List<Question> getQuestions(List questionIds) {
         List<Question> questions = new ArrayList<Question>();
         if (questionIds.equals(new ArrayList())) return questions;
-        String query = " select DISTINCT q.q_id, q.question, max(a.post_date) as post_date, q.user_name,q.tag from questions q" +
-                " join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id, q.question, q.user_name,q.tag order by post_date DESC";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(query);
-        while (results.next()) {
-            questions.add(new Question(results.getString("q_id"), results.getString("question"),
-                    results.getString("post_date"), results.getString("user_name"),results.getString("tag")));
+
+        SqlRowSet advisedQuestions = jdbcTemplate.queryForRowSet("select DISTINCT  q.q_id ,q.post_date,q.question,array_to_string(array_agg(t.tag_name), ' ') as tags from questions q LEFT OUTER JOIN questions_tags qt on q.q_id = qt.q_id LEFT OUTER JOIN tags t on t.t_id=qt.t_id join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id,q.post_date,q.question order by post_date desc;");
+        SqlRowSet QuestionUserNameAndDate = jdbcTemplate.queryForRowSet("select post_date,user_name from questions;");
+        List<Question> questionsList = new ArrayList<Question>();
+        while (advisedQuestions.next() && QuestionUserNameAndDate.next()) {
+            questionsList.add(new Question(advisedQuestions.getString("q_id"),showQuestion.truncateQuestionToCharacterLimit(advisedQuestions.getString("question")),QuestionUserNameAndDate.getString("post_date"),QuestionUserNameAndDate.getString("user_name"),advisedQuestions.getString("tags") ));
         }
-        return questions;
+        return questionsList;
     }
 
     private String convertArrayToString(List questionIds) {

@@ -18,8 +18,13 @@
                     <% out.println(question.getQuestion()); %>
                 </a>
             <div class="question-posted-time">
-                <% out.println(question.getUserName()+ "&nbsp&nbsp|&nbsp&nbsp" + question.getTime());%>
-            </div>
+                           <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime() + "&nbsp;&nbsp;&nbsp;&nbsp;");%>
+                           <%String str = question.getTags();%>
+                           <%String[] t1 = str.split(" ");%>
+                           <%for (String s : t1) { %>
+                           <a href="tagsearch?tag=<%=s%>"><lable><b> <%out.println(s);%> </b></lable></a>
+                           <%}%>
+                       </div>
         <%}%>
     </div>
     </div>
