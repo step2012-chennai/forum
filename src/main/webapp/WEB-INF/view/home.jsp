@@ -5,6 +5,7 @@
     <title>Welcome</title>
 </head>
 <body class="home" >
+    <%@include file="header.jsp" %>
     <div id="headingSpaceForLogoSpace"></div>
     <div id="loginAndRegistration">
         <ul>
@@ -15,7 +16,7 @@
     </div>
 
     <div id="logoSpace">
-    <img src="./static/css/knowitall_header.jpg" width="250" height="90" border=2 >  </img>
+
     </div>
 
     <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
