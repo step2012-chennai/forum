@@ -11,7 +11,7 @@
   window.onload = function() {
     try {
       TagCanvas.weightGradient = gradient;
-      TagCanvas.maxSpeed=0.002;
+      TagCanvas.maxSpeed=0.00;
       TagCanvas.weight=true;
       TagCanvas.weightMode='color';
       TagCanvas.textColour = '#250517';

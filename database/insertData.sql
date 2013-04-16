@@ -17,7 +17,6 @@ insert into userDetails(username,password) values('user','5f4dcc3b5aa765d61d8327
 insert into userDetails(username,password) values('seeker','15b421d36a6cc2028ff1d0f8f29c65ab');
 insert into userDetails(username,password) values('advisor','90855e629cbebcc7db5dfc4d79dafa06');
 
-
 insert into questions(question,post_date,user_name,tag)   values
                 ('<p>What is java ?</p>',CURRENT_TIMESTAMP(0),'Sandeep','java'),
                 ('<p>How to connect with postgresql in java ?</p>',CURRENT_TIMESTAMP(0),'Bipilesh','travel'),
@@ -63,12 +62,6 @@ insert into questions(question,post_date,user_name,tag)   values
                 ('<p>Can you play tennis / golf / football / etc.?</p>',CURRENT_TIMESTAMP(0),'Sandeep',' ');
 
 -- for details of Question
-
-insert into tags(tag_name) values('java'),('programming'),('tajmahal'),('study'),('step'),('forum'),('project'),('entertainment'),('history'),('geography'),('presentation'),
-                ('javascript'),('food'),('travel'),('books'),('electronics'),('laptops'),('computers'),('fashion'),('coding'),('ruby'),('python'),('Android'),('groovy'),
-                ('smartphones'),('html'),('CSS'),('JSP'),('Apachae'),('tomcat'),('linux'),('Operating System'),('goodCode'),('TDD'),('Agile'),('WATERFALL'),('UX'),('UI'),
-                ('Project'),('Forum'),('TeamOuting'),('C'),('C++'),('C#'),('.Net'),('VisualBasic'),('Ajax'),('ShellScript'),('Prakash'),('Developers'),('ThoughtWorks'),('Chennai');
-
 
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-1) from questions),'answer for 11 question . 1',CURRENT_TIMESTAMP(0),'Ravi');
 insert into answers(q_id,answer,post_date,user_name) values((select MAX(q_id-2) from questions),'answer for 11 question . 2',CURRENT_TIMESTAMP(0),'Gaurav');
