@@ -6,13 +6,12 @@
 <link rel="stylesheet" type="text/css" href="./static/css/main.css" />
     <title>Welcome</title>
 </head>
-<body class="homePageBody" >
-
+<body class="home" >
 <sec:authorize access="isAnonymous()">
 <div id="loginAndRegistration">
         <ul>
             <li><a href="login">&nbsp Login &nbsp</li>        </a>
-            <li> &nbsp &nbsp </li>
+            <li>&nbsp</li>
             <li><a href="home">&nbsp Registration &nbsp</li> </a>
         </ul>
     </div>
@@ -29,7 +28,6 @@
 
     <%@include file="homeHeader.jsp" %>
 
-    <div class="home">
     <div id="headingSpaceForLogoSpace"></div>
 
     <div id="topFiveSeekers" style="height: 100px; width: 200px; float: right">
@@ -43,7 +41,7 @@
            %>
         </ul>
         <div id="spaceForTags"></div>
-        <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right">
+        <div id="topFiveAdvisers" style="height: 100px; width: 200px; float: right" style=";">
                 <H3>Top Five Advisors</H3>
                      <ul>
                        <% List<Leader> advisers = (List<Leader>) request.getAttribute("adviserList");
