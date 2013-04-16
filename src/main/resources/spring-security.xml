@@ -7,19 +7,19 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http auto-config='true' >
+    <http auto-config='true' use-expressions="true">
         <!-- Order of intercept url is important for access permission-->
-        <intercept-url pattern="/"  access="ROLE_ANONYMOUS,ROLE_USER"/>
-        <intercept-url pattern="/static/**"  access="ROLE_ANONYMOUS,ROLE_USER"/>
-        <intercept-url pattern="/login"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/registration"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/register"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/validateUserName"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/validatePassword"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/validateDate"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/validateTermsAndCondition"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" access="ROLE_USER" />
+        <intercept-url pattern="/"  access="permitAll"/>
+        <intercept-url pattern="/static/**"  access="permitAll"/>
+        <intercept-url pattern="/login"  access="permitAll"/>
+        <intercept-url pattern="/registration"  access="permitAll"/>
+        <intercept-url pattern="/register"  access="permitAll"/>
+        <intercept-url pattern="/validateUserName"  access="permitAll"/>
+        <intercept-url pattern="/validatePassword"  access="permitAll"/>
+        <intercept-url pattern="/validateDate"  access="permitAll"/>
+        <intercept-url pattern="/validateTermsAndCondition"  access="permitAll"/>
+        <intercept-url pattern="/loginfail" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
         <form-login login-page="/login" default-target-url="/activityWall" authentication-failure-handler-ref="loginFailureHandler" />
         <logout logout-success-url="/" />
     </http>
