@@ -71,8 +71,8 @@ public class QuestionRepositoryTest extends IntegrationTestBase{
         expectedQuestions.add(expectedQuestion1);
         expectedQuestions.add(expectedQuestion2);
 
-        assertEquals(expectedQuestion1.getQuestion(), actualQuestions.get(1).getQuestion());
-        assertEquals(expectedQuestion2.getQuestion(), actualQuestions.get(0).getQuestion());
+        assertEquals(expectedQuestion1.getQuestion(), actualQuestions.get(0).getQuestion());
+        assertEquals(expectedQuestion2.getQuestion(), actualQuestions.get(1).getQuestion());
     }
 
 }
