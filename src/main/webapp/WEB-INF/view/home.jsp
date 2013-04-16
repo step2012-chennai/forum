@@ -40,7 +40,7 @@
 
     <div class="recent-questions-panel-for-home-page">
             <div class="list-heading">
-        Recently Advised Question
+        Recently most advised Questions
              </div>
              <br>
             <% List<Question> questions=(List<Question>)     request.getAttribute("recentQuestion");  %>
