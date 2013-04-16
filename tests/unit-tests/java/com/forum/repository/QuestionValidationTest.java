@@ -22,11 +22,6 @@ public class QuestionValidationTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenQuestionIsNotValid() {
-        assertFalse(questionValidation.isQuestionValid(null));
-    }
-
-    @Test
     public void shouldReturnFalseWhenQuestionIsEmpty() {
         assertFalse(questionValidation.isQuestionValid(""));
     }
@@ -34,6 +29,11 @@ public class QuestionValidationTest {
     @Test
     public void shouldReturnFalseWhenQuestionContainsOnlySpace() {
         assertFalse(questionValidation.isQuestionValid("&nbsp;"));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenNoDataIsThere() {
+        assertFalse(questionValidation.isQuestionValid("\n\n\n"));
     }
 
     @Test
@@ -56,6 +56,11 @@ public class QuestionValidationTest {
                 "<p>&nbsp;</p>\n" +
                 "<p>&nbsp;</p>\n" +
                 "<p>&nbsp;</p>\n"));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenEnteringEqualNumberOfCharacterAndSta() {
+        assertTrue(questionValidation.isQuestionValid("<p>sssxxx x  xx x x x x x x x x x x x x x x  xx x x z z z z z  a axxxxxxxxx</p>"));
     }
 
     @Test

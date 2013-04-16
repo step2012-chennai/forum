@@ -1,6 +1,7 @@
 package com.forum.repository;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.jsoup.Jsoup;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -10,9 +11,9 @@ public class QuestionValidation {
     private static final int HTML_SPACE = 160;
     private static final int ENTER_KEY_LIMIT = 6;
 
-    public boolean isQuestionValid(String question) {
-        if (question == null) return false;
-
+    public boolean isQuestionValid(String questionWithTag) {
+        String question= Jsoup.parse(questionWithTag).text();
+        if (question == null || question.equals("")) return false;
         question = getPlainText(question);
         question = reduceBlanks(question);
         if (question == "" || question.length() < MINIMUM_CHARACTERS) return false;
@@ -34,14 +35,15 @@ public class QuestionValidation {
     private String reduceBlanks(String question) {
         int spaceCount = 0;
         int enterCount = 0;
+
         StringBuilder refactoredQuestion = new StringBuilder(question.length());
 
         for (int i = 0; i < question.length(); i++) {
             boolean spaceCharacter = question.charAt(i) == JAVA_SPACE || question.charAt(i) == HTML_SPACE;
             if (spaceCharacter) {
                 spaceCount++;
-                enterCount++;
             }
+
 
             if (enterCount > ENTER_KEY_LIMIT) {
                 refactoredQuestion.append(question.charAt(i));
