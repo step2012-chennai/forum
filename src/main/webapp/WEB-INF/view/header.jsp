@@ -16,7 +16,7 @@
 <body>
 	<center>
 
-        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a href="#">Logout</a></div>
+        <div class="user-name" >Logged in as<a href="activityWall"> ${userName}</a>    | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></div>
 		<br>
 		<table class="activity-wall">
 			<body onMouseOver="getSearchButtonStatus()">

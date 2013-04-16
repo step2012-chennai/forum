@@ -19,6 +19,7 @@
         <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login login-page="/login" default-target-url="/activityWall" authentication-failure-handler-ref="loginFailureHandler" />
+        <logout logout-success-url="/login" />
     </http>
 
     <authentication-manager>
