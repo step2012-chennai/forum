@@ -279,16 +279,6 @@ div#wrapper {
      background-color: #CCCCCC;
 }
 
-.wrapper2{
-position:relative;
-     margin-left:auto;
-     margin-right:auto;
-     top: 20px;
-     width:1024px;
-     height:768px;
-  background:yellow;
+#colorForHead{
+  background:#F6f4f0;
 }
-
-
-
-

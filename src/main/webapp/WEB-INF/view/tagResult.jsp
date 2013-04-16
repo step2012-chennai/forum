@@ -5,6 +5,7 @@
   </head>
   <body>
   <div id="wrapper">
+    <div id="colorForHead">
         <%@include file="homeHeader.jsp" %>
 
             <div class="recent-questions-panel" >
@@ -28,6 +29,7 @@
                      <input type="button" id="previous-button" value="Previous" onclick="javascript:window.location.href='tagsearch?tag=${param['tag']}&pageNumber=${param['pageNumber']-1}'" ${prevButton} ></input>
                      <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='tagsearch?tag=${param['tag']}&pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
                 </div>
+            </div>
             </div>
     </div>
   </body>

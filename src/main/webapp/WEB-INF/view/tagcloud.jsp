@@ -37,12 +37,14 @@
 
    <p>Anything in here will be replaced on browsers that support the canvas element</p>
    <div id="wrapper">
+   <div id="colorForHead">
    <ul>
     <%@page import="java.util.List"%>
             <% for (String tag : (List<String>) request.getAttribute("tags") ) { %>
                         <li><a align="center" href="tagsearch?tag=<%=tag%>"><%out.println(tag);%></a></li>
             <%}%>
    </ul>
+   </div>
    </div>
   </canvas>
  </div>

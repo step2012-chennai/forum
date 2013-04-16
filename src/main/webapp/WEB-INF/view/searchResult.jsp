@@ -5,6 +5,7 @@
   </head>
   <body>
   <div id="wrapper">
+  <div id="colorForHead">
   <%@include file="homeHeader.jsp" %>
          <div class="recent-questions-panel">
                  <%@page import="com.forum.domain.Question, java.util.List"%>
@@ -27,6 +28,7 @@
                      <input type="button" id="next-button" value="Next" onclick="javascript:window.location.href='search?basicSearch=${param['basicSearch']}&pageNumber=<%= currentPageNumber %>'" ${nextButton} ></input>
                      </div>
                  </div>
+             </div>
              </div>
              </div>
 

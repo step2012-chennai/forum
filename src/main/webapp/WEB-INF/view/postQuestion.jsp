@@ -6,6 +6,7 @@
 </head>
 <body class="postQuestion" background-color:#ffffff>
     <div id="wrapper">
+    <div id="colorForHead">
     <script type="text/javascript" src="./static/tiny_mce/tiny_mce.js"></script>
      <script type="text/javascript" src="./static/javascript/tiny_mce_init.js"></script>
     <script type="text/javascript" src="./static/javascript/reset.js"></script>
@@ -37,7 +38,8 @@
             </form>
         <input type="button" id="reset" onclick="clearTextbox()" value="Reset">
    </form>
-     </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

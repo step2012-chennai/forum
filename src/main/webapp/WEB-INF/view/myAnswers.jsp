@@ -6,6 +6,7 @@
 
 <body>
 <div id="wrapper">
+    <div id="colorForHead">
 	<%@include file="homeHeader.jsp" %>
 	<div class="recent-questions-panel">
         <div class="list-heading">
@@ -20,6 +21,7 @@
                 <% out.println(question.getUserName()+ "&nbsp&nbsp|&nbsp&nbsp" + question.getTime());%>
             </div>
         <%}%>
+    </div>
     </div>
     </div>
 </body>
