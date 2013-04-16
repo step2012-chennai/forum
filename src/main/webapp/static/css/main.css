@@ -274,11 +274,11 @@ div#wrapper {
      position:relative;
      margin-left:auto;
      margin-right:auto;
-     top: 20px;
      width:1024px;
      background-color: #CCCCCC;
 }
 
 #colorForHead{
+  margin-top:20px;
   background:#F6f4f0;
 }
