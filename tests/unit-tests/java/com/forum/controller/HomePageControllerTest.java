@@ -29,7 +29,7 @@ public class HomePageControllerTest extends BaseController   {
     ShowLeaders showLeaders;
     @Before
     public void setUp() throws Exception {
-        mockHttpServletRequest.setRequestURI("/home");
+        mockHttpServletRequest.setRequestURI("/");
         mockHttpServletRequest.setMethod("GET");
         homePageController = new HomePageController();
         mockShowLeaders = (ShowLeaders) createMock(homePageController, "showLeaders", ShowLeaders.class);
