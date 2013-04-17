@@ -33,7 +33,6 @@
                  <label id="termsErrorMessage" text-color="red"></label> <br><br>
                 <input id="registerId" type="submit" value="Register" onclick="checkTermsAndCondition()">
                 <input type="reset" value = "Clear" onclick="window.location.reload(true)">
-        <a style="left:padding=200px" href="home">home</a>
             </div>
             </form>
         </div>

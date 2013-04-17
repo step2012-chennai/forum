@@ -17,6 +17,7 @@
         <intercept-url pattern="/validateUserName"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validatePassword"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validateDate"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/registrationSuccessful"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/validateTermsAndCondition"  access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfail" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" access="ROLE_USER" />

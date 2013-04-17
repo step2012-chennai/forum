@@ -78,7 +78,7 @@ public class RegistrationController {
     public
     @ResponseBody
     String validatePassword(@RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword) {
-        String result = null;
+        String result = "";
         if (!(password.equals(confirmPassword))) {
             result = "Password Mismatch";
         }
@@ -96,6 +96,10 @@ public class RegistrationController {
         }
 
         userService.register(userInfo.get(0), userInfo.get(1), userInfo.get(2), userInfo.get(3), userInfo.get(4), userInfo.get(7), userInfo.get(6));
-        return new ModelAndView(new RedirectView("home"));
+        return new ModelAndView(new RedirectView("registrationSuccessful"));
+    }
+
+    @RequestMapping(value = "/registrationSuccessful",method=RequestMethod.GET)
+    public void registrationSuccessful() {
     }
 }
