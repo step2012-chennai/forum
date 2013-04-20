@@ -3,7 +3,6 @@ package com.forum.repository;
 import com.forum.authentication.IntegrationTestBase;
 import com.forum.domain.Leader;
 import com.forum.domain.Question;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,7 @@ public class ShowLeadersTest extends IntegrationTestBase {
     @Before
     public void setup() {
         jdbcTemplate = new JdbcTemplate(dataSource);
+
         jdbcTemplate.execute("insert into questions(question,post_date,user_name)   values\n" +
                 "              ('<p>Whats your name?</p>',CURRENT_TIMESTAMP(0),'Sandeep'),\n" +
                 "              ('<p>Whats your pet name?</p>',CURRENT_TIMESTAMP(0),'Sandeep'),\n" +
@@ -40,35 +40,27 @@ public class ShowLeadersTest extends IntegrationTestBase {
 
     }
 
-    @After
-    public void tearDown() {
-        jdbcTemplate.execute("delete from answers ;");
-        jdbcTemplate.execute("delete from questions ;");
-    }
-
     @Test
     public void shouldGiveNameOfTopSeekers() {
-        int questionsPerPage = 2, pageNumber = 1;
         List<Leader> resultLeaders= showLeaders.showTopFiveSeekers();
         List< String > actual = new ArrayList<String>();
 
         for (Leader leader : resultLeaders) {
             actual.add(leader.getUserName());
         }
-        List<String> expected = Arrays.asList("Sandeep", "bp");
+        List<String> expected = Arrays.asList("Sandeep","bp");
         assertTrue(expected.equals(actual));
     }
 
     @Test
     public void shouldGiveNameOfTopAdvisores() {
-        int questionsPerPage = 2, pageNumber = 1;
         List<Leader> resultLeaders= showLeaders.showTopFiveAdvisers();
         List< String > actual = new ArrayList<String>();
 
         for (Leader leader : resultLeaders) {
             actual.add(leader.getUserName());
         }
-        List<String> expected = Arrays.asList("Gaurav","Ravi", "Ajit");
+        List<String> expected = Arrays.asList("Gaurav","Ravi","Ajit");
         assertTrue(expected.equals(actual));
     }
 

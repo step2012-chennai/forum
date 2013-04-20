@@ -44,7 +44,7 @@ public class QuestionRepository {
         List<Question> questions = new ArrayList<Question>();
         if (questionIds.equals(new ArrayList())) return questions;
 
-        SqlRowSet advisedQuestions = jdbcTemplate.queryForRowSet("select DISTINCT  q.q_id ,q.post_date,q.question,array_to_string(array_agg(t.tag_name), ' ') as tags from questions q LEFT OUTER JOIN questions_tags qt on q.q_id = qt.q_id LEFT OUTER JOIN tags t on t.t_id=qt.t_id join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id,q.post_date,q.question order by post_date desc;");
+        SqlRowSet advisedQuestions = jdbcTemplate.queryForRowSet("select DISTINCT  q.q_id ,q.post_date,q.question,array_to_string(array_agg(distinct t.tag_name), ' ') as tags from questions q LEFT OUTER JOIN questions_tags qt on q.q_id = qt.q_id LEFT OUTER JOIN tags t on t.t_id=qt.t_id join answers a on q.q_id=a.q_id where q.q_id in (" + convertArrayToString(questionIds) + ") group by q.q_id,q.post_date,q.question order by post_date desc;");
         SqlRowSet QuestionUserNameAndDate = jdbcTemplate.queryForRowSet("select post_date,user_name from questions;");
         List<Question> questionsList = new ArrayList<Question>();
         while (advisedQuestions.next() && QuestionUserNameAndDate.next()) {

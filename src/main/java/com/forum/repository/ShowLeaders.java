@@ -16,7 +16,7 @@ import java.util.List;
 public class ShowLeaders {
     private JdbcTemplate jdbcTemplate;
     private DataSource  dataSource;
-    private static final int CHARACTER_LIMIT = 100;
+    private static final int CHARACTER_LIMIT = 65;
     private static final int BEGIN_INDEX = 0;
     private static final String TRAILING_CHARACTERS = "...?</p>";
 
@@ -59,16 +59,16 @@ public class ShowLeaders {
     }
 
     public List<Question> showRecentlyAdvisedQuestions(){
-        SqlRowSet advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name,q.tag from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)=current_date GROUP BY q.tag,q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
+        SqlRowSet advice = jdbcTemplate.queryForRowSet("select distinct q.q_id,q.question,q.post_date,q.user_name,array_to_string(array_agg(distinct t.tag_name), ' ') as tags,COUNT(a.q_id) as adviceCount from questions q JOIN answers As a On q.q_id = a.q_id LEFT JOIN questions_tags qt on q.q_id = qt.q_id LEFT JOIN tags t on t.t_id=qt.t_id where DATE(a.post_date)=current_date group by q.q_id,q.post_date,q.user_name,q.question ORDER BY adviceCount desc limit 5;");
         List<Question> advices = new ArrayList<Question>();
         while (advice.next()) {
-            Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4),advice.getString(5));
+            Question question=  new Question(advice.getString("q_id"), truncateQuestionToCharacterLimit(advice.getString("question")),advice.getString("post_date"),advice.getString("user_name"),advice.getString("tags"));
             advices.add(question);
         }
         if(advices.size()<5){
-            advice = jdbcTemplate.queryForRowSet("select q.q_id,q.question,q.post_date,q.user_name,q.tag from questions As q JOIN answers As a On q.q_id = a.q_id where DATE(a.post_date)<current_date GROUP BY q.tag,q.q_id,q.question,q.post_date,q.user_name ORDER BY COUNT(a.q_id) DESC limit 5;");
+            advice = jdbcTemplate.queryForRowSet("select distinct q.q_id,q.question,q.post_date,q.user_name,array_to_string(array_agg(distinct t.tag_name), ' ') as tags,COUNT(a.q_id) as adviceCount from questions q JOIN answers As a On q.q_id = a.q_id LEFT JOIN questions_tags qt on q.q_id = qt.q_id LEFT JOIN tags t on t.t_id=qt.t_id where DATE(a.post_date)<current_date group by q.q_id,q.post_date,q.user_name,q.question ORDER BY adviceCount desc limit 5;");
             while(advices.size()!=5 && advice.next()){
-                Question question=  new Question(advice.getString(1),truncateQuestionToCharacterLimit(advice.getString(2)),advice.getString(3),advice.getString(4),advice.getString(5));
+                Question question=  new Question(advice.getString("q_id"), truncateQuestionToCharacterLimit(advice.getString("question")),advice.getString("post_date"),advice.getString("user_name"),advice.getString("tags"));
                 advices.add(question);
             }
         }

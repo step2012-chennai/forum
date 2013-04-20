@@ -48,11 +48,12 @@
                 for (Question question : questions ){
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
                 <div class="question-posted-time-for-home-page">
-                    <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>&nbsp&nbsp&nbsp&nbsp
-                    <% if (question.getTags() != null) {%>
+                    <% out.println(question.getUserName()+ "&nbsp;&nbsp;|&nbsp;&nbsp;" + question.getTime() + "&nbsp;&nbsp;&nbsp;&nbsp;");%>
                         <%String str = question.getTags();%>
-                        <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
-                    <% } %>
+                        <%String[] t1 = str.split(" ");%>
+                        <%for (String s : t1) { %>
+                        <a href="tagsearch?tag=<%=s%>"><lable><b> <%out.println(s);%> </b></lable></a>
+                        <%}%>
                 </div>
                 <hr width="50%" align="left" id="horizon">
                 <%}%>
