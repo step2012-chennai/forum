@@ -49,8 +49,10 @@
                     %><a href= "question_details?questionId=<%=question.getId()%>" ><% out.println(question.getQuestion()); %></a>
                 <div class="question-posted-time-for-home-page">
                     <% out.println(question.getUserName() + " | " + question.getTime() + "\n" + "\n"); %>&nbsp&nbsp&nbsp&nbsp
-                     <%String str = question.getTags();%>
-                      <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
+                    <% if (question.getTags() != null) {%>
+                        <%String str = question.getTags();%>
+                        <a href="tagsearch?tag=<%=str%>"><lable><b> <%out.println(str);%> </b></lable></a>
+                    <% } %>
                 </div>
                 <hr width="50%" align="left" id="horizon">
                 <%}%>
